@@ -1,0 +1,14 @@
+{
+  "welcome_to_React": "Welcome to React and react-i18next",
+  "language": "Language",
+  "notes": "Notes",
+  "JOTTERS": "Jotters",
+  "sort": "Sort",
+  "FILTER": "Filter",
+  "NEW_JOTTER": "New jotter",
+  "NEW_NOTE": "New note",
+  "PUBLIC": "Public",
+  "PRIVATE": "Private",
+  "SELECT_NOTE": "Select a note",
+  "public_jotters": "Public Jotters"
+}
