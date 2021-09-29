@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/m2-jotter/static/css/main.429dfe62.chunk.css",
-    "main.js": "/m2-jotter/static/js/main.e9029803.chunk.js",
-    "main.js.map": "/m2-jotter/static/js/main.e9029803.chunk.js.map",
-    "runtime-main.js": "/m2-jotter/static/js/runtime-main.9599d297.js",
-    "runtime-main.js.map": "/m2-jotter/static/js/runtime-main.9599d297.js.map",
-    "static/css/2.936cb495.chunk.css": "/m2-jotter/static/css/2.936cb495.chunk.css",
-    "static/js/2.685e652f.chunk.js": "/m2-jotter/static/js/2.685e652f.chunk.js",
-    "static/js/2.685e652f.chunk.js.map": "/m2-jotter/static/js/2.685e652f.chunk.js.map",
-    "index.html": "/m2-jotter/index.html",
-    "static/css/2.936cb495.chunk.css.map": "/m2-jotter/static/css/2.936cb495.chunk.css.map",
-    "static/css/main.429dfe62.chunk.css.map": "/m2-jotter/static/css/main.429dfe62.chunk.css.map",
-    "static/js/2.685e652f.chunk.js.LICENSE.txt": "/m2-jotter/static/js/2.685e652f.chunk.js.LICENSE.txt",
-    "static/media/flag-icon.min.css": "/m2-jotter/static/media/zw.f5ceeff7.svg",
-    "static/media/bootstrap-icons.css": "/m2-jotter/static/media/bootstrap-icons.dfd0ea12.woff2",
-    "static/media/getFetch.cjs": "/m2-jotter/static/media/getFetch.582d29c4.cjs"
+    "main.css": "/jotters/static/css/main.429dfe62.chunk.css",
+    "main.js": "/jotters/static/js/main.f26c54be.chunk.js",
+    "main.js.map": "/jotters/static/js/main.f26c54be.chunk.js.map",
+    "runtime-main.js": "/jotters/static/js/runtime-main.3ea10869.js",
+    "runtime-main.js.map": "/jotters/static/js/runtime-main.3ea10869.js.map",
+    "static/css/2.91b4b3a7.chunk.css": "/jotters/static/css/2.91b4b3a7.chunk.css",
+    "static/js/2.685e652f.chunk.js": "/jotters/static/js/2.685e652f.chunk.js",
+    "static/js/2.685e652f.chunk.js.map": "/jotters/static/js/2.685e652f.chunk.js.map",
+    "index.html": "/jotters/index.html",
+    "static/css/2.91b4b3a7.chunk.css.map": "/jotters/static/css/2.91b4b3a7.chunk.css.map",
+    "static/css/main.429dfe62.chunk.css.map": "/jotters/static/css/main.429dfe62.chunk.css.map",
+    "static/js/2.685e652f.chunk.js.LICENSE.txt": "/jotters/static/js/2.685e652f.chunk.js.LICENSE.txt",
+    "static/media/flag-icon.min.css": "/jotters/static/media/zw.f5ceeff7.svg",
+    "static/media/bootstrap-icons.css": "/jotters/static/media/bootstrap-icons.dfd0ea12.woff2",
+    "static/media/getFetch.cjs": "/jotters/static/media/getFetch.582d29c4.cjs"
   },
   "entrypoints": [
-    "static/js/runtime-main.9599d297.js",
-    "static/css/2.936cb495.chunk.css",
+    "static/js/runtime-main.3ea10869.js",
+    "static/css/2.91b4b3a7.chunk.css",
     "static/js/2.685e652f.chunk.js",
     "static/css/main.429dfe62.chunk.css",
-    "static/js/main.e9029803.chunk.js"
+    "static/js/main.f26c54be.chunk.js"
   ]
 }
