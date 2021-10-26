@@ -1,0 +1,5 @@
+/* ================ quill-card ================ */
+
+.quillCard {
+  border-radius: var(--border-radius);
+}

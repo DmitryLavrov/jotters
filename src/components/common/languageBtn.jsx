@@ -2,10 +2,13 @@ import React, {useEffect} from 'react'
 import i18next from 'i18next'
 import cookie from 'js-cookie'
 import {useTranslation} from 'react-i18next'
+import globe from '../../assets/images/globe.svg'
+import flagGb from '../../assets/images/flag-gb.svg'
+import flagRu from '../../assets/images/flag-ru.svg'
 
 const languages = [
-  {code: 'en', name: 'English', flagCode: 'gb'},
-  {code: 'ru', name: 'Русский', flagCode: 'ru'}
+  {code: 'en', name: 'English', flagImg: flagGb},
+  {code: 'ru', name: 'Русский', flagImg: flagRu}
 ]
 
 const LanguageBtn = () => {
@@ -20,19 +23,24 @@ const LanguageBtn = () => {
 
   return (
     <span className="dropdown">
-      <button className="btn btn-link dropdown-toggle" type="button" id="dropdownLanguages"
+      <button className="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownLanguages"
               data-bs-toggle="dropdown" aria-expanded="false">
-        <i className="bi bi-globe2"/>
+        <span><img src={globe} alt="Lang" height="24px"/></span>
       </button>
+
       <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguages">
-        <li className="dropdown-item-text"><span>{t('language')}</span></li>
-        {languages.map(({code, name, flagCode}) =>
+        <li className="dropdown-item-text">
+          <span>{t('language')}</span>
+        </li>
+
+        {languages.map(({code, name, flagImg}) =>
           <li key={code}>
             <button className="dropdown-item"
                     onClick={() => i18next.changeLanguage(code)}
                     disabled={code === currentLanguageCode}>
-                  <span className={`flag-icon flag-icon-${flagCode} mx-2`}
-                        style={{opacity: code === currentLanguageCode ? 0.5 : 1}}/>
+              <span className="me-2" style={{opacity: code === currentLanguageCode ? 0.5 : 1}}>
+                <img src={flagImg} alt="Flag" height="24px"/>
+              </span>
               {name}
             </button>
           </li>

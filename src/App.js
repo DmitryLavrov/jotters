@@ -1,16 +1,12 @@
-import React, {Suspense} from 'react'
-
-import {i18nInit} from './utils/i18next'
-import Spinner from './components/common/spinner'
+import React from 'react'
 import Routing from './routing/routing'
-
-i18nInit()
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
   return (
-    <Suspense fallback={Spinner}>
+    <BrowserRouter>
       <Routing/>
-    </Suspense>
+    </BrowserRouter>
   )
 }
 

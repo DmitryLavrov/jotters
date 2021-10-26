@@ -16,7 +16,12 @@ export const i18nInit = () => {
       caches: ['localStorage', 'cookie']
     },
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json'
+      loadPath: () => {
+        // check the domain
+        const host = window.location.host;
+        return (host === 'production.ltd' ? '':'jotters') + '/locales/{{lng}}/translation.json';
+      }
+      // loadPath: 'locales/{{lng}}/translation.json'
     }
   })
 }

@@ -1,6 +1,3 @@
-import React, {useEffect, useState} from 'react'
-import ReactQuill from 'react-quill'
-
 // const modules = {
 //   toolbar: [
 //     [{font: []}],
@@ -16,7 +13,8 @@ import ReactQuill from 'react-quill'
 //     ['clean']
 //   ]
 // }
-const modules = {
+
+export const showToolbar = {
   toolbar: [
     [{header: [1, 2, 3, 4, 5, 6, false]}],
     ['bold', 'italic', 'underline', 'strike'],
@@ -28,35 +26,13 @@ const modules = {
   ]
 }
 
-const getTitleFromContent = (content) => {
+export const hideToolbar = {
+  toolbar: null
+}
+
+export const getTitleFromContent = (content) => {
   const arr = content.split(/\n/)
   while ((arr.length > 0) && (arr[0].trim() === '')) arr.shift()
   const title = (arr.length > 0) && (arr[0].trim())
   return title ? title : 'Noname note'
 }
-
-const NotePage = ({note}) => {
-  const [value, setValue] = useState(note.content)
-
-  // console.log(value)
-
-  useEffect(() => {
-    document.querySelector('.ql-bold').setAttribute('title', 'Bold')
-  }, [])
-
-  useEffect(() => {
-    setValue(note.content)
-  }, [note])
-
-  const handleChange = (content, delta, source, editor) => {
-    setValue(content)
-  }
-
-  return (
-    <>
-      <ReactQuill modules={modules} value={value} onChange={handleChange} theme="snow"/>
-    </>
-  )
-}
-
-export default NotePage

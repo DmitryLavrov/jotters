@@ -1,72 +1,103 @@
-body {
-  margin: 0;
-  /*padding-top: 56px;*/
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #282c34;
-  color: white;
+:root {
+  --border-radius: 8px;
+  --text-color: white;
+  --bs-secondary-rgb: 238, 238, 238;
+  /*--bg-color: hsl(27, 87%, 95%);*/
+  --bg-color: seashell;
+  --bs-body-bg-rgb: 255, 245, 238;
+  --transition-delay: 300ms;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+  background-color: var(--bg-color);
 }
 
-/* ================ backdrop ================ */
+/* ================ BS dropdown ================ */
 
-.backdrop {
-  position: fixed;
-  /*display: none;*/
+.dropdown-menu {
+  display: block;
   visibility: hidden;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0);
-  transition: background-color 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  z-index: 10;
+  border-radius: var(--border-radius);
+  transition: margin-top var(--transition-delay) ease-out;
 }
 
-.backdrop.open {
-  /*display: block;*/
+.dropdown-menu.show {
   visibility: visible;
-  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 0.8rem;
 }
 
-/* ================ mobile-sidebar ================ */
-
-.mobile-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  /*background-color: darkturquoise;*/
-  /*width: 80% !important;*/
-  max-width: 300px;
-  height: 100vh;
-  margin-left: -100vw;
-  z-index: 12;
-  transition: margin 0.5s ease-in-out;
+.dropdown-menu-end {
+  right: 0;
+  left: auto;
 }
 
-.mobile-sidebar.open{
-  margin-left: 0 !important;
+.dropdown-item-text {
+  color: var(--text-color);
 }
 
-/* ================ mobile-sidebar ================ */
+/* ================ BS dropdown ================ */
+
+.btn {
+  border-radius: var(--border-radius);
+}
+
+/* ================ BS card ================ */
+
+.card {
+  background-color: #fff1e5;
+  border-radius: var(--border-radius);
+  margin: 0.5rem;
+  transition: all var(--transition-delay) ease-out;
+}
+
+.card:hover,
+.card:active {
+  background-color: #ffeedd;
+  box-shadow: 1px 1px 5px rgba(255,255,255,0.5), 3px 3px 15px rgba(0,0,0,0.1);
+  transform: scale(1.01);
+}
+
+.card-text.ellipsis {
+  text-overflow: ellipsis;
+  text-align: start;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 3.6em;
+  line-height: 1.2em;
+  font-size: 0.75rem;
+}
+
+/* ================ quill-editor ================ */
 
 .ql-editor {
   min-height: 300px;
 }
 
+.ql-container.ql-snow.ql-disabled {
+  border: none;
+}
+
 .ql-container.ql-snow {
-  border-radius: 5px;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
 }
 
 .ql-toolbar.ql-snow {
-  border-radius: 5px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  transition: height 600ms ease-out, visibility 600ms ease-out, padding 600ms ease-out;
+}
+
+.quill.hide-toolbar>.ql-toolbar {
+  height: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+  border: none;
+  visibility: hidden;
+}
+
+.quill.hide-toolbar>.ql-toolbar>span {
+  visibility: hidden;
 }
 
 .ql-toolbar.ql-snow .ql-formats {
@@ -83,9 +114,49 @@ code {
   border-radius: 5px;
 }
 
+.ql-toolbar button:after,
+.ql-toolbar .ql-formats span:after
+{
+  display:none;
+  position: relative;
+  top: 21px;
+  right: 0;
+  width: 90px;
+  font-size: smaller;
+  text-align: start;
+  background-color: #fef4c5;
+  border: 1px solid #d4b943;
+  border-radius: 5px;
+}
+
+.ql-toolbar .ql-formats span:after
+{
+  top: 0;
+  right: 5px;
+  width: 90px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: start;
+  padding-left: 12px;
+  color: rgb(0, 102, 204);
+}
+
+.ql-toolbar button:hover:after,
+.ql-toolbar .ql-formats span:hover:after {
+  display: block;
+}
+
+.ql-bold:after {content: 'Bold'}
+.ql-italic:after {content: 'Italic'}
+.ql-underline:after {content: 'Underline'}
+.ql-strike:after {content: 'Strike'}
+.ql-formats span.ql-align:after {content: 'Align'}
+.ql-formats span.ql-color:after {content: 'Color'}
+.ql-formats span.ql-background:after {content: 'Background'}
+
 /* ================ active-note ================ */
 
 .active-note {
-  background-color: aqua;
+  background-color: aquamarine;
   border-radius: 20px;
 }
