@@ -134,7 +134,8 @@ const fetchAllPublic = () =>
              return {
                _id: note._id,
                title: note.title,
-               user: user.name,
+               userId: user._id,
+               username: user.name,
                updateDate: typeof note.updateDate === 'string' ? Date.parse(note.updateDate) : note.updateDate,
                summary: convertToPlain(note.content).slice(0, 130) + '...'
              }

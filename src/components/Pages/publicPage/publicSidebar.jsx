@@ -3,28 +3,46 @@ import { useTranslation } from 'react-i18next'
 import Sidebar from '../../common/modal/sidebar'
 import useDebounceState from '../../../hooks/useDebounce'
 
-const PublicSidebar = ({filter, onChangeFilter, sort, onChangeSort, ...rest}) => {
+const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest}) => {
   const {t} = useTranslation()
-  const [localFilter, setLocalFilter] = useState(filter)
-  const [debounce, setDebounce] = useDebounceState(filter.search, 1000)
+  const [localSearch, setLocalSearch] = useState(search)
+  const [localUsers, setLocalUsers] = useState(users)
+  const [debounce, setDebounce] = useDebounceState({search, users}, 500)
 
   useEffect(() => {
-    onChangeFilter(localFilter)
+    onSearch(localSearch)
+    onSelect(localUsers)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounce])
 
-  const handleChangeFilter = (event) => {
-    setLocalFilter(prev => {
+  useEffect(() => {
+    setLocalUsers(users)
+  }, [users])
+
+  const handleSearch = (event) => {
+    setLocalSearch(event.target.value)
+    setDebounce(prev => {
       return {
         ...prev,
-        [event.target.name]: event.target.value
+        search: event.target.value
       }
     })
-    setDebounce(event.target.value)
   }
 
-  const handleChangeSort = (event) => {
-    onChangeSort(event.target.value)
+  const handleSelect = (event) => {
+    setLocalUsers(prev => {
+      const newUsers = prev.map(i => i._id === event.target.name
+        ? {...i, selected: event.target.checked} : i)
+
+      setDebounce(prev => {
+        return {
+          ...prev,
+          users: newUsers
+        }
+      })
+
+      return newUsers
+    })
   }
 
   return (
@@ -34,8 +52,8 @@ const PublicSidebar = ({filter, onChangeFilter, sort, onChangeSort, ...rest}) =>
       </h4>
 
       <input name="search"
-             value={localFilter.value}
-             onChange={handleChangeFilter}
+             value={localSearch}
+             onChange={handleSearch}
              type="text" className="form-control" placeholder={t('SEARCH_PLACEHOLDER')}/>
 
       <h4 className="mt-3">
@@ -44,9 +62,9 @@ const PublicSidebar = ({filter, onChangeFilter, sort, onChangeSort, ...rest}) =>
 
       <div className="form-check">
         <input name="sort"
-               value='byDate'
+               value="byDate"
                checked={sort === 'byDate'}
-               onChange={handleChangeSort}
+               onChange={onSort}
                type="radio" className="form-check-input" id="RadioSort1"/>
         <label className="form-check-label" htmlFor="RadioSort1">
           {t('BY_DATE')}
@@ -54,9 +72,9 @@ const PublicSidebar = ({filter, onChangeFilter, sort, onChangeSort, ...rest}) =>
       </div>
       <div className="form-check">
         <input name="sort"
-               value='byName'
+               value="byName"
                checked={sort === 'byName'}
-               onChange={handleChangeSort}
+               onChange={onSort}
                type="radio" className="form-check-input" id="RadioSort2"/>
         <label className="form-check-label" htmlFor="RadioSort2">
           {t('BY_NAME')}
@@ -67,18 +85,23 @@ const PublicSidebar = ({filter, onChangeFilter, sort, onChangeSort, ...rest}) =>
         {t('FILTER')}
       </h4>
 
-      {/*<div className="form-check">*/}
-      {/*  <input className="form-check-input" type="checkbox" value="" id="Check1" checked/>*/}
-      {/*  <label className="form-check-label" htmlFor="Check1">*/}
-      {/*    Первый*/}
-      {/*  </label>*/}
-      {/*</div>*/}
-      {/*<div className="form-check">*/}
-      {/*  <input className="form-check-input" type="checkbox" value="" id="Check2" checked/>*/}
-      {/*  <label className="form-check-label" htmlFor="Check2">*/}
-      {/*    Второй*/}
-      {/*  </label>*/}
-      {/*</div>*/}
+      {localUsers &&
+      localUsers.map(user => (
+        <div className="form-check" key={user._id}>
+          <input className="form-check-input"
+                 onChange={handleSelect}
+                 name={user._id}
+                 type="checkbox"
+                 value=""
+                 id={user._id}
+                 checked={user.selected}/>
+          <label className="form-check-label" htmlFor={user._id}>
+            {user.name}
+          </label>
+        </div>
+      ))
+      }
+
     </Sidebar>
   )
 }

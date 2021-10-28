@@ -7,11 +7,11 @@ const JottersSidebar = ({addNewJotter, ...rest}) => {
 
   const handleNewJotter = () => {
     const newJotter = {
-      _id: 'j' + Math.random(),
+      _id: 'j' + Math.random().toString().slice(-6),
+      userId: 'u01',
       title: 'Новый альбом',
-      access: 'public',
-      lastChanges: Date.now(),
-      notes: []
+      updateDate: Date.now(),
+      color: '#AA77AA'
     }
     addNewJotter(newJotter)
   }

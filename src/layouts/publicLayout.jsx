@@ -4,61 +4,58 @@ import { useTranslation } from 'react-i18next'
 import PublicSidebar from '../components/Pages/publicPage/publicSidebar'
 import PublicPage from '../components/Pages/publicPage/publicPage'
 import Layout from '../components/common/layout'
+import sortNotesBy from '../utils/sortNotesBy'
+import selectUsersFromNotes from '../utils/selectUsersFromNotes'
 
-const initialFilter = {
-  search: ''
+const getSelectedUsers = (users) => {
+  return users.filter(user => user.selected === true).map(user => user._id)
 }
 
 const PublicLayout = () => {
   const {t} = useTranslation()
-  const [notes, setNotes] = useState()
-  const [filter, setFilter] = useState(initialFilter)
+  const [notes, setNotes] = useState([])
+  const [users, setUsers] = useState()
+  const [search, setSearch] = useState('')
   const [sort, setSort] = useState('byDate')
 
   useEffect(() => {
     API.notes.fetchAllPublic().then((data) => {
-      setNotes(sortBy(sort, data))
+      setNotes(sortNotesBy(sort, data))
+      const users = selectUsersFromNotes(data)
+      setUsers(users)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    setNotes(sortBy(sort, notes))
+    setNotes(sortNotesBy(sort, notes))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
 
-  const handleFilter = (localFilter) => {
-    setFilter(prev => {
-      return {
-        ...prev,
-        ...localFilter
-      }
-    })
+  const handleSearch = (value) => {
+    setSearch(value)
   }
 
-  const sortBy = (sort, notes) => {
-    if (!notes) return
-
-    const copyNotes = [...notes]
-
-    if (sort === 'byDate') {
-      return copyNotes.sort((a, b) => (b.updateDate - a.updateDate))
-    }
-
-    if (sort === 'byName') {
-      return copyNotes.sort((a, b) => ((a.title > b.title) ? 1 : -1))
-    }
+  const handleSort = (event) => {
+    setSort(event.target.value)
   }
 
-  const handleSort = (newSort) => {
-    setSort(newSort)
+  const handleSelect = (localUsers) => {
+    setUsers(localUsers)
   }
 
   const filterNotes = () => {
     let filtered = notes
-    if (filter.search) {
-      filtered = notes.filter(note => note.summary.toLowerCase().includes(filter.search.toLowerCase()))
+
+    if (search) {
+      filtered = filtered.filter(note => note.summary.toLowerCase().includes(search.toLowerCase()))
     }
+
+    if (users) {
+      const select = getSelectedUsers(users)
+      filtered = filtered.filter(note => select.includes(note.userId))
+    }
+
     return filtered
   }
 
@@ -67,10 +64,12 @@ const PublicLayout = () => {
   return <Layout sidebar={<PublicSidebar/>}
                  page={<PublicPage/>}
                  notes={filteredNotes}
-                 filter={filter}
-                 onChangeFilter={handleFilter}
+                 search={search}
                  sort={sort}
-                 onChangeSort={handleSort}
+                 users={users}
+                 onSearch={handleSearch}
+                 onSort={handleSort}
+                 onSelect={handleSelect}
                  title={notes ? t('PUBLIC_NOTES') : '...'}/>
 }
 

@@ -16,7 +16,7 @@ const NoteCard = ({note}) => {
           </p>
 
           <h6 className="card-subtitle mb-2 text-muted">
-            {note.user}
+            {note.username}
           </h6>
 
           <p className="card-text">

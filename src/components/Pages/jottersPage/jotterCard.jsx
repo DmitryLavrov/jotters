@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import JotterToDelete from './jotterToDelete'
+import { dateToString } from '../../../utils/dateToString'
 
 const actionList = {
   delete: {
@@ -41,7 +42,7 @@ const JotterCard = ({jotter, deleteJotter}) => {
               <button type="button" className="btn btn-link"><i className="bi bi-gear"/></button>
             </h6>
             <p className="card-text">Заметок: 10
-              <br/>Изменения: {jotter.lastChanges}</p>
+              <br/>Изменения: {dateToString(jotter.updateDate)}</p>
             <div className="d-flex justify-content-between">
               <button type="button" className="btn btn-outline-danger" onClick={showDeleteNotification}>
                 Удалить
