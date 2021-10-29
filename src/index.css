@@ -82,6 +82,8 @@ body{
   border-bottom-right-radius: var(--border-radius);
 }
 
+/* ================ quill-toolbar ================ */
+
 .ql-toolbar.ql-snow {
   border-top-left-radius: var(--border-radius);
   border-top-right-radius: var(--border-radius);
@@ -114,45 +116,67 @@ body{
   border-radius: 5px;
 }
 
-.ql-toolbar button:after,
-.ql-toolbar .ql-formats span:after
+.ql-toolbar.ql-snow .ql-formats>span.ql-align>.ql-picker-label,
+.ql-toolbar.ql-snow .ql-formats>span.ql-color>.ql-picker-label,
+.ql-toolbar.ql-snow .ql-formats>span.ql-background>.ql-picker-label
+{
+  padding-top: 0;
+  border-top-width: 0;
+}
+
+/* ================ quill-toolbar tooltips ================ */
+
+.ql-toolbar button::after,
+.ql-toolbar .ql-formats>span::after
 {
   display:none;
   position: relative;
-  top: 21px;
+  top: -46px;
   right: 0;
-  width: 90px;
-  font-size: smaller;
-  text-align: start;
+  width: auto;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  color: rgb(0, 102, 204);
   background-color: #fef4c5;
   border: 1px solid #d4b943;
   border-radius: 5px;
 }
 
-.ql-toolbar .ql-formats span:after
+.ql-toolbar .ql-formats>span::after
 {
-  top: 0;
-  right: 5px;
-  width: 90px;
-  font-size: 14px;
-  font-weight: 400;
-  text-align: start;
-  padding-left: 12px;
-  color: rgb(0, 102, 204);
+  top: -48px;
+  right: -5px;
 }
 
-.ql-toolbar button:hover:after,
-.ql-toolbar .ql-formats span:hover:after {
-  display: block;
+.ql-toolbar button:hover::after,
+.ql-toolbar .ql-formats>span:hover::after {
+  display: inline-block;
 }
 
+.ql-formats>span.ql-header::after {content: 'Header'}
 .ql-bold:after {content: 'Bold'}
 .ql-italic:after {content: 'Italic'}
 .ql-underline:after {content: 'Underline'}
 .ql-strike:after {content: 'Strike'}
-.ql-formats span.ql-align:after {content: 'Align'}
-.ql-formats span.ql-color:after {content: 'Color'}
-.ql-formats span.ql-background:after {content: 'Background'}
+.ql-formats>span.ql-align::after {content: 'Align'}
+.ql-formats>span.ql-color::after {content: 'Color'}
+.ql-formats>span.ql-background::after {content: 'Background'}
+.ql-script[value="sub"]::after {content: 'Sub'}
+.ql-script[value="super"]::after {content: 'Super'}
+.ql-blockquote::after {content: 'Blockquote'}
+.ql-code-block::after {content: 'Code block'}
+.ql-list[value="ordered"]::after {content: 'Ordered list'}
+.ql-list[value="bullet"]::after {content: 'Bullet list'}
+.ql-indent[value="-1"]::after {content: 'Shift left'}
+.ql-indent[value="+1"]::after {content: 'Shift right'}
+.ql-link::after {content: 'Link'}
+.ql-image::after {content: 'Insert image'}
+.ql-video::after {content: 'Insert video URL'}
+.ql-clean::after {content: 'Clear formatting'}
 
 /* ================ active-note ================ */
 
