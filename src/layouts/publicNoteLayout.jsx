@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import {useParams} from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import API from '../api'
 import PublicNotePage from '../components/Pages/publicNotePage/publicNotePage'
 import PublicNotesSidebar from '../components/Pages/publicNotePage/publicNoteSidebar'
@@ -15,10 +15,12 @@ const PublicNoteLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <Layout sidebar={<PublicNotesSidebar/>}
-                 page={<PublicNotePage/>}
-                 note={note}
-                 title={note ? note.title : '...'}/>
+  return (
+    <Layout title={note ? note.title : '...'}>
+      <PublicNotesSidebar/>
+      <PublicNotePage note={note}/>
+    </Layout>
+  )
 }
 
 export default PublicNoteLayout

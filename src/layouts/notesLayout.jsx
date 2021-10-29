@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import NotesSidebar from '../components/Pages/notePage/notesSidebar'
 import NotePage from '../components/Pages/notePage/notePage'
-import {useParams} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import API from '../api'
 import Layout from '../components/common/layout'
 
@@ -12,7 +12,10 @@ const NotesLayout = () => {
   const {jotterId, noteId} = useParams()
 
   useEffect(() => {
-    API.jotters.getById(jotterId).then((data) => setJotter(data))
+    API.jotters.getById(jotterId).then((data) => {
+      setJotter(data)
+    })
+    selectNote()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -23,8 +26,8 @@ const NotesLayout = () => {
 
   const selectNote = (id) => {
     // if (jotter) {
-      API.notes.getById(noteId).then(data => setSelectedNote(data))
-      // setSelectedNote(jotter.notes.find(note => note._id === id))
+    API.notes.getById(id).then(data => setSelectedNote(data))
+    // setSelectedNote(jotter.notes.find(note => note._id === id))
     // }
   }
 
@@ -36,35 +39,14 @@ const NotesLayout = () => {
   //
   // }
 
-  return <Layout sidebar={<NotesSidebar/>}
-                 page={<NotePage/>}
-                 note={selectedNote}
-                 jotter={jotter}
-                 selectedNote={selectedNote}
-                 deleteNote={deleteNote}
-                 title={jotter ? jotter.title : '...'}/>
-
-
-  // return (
-  //   <div className="container">
-  //     <Navbar navSidebar={navSidebar} title={jotter ? jotter.title : '...'}/>
-  //
-  //     <div className="container-fluid">
-  //       <div className="row">
-  //         <div className="d-none d-lg-block col-lg-4 col-xl-3 pt-2 pb-2">
-  //           <NotesSidebar jotter={jotter} selectedNote={selectedNote} deleteNote={deleteNote}/>
-  //         </div>
-  //
-  //         <div className="col-md-12 col-lg-8 col-xl-9 pt-2 pb-2">
-  //           {selectedNote
-  //             ? <NotePage note={selectedNote}/>
-  //             : <h1 className="text-center mt-3">{t('SELECT_NOTE')}</h1>
-  //           }
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // )
+  return (
+    <Layout title={jotter ? jotter.title : '...'}>
+      <NotesSidebar jotter={jotter}
+                    selectedNote={selectedNote}
+                    deleteNote={deleteNote}/>
+      <NotePage note={selectedNote}/>
+    </Layout>
+  )
 }
 
 export default NotesLayout

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../ui/navbar'
 
-const Layout = ({sidebar, page, ...rest}) => {
+const Layout = ({children, ...rest}) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992)
 
   const updateMedia = () => {
@@ -13,11 +13,15 @@ const Layout = ({sidebar, page, ...rest}) => {
     return () => window.removeEventListener('resize', updateMedia)
   })
 
-  const clonedPage = React.cloneElement(page, {...page.props, ...rest})
-  const clonedSidebar = React.cloneElement(sidebar, {...sidebar.props, ...rest})
+  const [clonedSidebar, clonedPage] = React.Children.map(children, child => (
+    React.cloneElement(child, {...child.props}))
+  )
 
   const navSidebar = (hideSidebar) =>
-    React.cloneElement(sidebar, {...sidebar.props, isMobile: true, hideSidebar: hideSidebar, ...rest})
+    React.cloneElement(clonedSidebar, {
+      ...clonedSidebar.props,
+      isMobile: true,
+      hideSidebar: hideSidebar})
 
   return (
     <div className="container">

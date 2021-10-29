@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import JottersSidebar from '../components/Pages/jottersPage/jottersSidebar'
 import JottersPage from '../components/Pages/jottersPage/jottersPage'
 import API from '../api'
@@ -22,11 +22,13 @@ const JottersLayout = () => {
     setJotters(jotters.filter(i => i._id !== id))
   }
 
-  return <Layout sidebar={<JottersSidebar/>}
-                 page={<JottersPage/>}
-                 jotters={jotters}
-                 addNewJotter={addNewJotter}
-                 deleteJotter={deleteJotter}/>
+  return (
+    <Layout>
+      <JottersSidebar addNewJotter={addNewJotter}/>
+      <JottersPage jotters={jotters}
+                   deleteJotter={deleteJotter}/>
+    </Layout>
+  )
 }
 
 export default JottersLayout

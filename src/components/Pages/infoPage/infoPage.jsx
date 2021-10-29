@@ -5,11 +5,16 @@ import QuillCard from '../../common/quill/quillCard'
 import API from '../../../api'
 import Spinner from '../../common/spinner'
 
-const InfoPage = ({lng}) => {
-  const {t} = useTranslation()
+const InfoPage = () => {
+  const {t, i18n} = useTranslation()
   const [value, setValue] = useState()
   const [readOnly, setReadOnly] = useState(true)
   const [beforeEdit, setBeforeEdit] = useState({})
+  const [lng, setLng] = useState()
+
+  useEffect(() => {
+    setLng(i18n.language)
+  }, [i18n.language])
 
   useEffect(() => {
     if (readOnly) {

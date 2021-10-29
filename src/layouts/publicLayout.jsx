@@ -57,16 +57,17 @@ const PublicLayout = () => {
 
   const filteredNotes = filterNotes()
 
-  return <Layout sidebar={<PublicSidebar/>}
-                 page={<PublicPage/>}
-                 notes={filteredNotes}
-                 search={search}
-                 sort={sort}
-                 users={users}
-                 onSearch={handleSearch}
-                 onSort={handleSort}
-                 onSelect={handleSelect}
-                 title={notes ? t('PUBLIC_NOTES') : '...'}/>
+  return (
+    <Layout title={notes ? t('PUBLIC_NOTES') : '...'}>
+      <PublicSidebar search={search}
+                     sort={sort}
+                     users={users}
+                     onSearch={handleSearch}
+                     onSort={handleSort}
+                     onSelect={handleSelect}/>
+      <PublicPage notes={filteredNotes}/>
+  </Layout>
+  )
 }
 
 export default PublicLayout
