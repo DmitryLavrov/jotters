@@ -7,10 +7,6 @@ import Layout from '../components/common/layout'
 import sortNotesBy from '../utils/sortNotesBy'
 import selectUsersFromNotes from '../utils/selectUsersFromNotes'
 
-const getSelectedUsers = (users) => {
-  return users.filter(user => user.selected === true).map(user => user._id)
-}
-
 const PublicLayout = () => {
   const {t} = useTranslation()
   const [notes, setNotes] = useState([])
@@ -52,8 +48,8 @@ const PublicLayout = () => {
     }
 
     if (users) {
-      const select = getSelectedUsers(users)
-      filtered = filtered.filter(note => select.includes(note.userId))
+      const selectedUserList = users.filter(user => user.selected === true).map(user => user._id)
+      filtered = filtered.filter(note => selectedUserList.includes(note.userId))
     }
 
     return filtered

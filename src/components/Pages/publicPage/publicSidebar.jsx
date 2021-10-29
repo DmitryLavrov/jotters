@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next'
 import Sidebar from '../../common/modal/sidebar'
 import useDebounceState from '../../../hooks/useDebounce'
 
+const DELIMITER = String.fromCodePoint(9733)
+
 const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest}) => {
   const {t} = useTranslation()
   const [localSearch, setLocalSearch] = useState(search)
   const [localUsers, setLocalUsers] = useState(users)
-  const [debounce, setDebounce] = useDebounceState({search, users}, 500)
+  const [debounce, setDebounce] = useDebounceState(DELIMITER, 500)
 
   useEffect(() => {
     onSearch(localSearch)
@@ -21,12 +23,9 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
 
   const handleSearch = (event) => {
     setLocalSearch(event.target.value)
-    setDebounce(prev => {
-      return {
-        ...prev,
-        search: event.target.value
-      }
-    })
+
+    const saveSelect = debounce.slice(debounce.indexOf(DELIMITER))
+    setDebounce(event.target.value + saveSelect)
   }
 
   const handleSelect = (event) => {
@@ -34,12 +33,8 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
       const newUsers = prev.map(i => i._id === event.target.name
         ? {...i, selected: event.target.checked} : i)
 
-      setDebounce(prev => {
-        return {
-          ...prev,
-          users: newUsers
-        }
-      })
+      const saveSearch = debounce.slice(0, debounce.indexOf(DELIMITER) + 1)
+      setDebounce(saveSearch + newUsers.reduce((acc, i) => (i.selected ? (acc + i._id) : (acc + '')), ''))
 
       return newUsers
     })
