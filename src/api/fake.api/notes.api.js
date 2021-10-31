@@ -1,5 +1,6 @@
 import API from '../index'
 import convertToPlain from '../../utils/convertToPlain'
+import getTitleFromContent from '../../utils/getTitleFromContent'
 
 const notes = [
   {
@@ -104,7 +105,10 @@ const notes = [
     private: false,
     updateDate: '2021-09-24',
     title: '1Зачетный полет',
-    content: '<p><h1><strong style="color: rgb(0, 0, 0);">Зачетный полет </strong></h1><p><span style="color: rgb(0, 0, 0);">с лестницы на каблуках.</span></p><p><strong style="color: rgb(153, 51, 255);">Если бы это была не подруга, то я бы еще подумала, а так..</strong><span style="color: rgb(0, 0, 0);">.</span></p><p><span style="color: rgb(0, 0, 0);">Просто повезло, хорошо хоть без переломов.</span></p><p><span style="color: rgb(0, 0, 0);">У меня есть традиция: новый год я встречаю в платье.</span></p><p><span style="color: rgb(0, 0, 0);">И все бы ничего, но только платье это - свадебное.</span></p>'
+    content: '<h1><strong>Тег article, независимый раздел</strong></h1><p>Отлично, с&nbsp;крупными блоками главной страницы разобрались. Можем переходить к&nbsp;внутренней странице с&nbsp;записью блога. На&nbsp;ней будут располагаться уже привычные шапка, основное содержание и&nbsp;подвал.</p><p>Шапка у&nbsp;внутренних страниц будет повторяться: в&nbsp;ней будет находиться блок навигации со&nbsp;ссылкой на&nbsp;главную. На&nbsp;главной&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;nav&gt;</code>&nbsp;был уникальным и&nbsp;попал в&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;main&gt;</code>, на&nbsp;внутренних&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;nav&gt;</code>&nbsp;повторяется, поэтому мы&nbsp;поместим его в&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;header&gt;</code>.</p><p>Внутри&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;main&gt;</code>&nbsp;на&nbsp;внутренней пока располагается только пост, но&nbsp;позже там могут появиться другие разделы, например, облако тегов. Поэтому пост сразу нужно выделить каким-то тегом. Может для этого подойдёт уже знакомый нам тег&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;section&gt;</code>? Да, подойдёт, но&nbsp;есть кое-что получше!</p><p>И&nbsp;это тег&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;article&gt;</code>, который обозначает цельный, законченный и&nbsp;самостоятельный фрагмент информации. А&nbsp;пост в&nbsp;блоге именно такой.</p><p>Тег&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;article&gt;</code>, в&nbsp;отличие от&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;section&gt;</code>, можно вырвать из&nbsp;одного места и&nbsp;вставить в&nbsp;другое (на&nbsp;другую страницу сайта или на&nbsp;другой сайт), и&nbsp;смысл содержимого тега при этом не&nbsp;потеряется. Примеры: статья, пост в&nbsp;блоге, сообщение на&nbsp;форуме и&nbsp;так далее.</p><pre class="ql-syntax" spellcheck="false">&lt;article&gt;\n' +
+      '  Я фотка в Инстаграме, смотрюсь отлично где угодно\n' +
+      '&lt;/article&gt;\n' +
+      '</pre><p>Теги&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;section&gt;</code>&nbsp;можно использовать внутри&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;article&gt;</code>, если там нужно выделить отдельные смысловые блоки.</p><p>Точно так&nbsp;же можно использовать&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;article&gt;</code>&nbsp;внутри&nbsp;<code style="color: inherit; background-color: rgb(248, 248, 248);">&lt;section&gt;</code>, если в&nbsp;логическом разделе документа содержатся независимые контентные блоки.</p>'
   },
   {
     _id: 'n14',
@@ -133,7 +137,7 @@ const fetchAllPublic = () =>
              const user = API.users.users.find(user => user._id === jotter.userId)
              return {
                _id: note._id,
-               title: note.title,
+               title: getTitleFromContent(note.content),
                userId: user._id,
                username: user.name,
                updateDate: typeof note.updateDate === 'string' ? Date.parse(note.updateDate) : note.updateDate,
@@ -153,7 +157,7 @@ const fetchAllByJotterId = (jotterId) =>
                jotterId: note.jotterId,
                private: note.private,
                updateDate: note.updateDate,
-               title: note.title,
+               title: getTitleFromContent(note.content),
                summary: convertToPlain(note.content).slice(0, 130) + '...'
              }
            })
@@ -165,6 +169,24 @@ const getById = (id) =>
     setTimeout(() => resolve(notes.find(note => note._id === id)), 500)
   })
 
+const updateNote = (id, content) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const newNote = {
+        _id: 'n' + Math.random().toString(36).slice(2, 6),
+        updateDate: Date.now(),
+        content
+      }
+      const idx = notes.findIndex(i => i._id === id)
+      if (idx === -1) {
+        reject(`Error while update: id ${id} unresolved...`)
+      } else {
+        notes[idx] = {...notes[idx], newNote}
+      }
+      resolve(notes[idx])
+    }, 500)
+  })
+
 const addNewNote = (newNote) =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -173,10 +195,13 @@ const addNewNote = (newNote) =>
     }, 500)
   })
 
+
+
 const usersAPI = {
   fetchAllPublic,
   fetchAllByJotterId,
   getById,
+  updateNote,
   addNewNote
 }
 

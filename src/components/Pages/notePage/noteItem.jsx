@@ -5,25 +5,15 @@ const NoteItem = ({note, selected, deleteNote, onHideMobileSideBar}) => {
   const {jotterId} = useParams()
 
   return (
-    <li className={'nav-item  d-flex justify-content-between'}>
+    <li className={'nav-item  d-flex justify-cont w-100'}>
       <NavLink to={`/jotters/${jotterId}/${note._id}`}
-               className={'nav-link' + (selected ? ' active-note' : '')}
+               className={'nav-link flex-fill text-primary text-truncate'}
                onClick={onHideMobileSideBar}>
-        <div className="text-primary text-truncate me-auto">
+        {/*<div className="text-primary text-truncate me-auto">*/}
           {note.title}
-        </div>
+        {/*</div>*/}
       </NavLink>
 
-      <div className="d-flex align-items-center">
-        <button className="btn btn-link ms-3">
-           {/*todo*/}
-          <span className="bi bi-arrow-left-right"/>
-        </button>
-        <button className="btn btn-link text-danger ms-3" onClick={() => deleteNote(note._id)}>
-           {/*todo*/}
-          <span className="bi bi-x-circle-fill"/>
-        </button>
-      </div>
     </li>
   )
 }

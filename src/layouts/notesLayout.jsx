@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import NotesSidebar from '../components/Pages/notePage/notesSidebar'
-import NotePage from '../components/Pages/notePage/notePage'
 import { useParams } from 'react-router-dom'
+
 import API from '../api'
 import Layout from '../components/common/layout'
+import NotePage from '../components/common/notePage'
+import NotesSidebar from '../components/Pages/notePage/notesSidebar'
 
 const NotesLayout = () => {
   const [jotter, setJotter] = useState()
@@ -44,7 +45,7 @@ const NotesLayout = () => {
       <NotesSidebar jotter={jotter}
                     selectedNote={selectedNote}
                     deleteNote={deleteNote}/>
-      <NotePage note={selectedNote}/>
+      <NotePage note={selectedNote} type="PRIVATE"/>
     </Layout>
   )
 }

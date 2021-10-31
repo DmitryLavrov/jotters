@@ -26,10 +26,7 @@ const NotesSidebar = ({jotter, selectedNote, deleteNote, isMobile, hideSidebar, 
 
   return (
     <Sidebar {...{isMobile, hideSidebar, ...rest}}>
-      <Link to="/jotters" className="nav-link">Выбрать Блокнот</Link>
-      <br/>
-
-      <input type="text" className="form-control" placeholder="Поиск по названию"/>
+      <Link to="/jotters" className="btn btn-outline-primary">Выбрать Блокнот</Link>
       <br/>
 
       {notes

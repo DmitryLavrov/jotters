@@ -1,7 +1,10 @@
 :root {
   --border-radius: 8px;
   --text-color: white;
-  --bs-secondary-rgb: 238, 238, 238;
+  /*--bs-secondary: hsl(36.9,98.3%,46.1%);*/
+  --active-color-border: hsl(36.9,98.3%,66.1%);
+  --active-color-bg: hsl(36.9,98.3%,92.1%);
+  --navlink-color-bg: hsl(36.9,98.3%,86.1%);
   /*--bg-color: hsl(27, 87%, 95%);*/
   --bg-color: seashell;
   --bs-body-bg-rgb: 255, 245, 238;
@@ -116,6 +119,8 @@ body{
   border-radius: 5px;
 }
 
+/* ================ quill-toolbar fix the location of the three icons ================ */
+
 .ql-toolbar.ql-snow .ql-formats>span.ql-align>.ql-picker-label,
 .ql-toolbar.ql-snow .ql-formats>span.ql-color>.ql-picker-label,
 .ql-toolbar.ql-snow .ql-formats>span.ql-background>.ql-picker-label
@@ -157,30 +162,40 @@ body{
   display: inline-block;
 }
 
-.ql-formats>span.ql-header::after {content: 'Header'}
-.ql-bold:after {content: 'Bold'}
-.ql-italic:after {content: 'Italic'}
-.ql-underline:after {content: 'Underline'}
-.ql-strike:after {content: 'Strike'}
-.ql-formats>span.ql-align::after {content: 'Align'}
-.ql-formats>span.ql-color::after {content: 'Color'}
-.ql-formats>span.ql-background::after {content: 'Background'}
-.ql-script[value="sub"]::after {content: 'Sub'}
-.ql-script[value="super"]::after {content: 'Super'}
-.ql-blockquote::after {content: 'Blockquote'}
-.ql-code-block::after {content: 'Code block'}
-.ql-list[value="ordered"]::after {content: 'Ordered list'}
-.ql-list[value="bullet"]::after {content: 'Bullet list'}
-.ql-indent[value="-1"]::after {content: 'Shift left'}
-.ql-indent[value="+1"]::after {content: 'Shift right'}
-.ql-link::after {content: 'Link'}
-.ql-image::after {content: 'Insert image'}
-.ql-video::after {content: 'Insert video URL'}
-.ql-clean::after {content: 'Clear formatting'}
+.ql-toolbar .ql-formats>span.ql-header::after {content: 'Header'}
+.ql-toolbar .ql-bold:after {content: 'Bold'}
+.ql-toolbar .ql-italic:after {content: 'Italic'}
+.ql-toolbar .ql-underline:after {content: 'Underline'}
+.ql-toolbar .ql-strike:after {content: 'Strike'}
+.ql-toolbar .ql-formats>span.ql-align::after {content: 'Align'}
+.ql-toolbar .ql-formats>span.ql-color::after {content: 'Color'}
+.ql-toolbar .ql-formats>span.ql-background::after {content: 'Background'}
+.ql-toolbar .ql-script[value="sub"]::after {content: 'Sub'}
+.ql-toolbar .ql-script[value="super"]::after {content: 'Super'}
+.ql-toolbar .ql-blockquote::after {content: 'Blockquote'}
+.ql-toolbar .ql-code-block::after {content: 'Code block'}
+.ql-toolbar .ql-list[value="ordered"]::after {content: 'Ordered list'}
+.ql-toolbar .ql-list[value="bullet"]::after {content: 'Bullet list'}
+.ql-toolbar .ql-indent[value="-1"]::after {content: 'Shift left'}
+.ql-toolbar .ql-indent[value="+1"]::after {content: 'Shift right'}
+.ql-toolbar .ql-link::after {content: 'Link'}
+.ql-toolbar .ql-image::after {content: 'Insert image'}
+.ql-toolbar .ql-video::after {content: 'Insert video URL'}
+.ql-toolbar .ql-clean::after {content: 'Clear formatting'}
 
 /* ================ active-note ================ */
 
-.active-note {
-  background-color: aquamarine;
-  border-radius: 20px;
+.nav-link {
+  border-radius: 16px;
+  border: 3px solid hsla(36.9,98.3%,86.1%,0);
+  /*border-color: var(--active-color);*/
+}
+
+.nav-link:hover {
+  background-color: var(--navlink-color-bg);
+}
+
+.active {
+  border-color: var(--active-color-border);
+  background-color: var(--active-color-bg);
 }
