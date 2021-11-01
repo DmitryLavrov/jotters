@@ -147,42 +147,54 @@ const fetchAllPublic = () =>
     ), 1000)
   })
 
+if (!localStorage.getItem('notes')) {
+  localStorage.setItem('notes', JSON.stringify(notes))
+}
+
 const fetchAllByJotterId = (jotterId) =>
   new Promise((resolve) => {
-    setTimeout(() => resolve(
-      notes.filter(note => note.jotterId === jotterId)
-           .map(note => {
-             return {
-               _id: note._id,
-               jotterId: note.jotterId,
-               private: note.private,
-               updateDate: note.updateDate,
-               title: getTitleFromContent(note.content),
-               summary: convertToPlain(note.content).slice(0, 130) + '...'
-             }
-           })
-    ), 1000)
+    setTimeout(() => {
+      const notes = JSON.parse(localStorage.getItem('notes'))
+      resolve(
+        notes.filter(note => note.jotterId === jotterId)
+             .map(note => {
+               return {
+                 _id: note._id,
+                 jotterId: note.jotterId,
+                 private: note.private,
+                 updateDate: note.updateDate,
+                 title: getTitleFromContent(note.content),
+                 summary: convertToPlain(note.content).slice(0, 130) + '...'
+               }
+             })
+      )
+    }, 1000)
   })
 
 const getById = (id) =>
   new Promise((resolve) => {
-    setTimeout(() => resolve(notes.find(note => note._id === id)), 500)
+    setTimeout(() => {
+      const notes = JSON.parse(localStorage.getItem('notes'))
+      resolve(notes.find(note => note._id === id))
+    }, 500)
   })
 
 const updateNote = (id, content) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       const newNote = {
-        _id: 'n' + Math.random().toString(36).slice(2, 6),
         updateDate: Date.now(),
         content
       }
+      const notes = JSON.parse(localStorage.getItem('notes'))
       const idx = notes.findIndex(i => i._id === id)
       if (idx === -1) {
+        console.warn(`Error while update: id ${id} unresolved...`)
         reject(`Error while update: id ${id} unresolved...`)
       } else {
-        notes[idx] = {...notes[idx], newNote}
+        notes[idx] = {...notes[idx], ...newNote}
       }
+      localStorage.setItem('notes', JSON.stringify(notes))
       resolve(notes[idx])
     }, 500)
   })
@@ -190,12 +202,12 @@ const updateNote = (id, content) =>
 const addNewNote = (newNote) =>
   new Promise((resolve) => {
     setTimeout(() => {
+      const notes = JSON.parse(localStorage.getItem('notes'))
       notes.push(newNote)
+      localStorage.setItem('notes', JSON.stringify(notes))
       resolve(newNote)
     }, 500)
   })
-
-
 
 const usersAPI = {
   fetchAllPublic,

@@ -5,7 +5,7 @@ import API from '../../api'
 import Spinner from './spinner'
 import QuillCard from './quill/quillCard'
 
-const NotePage = ({note, type}) => {
+const NotePage = ({note, type, onUpdate}) => {
   const {t} = useTranslation()
   const [value, setValue] = useState()
   const [readOnly, setReadOnly] = useState(true)
@@ -34,6 +34,7 @@ const NotePage = ({note, type}) => {
       API.info.updateInfo(note.lng, value)
     } else if (type === 'PRIVATE' || type === 'PUBLIC') {
       API.notes.updateNote(note._id, value)
+      onUpdate()
     }
     setReadOnly(true)
   }

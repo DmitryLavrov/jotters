@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import PublicSidebar from '../components/Pages/publicPage/publicSidebar'
 import PublicPage from '../components/Pages/publicPage/publicPage'
 import Layout from '../components/common/layout'
-import sortNotesBy from '../utils/sortNotesBy'
+import sortArrayBy from '../utils/sortArrayBy'
 import selectUsersFromNotes from '../utils/selectUsersFromNotes'
 
 const PublicLayout = () => {
@@ -16,7 +16,7 @@ const PublicLayout = () => {
 
   useEffect(() => {
     API.notes.fetchAllPublic().then((data) => {
-      setNotes(sortNotesBy(sort, data))
+      setNotes(sortArrayBy(sort, data))
       const users = selectUsersFromNotes(data)
       setUsers(users)
     })
@@ -24,7 +24,7 @@ const PublicLayout = () => {
   }, [])
 
   useEffect(() => {
-    setNotes(sortNotesBy(sort, notes))
+    setNotes(sortArrayBy(sort, notes))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
 

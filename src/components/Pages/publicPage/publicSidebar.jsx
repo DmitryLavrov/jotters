@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Sidebar from '../../common/modal/sidebar'
 import useDebounceState from '../../../hooks/useDebounce'
+import Radio from '../../common/form/radio'
 
 const DELIMITER = String.fromCodePoint(9733)
 
@@ -51,30 +52,11 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
              onChange={handleSearch}
              type="text" className="form-control" placeholder={t('SEARCH_PLACEHOLDER')}/>
 
-      <h4 className="mt-3">
-        {t('SORT')}
-      </h4>
-
-      <div className="form-check">
-        <input name="sort"
-               value="byDate"
-               checked={sort === 'byDate'}
-               onChange={onSort}
-               type="radio" className="form-check-input" id="RadioSort1"/>
-        <label className="form-check-label" htmlFor="RadioSort1">
-          {t('BY_DATE')}
-        </label>
-      </div>
-      <div className="form-check">
-        <input name="sort"
-               value="byName"
-               checked={sort === 'byName'}
-               onChange={onSort}
-               type="radio" className="form-check-input" id="RadioSort2"/>
-        <label className="form-check-label" htmlFor="RadioSort2">
-          {t('BY_NAME')}
-        </label>
-      </div>
+      <Radio name="sort" title={t('SORT')} onChange={onSort}
+             radioButtons={[
+               {label: t('BY_DATE'), checked: sort === 'byDate', value: 'byDate'},
+               {label: t('BY_NAME'), checked: sort === 'byName', value: 'byName'}
+             ]}/>
 
       <h4 className="mt-3">
         {t('FILTER')}

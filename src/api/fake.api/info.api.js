@@ -13,26 +13,30 @@ const info = [
   }
 ]
 
+if (!localStorage.getItem('info')) {
+  localStorage.setItem('info', JSON.stringify(info))
+}
+
 const getInfoByLng = (lng) =>
   new Promise((resolve) => {
-    setTimeout(() => resolve(info.find(i => i.lng === lng)), 500)
+    setTimeout(() => resolve(
+      JSON.parse(localStorage.getItem('info')).find(i => i.lng === lng)
+    ), 500)
   })
 
 const updateInfo = (lng, content) =>
   new Promise((resolve) => {
     setTimeout(() => {
-      const newInfo = {
-        _id: 'i' + Math.random().toString(36).substr(2, 9),
-        updateDate: Date.now(),
-        lng,
-        content
-      }
+      const info = JSON.parse(localStorage.getItem('info'))
       const idx = info.findIndex(i => i.lng === lng)
       if (idx === -1) {
-        info.push(newInfo)
+        // =========================
+        console.warn(`Error: Can't find language "${lng}"`)
+        // =========================
       } else {
-        info[idx].updateDate = newInfo.updateDate
-        info[idx].content = newInfo.content
+        info[idx].updateDate = Date.now()
+        info[idx].content = content
+        localStorage.setItem('info', JSON.stringify(info))
       }
       resolve(info.find(i => i.lng === lng))
     }, 500)

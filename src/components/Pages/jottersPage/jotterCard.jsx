@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import JotterToDelete from './jotterToDelete'
 import { dateToString } from '../../../utils/dateToString'
+import { useTranslation } from 'react-i18next'
 
 const actionList = {
   delete: {
@@ -14,6 +15,7 @@ const actionList = {
 }
 
 const JotterCard = ({jotter, deleteJotter}) => {
+  const {t} = useTranslation()
   const [isVisibleDeleteNotification, setIsVisibleDeleteNotification] = useState(false)
   const [action, setAction] = useState()
 
@@ -41,15 +43,15 @@ const JotterCard = ({jotter, deleteJotter}) => {
             <h6 className="card-subtitle mb-2 text-muted">Доступ: {jotter.access}
               <button type="button" className="btn btn-link"><i className="bi bi-gear"/></button>
             </h6>
-            <p className="card-text">Заметок: 10
+            <p className="card-text">Заметок: {jotter.notesNumber}
               <br/>Изменения: {dateToString(jotter.updateDate)}</p>
             <div className="d-flex justify-content-between">
               <button type="button" className="btn btn-outline-danger" onClick={showDeleteNotification}>
-                Удалить
+                {t('DELETE')}
               </button>
               <Link to={`/jotters/${jotter._id}`}>
                 <button type="button" className="btn btn-outline-primary">
-                  Открыть
+                  {t('OPEN')}
                 </button>
               </Link>
             </div>
