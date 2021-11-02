@@ -34,7 +34,7 @@ const NotePage = ({note, type, onUpdate}) => {
       API.info.updateInfo(note.lng, value)
     } else if (type === 'PRIVATE' || type === 'PUBLIC') {
       API.notes.updateNote(note._id, value)
-      onUpdate()
+      onUpdate && onUpdate()
     }
     setReadOnly(true)
   }
@@ -54,13 +54,12 @@ const NotePage = ({note, type, onUpdate}) => {
 
       {/*{readOnly && <hr/>}*/}
 
+      {type === 'PRIVATE' &&
       <div className="d-flex justify-content-end gap-3 my-3">
         {readOnly
-          ? <>
-            <button className="btn btn-outline-warning w-25 text-truncate"
+          ? <button className="btn btn-outline-warning w-25 text-truncate"
                     onClick={handleBtnEdit}>{t('EDIT')}
             </button>
-          </>
           : <>
             <button className="btn btn-outline-primary w-25 text-truncate"
                     onClick={handleBtnCancel}>{t('CANCEL')}
@@ -71,6 +70,7 @@ const NotePage = ({note, type, onUpdate}) => {
           </>
         }
       </div>
+      }
     </>
   )
 }

@@ -5,8 +5,10 @@ import sortArrayBy from '../utils/sortArrayBy'
 import JottersSidebar from '../components/Pages/jottersPage/jottersSidebar'
 import JottersPage from '../components/Pages/jottersPage/jottersPage'
 import Layout from '../components/common/layout'
+import { useTranslation } from 'react-i18next'
 
 const JottersLayout = () => {
+  const {t} = useTranslation()
   const [jotters, setJotters] = useState()
   const [sort, setSort] = useState('byDate')
   const [filter, setFilter] = useState('all')
@@ -24,6 +26,7 @@ const JottersLayout = () => {
   }, [sort])
 
   useEffect(() => {
+    setJotters()
     if (filter === 'all') {
       API.jotters.fetchAllByUserId('u01').then(data => {
         setJotters(sortArrayBy(sort, data))
@@ -48,19 +51,20 @@ const JottersLayout = () => {
     API.jotters.addNewJotter('u01').then((data) => setJotters(data))
   }
 
-  const deleteJotter = (id) => {
-    API.jotters.deleteJotter(id, 'u01').then((data) => setJotters(data))
+   const updateJotter = (id, data) => {
+     setJotters()
+    API.jotters.updateJotter(id, 'u01', data).then((data) => setJotters(data))
   }
 
   return (
-    <Layout>
+    <Layout title={jotters ? t('PRIVATE_JOTTERS') : '...'}>
       <JottersSidebar sort={sort}
                       filter={filter}
                       onSort={handleSort}
                       onFilter={handleFilter}
                       addNewJotter={addNewJotter}/>
       <JottersPage jotters={jotters}
-                   deleteJotter={deleteJotter}/>
+                   onUpdateJotter={updateJotter}/>
     </Layout>
   )
 }

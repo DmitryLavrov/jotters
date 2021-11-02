@@ -43,9 +43,8 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
 
   return (
     <Sidebar {...rest}>
-      <h4 className="mt-3">
-        {t('SEARCH')}
-      </h4>
+
+      <br/>
 
       <input name="search"
              value={localSearch}

@@ -8,7 +8,7 @@
   /*--bg-color: hsl(27, 87%, 95%);*/
   --bg-color: seashell;
   --bs-body-bg-rgb: 255, 245, 238;
-  --transition-delay: 300ms;
+  --transition-delay: 200ms;
 }
 
 body{

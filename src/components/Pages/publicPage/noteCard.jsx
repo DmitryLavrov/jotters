@@ -1,38 +1,43 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+
 import { Link } from 'react-router-dom'
 import { dateToString } from '../../../utils/dateToString'
 
 const NoteCard = ({note}) => {
+  const {t} = useTranslation()
+  const isOwnNote = note.userId === 'u01'
+
   return (
     <div className="col p-0">
-      <div className="card">
-        <div className="card-body text-center">
-          <p className="card-title text-truncate text-primary fs-4">
-            {note.title}
-          </p>
+      <div className="card position-relative"
+           style={isOwnNote ? {border: '3px solid var(--bs-info)'} : null}>
 
-          <p className="card-text ellipsis">
-            {note.summary}
-          </p>
+        {isOwnNote &&
+        <span className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-info">
+          {t('MY_NOTE')}
+        </span>}
 
-          <h6 className="card-subtitle mb-2 text-muted">
-            {note.username}
-          </h6>
 
-          <p className="card-text">
-            {dateToString(note.updateDate)}
-          </p>
+        <Link to={`/public/${note._id}`} type="button" className="btn ">
+          <div className="card-body text-center">
+            <p className="card-title text-truncate text-primary fs-4">
+              {note.title}
+            </p>
 
-          <div className="d-flex justify-content-between">
-            <button type="button" className="btn btn-outline-danger">
-              Удалить
-            </button>
+            <p className="card-text ellipsis">
+              {note.summary}
+            </p>
 
-            <Link to={`/public/${note._id}`} type="button" className="btn btn-outline-primary">
-              Открыть
-            </Link>
+            <h6 className="card-subtitle mb-2 text-muted">
+              {note.username}
+            </h6>
+
+            <p className="card-text">
+              {dateToString(note.updateDate)}
+            </p>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   )

@@ -130,21 +130,24 @@ const notes = [
 
 const fetchAllPublic = () =>
   new Promise((resolve) => {
-    setTimeout(() => resolve(
-      notes.filter(note => note.private === false)
-           .map(note => {
-             const jotter = API.jotters.jotters.find(jotter => jotter._id === note.jotterId)
-             const user = API.users.users.find(user => user._id === jotter.userId)
-             return {
-               _id: note._id,
-               title: getTitleFromContent(note.content),
-               userId: user._id,
-               username: user.name,
-               updateDate: typeof note.updateDate === 'string' ? Date.parse(note.updateDate) : note.updateDate,
-               summary: convertToPlain(note.content).slice(0, 130) + '...'
-             }
-           })
-    ), 1000)
+    setTimeout(() => {
+      const notes = JSON.parse(localStorage.getItem('notes'))
+      resolve(
+        notes.filter(note => note.private === false)
+             .map(note => {
+               const jotter = API.jotters.jotters.find(jotter => jotter._id === note.jotterId)
+               const user = API.users.users.find(user => user._id === jotter.userId)
+               return {
+                 _id: note._id,
+                 title: getTitleFromContent(note.content),
+                 userId: user._id,
+                 username: user.name,
+                 updateDate: typeof note.updateDate === 'string' ? Date.parse(note.updateDate) : note.updateDate,
+                 summary: convertToPlain(note.content).slice(0, 130) + '...'
+               }
+             })
+      )
+    }, 1000)
   })
 
 if (!localStorage.getItem('notes')) {
@@ -175,7 +178,10 @@ const getById = (id) =>
   new Promise((resolve) => {
     setTimeout(() => {
       const notes = JSON.parse(localStorage.getItem('notes'))
-      resolve(notes.find(note => note._id === id))
+      const note = notes.find(note => note._id === id)
+      const jotter = API.jotters.jotters.find(jotter => jotter._id === note.jotterId)
+      const user = API.users.users.find(user => user._id === jotter.userId)
+      resolve({...note, userId: user._id})
     }, 500)
   })
 

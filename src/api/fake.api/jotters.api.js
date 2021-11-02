@@ -149,13 +149,31 @@ const deleteJotter = (id, userId) =>
     }, 500)
   })
 
+const updateJotter = (id, userId, data) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      const jotters = JSON.parse(localStorage.getItem('jotters'))
+        const idx = jotters.findIndex(jotter => jotter._id === id)
+      if (idx > -1) {
+      jotters[idx] = {...jotters[idx], ...data}
+      localStorage.setItem('jotters', JSON.stringify(jotters))
+      resolve(jotters.filter(jotter => jotter.userId === userId)
+                     .map(jotter => ({
+                       ...jotter,
+                       notesNumber: getNotesNumberFromLocalStorage(jotter.id)
+                     })))
+      }
+    }, 500)
+  })
+
 const jottersAPI = {
   jotters,
   fetchAllByUserId,
   fetchPublicByUserId,
   getById,
   addNewJotter,
-  deleteJotter
+  deleteJotter,
+  updateJotter
 }
 
 export default jottersAPI

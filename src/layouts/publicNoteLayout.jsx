@@ -18,7 +18,7 @@ const PublicNoteLayout = () => {
 
   return (
     <Layout title={note ? note.title : '...'}>
-      <PublicNotesSidebar/>
+      <PublicNotesSidebar note={note}/>
       <NotePage note={note} type="PUBLIC"/>
     </Layout>
   )

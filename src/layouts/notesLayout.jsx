@@ -36,7 +36,7 @@ const NotesLayout = () => {
     if (jotter) {
       API.notes.fetchAllByJotterId(jotter._id).then(data => {
         setNotes(data)
-        if ((data.length > 0) && isWrongSelectedNote(data)) {
+        if (!noteId && (data.length > 0) && isWrongSelectedNote(data)) {
           history.push(`/jotters/${jotterId}/${data[0]._id}`)
         }
       })
