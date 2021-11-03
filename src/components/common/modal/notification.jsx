@@ -4,11 +4,10 @@ import Modal from './modal'
 
 const Notification = ({children, onCancel, ...rest}) => {
   return (
-    <Modal modalClass={styles.modalDeleteJotter}
+    <Modal modalClass={styles.modalNotification}
            removeModal={onCancel}>
-      <div {...{onCancel, ...rest}}>
-        {children}
-      </div>
+      {/*<div {...{onCancel, ...rest}}>*/}
+      {children}
     </Modal>
   )
 }

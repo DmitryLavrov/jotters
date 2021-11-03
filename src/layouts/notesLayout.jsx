@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import API from '../api'
 import Layout from '../components/common/layout'
 import NotePage from '../components/common/notePage'
 import NotesSidebar from '../components/Pages/notePage/notesSidebar'
+import Confirmation from '../components/common/modal/confirmation'
 
 const NotesLayout = () => {
+  const {t} = useTranslation()
   const [jotter, setJotter] = useState()
   const [notes, setNotes] = useState()
   const [selectedNote, setSelectedNote] = useState()
+  const [isVisibleConfirmation, setIsVisibleConfirmation] = useState(false)
 
   const {jotterId, noteId} = useParams()
   const history = useHistory()
 
   useEffect(() => {
-      API.jotters.getById(jotterId).then((data) => {
-        setJotter(data)
-      })
+    API.jotters.getById(jotterId).then((data) => {
+      setJotter(data)
+    })
   }, [jotterId])
 
   useEffect(() => {
@@ -62,15 +66,53 @@ const NotesLayout = () => {
   //
   // }
 
+  const onDeleteJotter = () => {
+    setIsVisibleConfirmation(true)
+  }
+
+  const handleDeleteJotter = () => {
+    API.jotters
+       .deleteJotter(jotter._id, 'u01')
+       .then(() => history.replace('/jotters'))
+    setIsVisibleConfirmation(false)
+  }
+
+  const handleCreateNewNote = () => {
+    API.notes
+       .addNewNote(jotterId)
+       .then((data) => {
+         fetchNotes()
+         history.push(`/jotters/${data.jotterId}/${data._id}`)
+       })
+  }
+
   return (
-    <Layout title={jotter ? jotter.title : '...'}>
-      <NotesSidebar notes={notes}
-                    onDeleteNote={onDeleteNote}/>
-      {(notes && notes.length === 0)
-        ? <p>Создайте новую заметку</p>
-        : <NotePage note={selectedNote} type="PRIVATE" onUpdate={onUpdate}/>
+    <>
+      <Layout title={jotter ? jotter.title : '...'}>
+        <NotesSidebar notes={notes}
+                      onDeleteNote={onDeleteNote}
+                      onDeleteJotter={onDeleteJotter}
+                      onCreateNewNote={handleCreateNewNote}/>
+        {(notes && notes.length === 0)
+          ?
+          <p className="w-100 text-center my-5">
+            {t('CREATE_NEW_NOTE')}
+          </p>
+
+          :
+          <NotePage note={selectedNote}
+                    type="PRIVATE"
+                    onUpdate={onUpdate}/>
+        }
+      </Layout>
+
+      {jotter && isVisibleConfirmation &&
+      <Confirmation header={t('DELETE')}
+                    context={`${t('DELETE_JOTTER')} ${jotter.title}`}
+                    onConfirm={handleDeleteJotter}
+                    onCancel={() => setIsVisibleConfirmation(false)}/>
       }
-    </Layout>
+    </>
   )
 }
 

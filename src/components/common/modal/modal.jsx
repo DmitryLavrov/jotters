@@ -11,7 +11,8 @@ const Backdrop = ({removeModal}) => {
 
 const ModalOverlay = ({children, modalClass}) => {
   return (
-    <div className={modalClass + ' ' + classes.open}>
+    // <div className={modalClass + ' ' + classes.open}>
+    <div className={modalClass}>
       {children}
     </div>
   )

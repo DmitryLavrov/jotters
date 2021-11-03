@@ -122,7 +122,6 @@ const addNewJotter = (userId, data) =>
         _id: 'j' + Math.random().toString().slice(-6),
         userId: userId,
         updateDate: Date.now(),
-        notesNumber: 0,
         ...data
       }
       jotters.push(newJotter)

@@ -7,7 +7,7 @@ import QuillCard from './quill/quillCard'
 
 const NotePage = ({note, type, onUpdate}) => {
   const {t} = useTranslation()
-  const [value, setValue] = useState()
+  const [value, setValue] = useState('')
   const [readOnly, setReadOnly] = useState(true)
   const [beforeEdit, setBeforeEdit] = useState()
 
@@ -16,7 +16,6 @@ const NotePage = ({note, type, onUpdate}) => {
       setValue(note.content)
     }
   }, [note])
-
   const handleChange = (content) => {
     setValue(content)
   }
@@ -44,7 +43,7 @@ const NotePage = ({note, type, onUpdate}) => {
     setReadOnly(true)
   }
 
-  if (!value) {
+  if (value === undefined) {
     return <Spinner/>
   }
 

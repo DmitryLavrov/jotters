@@ -1,6 +1,6 @@
-import API from '../index'
 import convertToPlain from '../../utils/convertToPlain'
 import getTitleFromContent from '../../utils/getTitleFromContent'
+import API from '../index'
 
 const notes = [
   {
@@ -146,7 +146,7 @@ const fetchAllPublic = () =>
       resolve(
         notes.filter(note => note.private === false)
              .map(note => {
-               const jotter = API.jotters.jotters.find(jotter => jotter._id === note.jotterId)
+               const jotter = JSON.parse(localStorage.getItem('jotters')).find(jotter => jotter._id === note.jotterId)
                const user = API.users.users.find(user => user._id === jotter.userId)
                return {
                  _id: note._id,
@@ -186,7 +186,7 @@ const getById = (id) =>
     setTimeout(() => {
       const notes = JSON.parse(localStorage.getItem('notes'))
       const note = notes.find(note => note._id === id)
-      const jotter = API.jotters.jotters.find(jotter => jotter._id === note.jotterId)
+      const jotter = JSON.parse(localStorage.getItem('jotters')).find(jotter => jotter._id === note.jotterId)
       const user = API.users.users.find(user => user._id === jotter.userId)
       resolve({...note, userId: user._id})
     }, 500)
@@ -212,10 +212,18 @@ const updateNote = (id, content) =>
     }, 500)
   })
 
-const addNewNote = (newNote) =>
+const addNewNote = (jotterId) =>
   new Promise((resolve) => {
     setTimeout(() => {
       const notes = JSON.parse(localStorage.getItem('notes'))
+      const newNote = {
+        _id: 'n' + Math.random().toString().slice(-6),
+        jotterId: jotterId,
+        private: true,
+        updateDate: Date.now(),
+        title: 'New note',
+        content: ''
+      }
       notes.push(newNote)
       localStorage.setItem('notes', JSON.stringify(notes))
       resolve(newNote)
