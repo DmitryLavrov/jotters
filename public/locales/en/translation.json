@@ -29,5 +29,7 @@
   "BACK_TO_PUBLIC": "Back to public notes",
   "PRIVATE_JOTTERS": "Private Jotters",
   "JOTTER_NAME": "Jotter name",
-  "COLOR": "Color"
+  "COLOR": "Color",
+  "CHANGED": "Changed",
+  "NOTES_COUNT": "Notes"
 }

@@ -14,7 +14,14 @@ const info = [
 ]
 
 if (!localStorage.getItem('info')) {
-  localStorage.setItem('info', JSON.stringify(info))
+  localStorage.setItem('info', JSON.stringify(info.map(info => {
+    return {
+      ...info,
+      updateDate: typeof info.updateDate === 'string'
+        ? Date.parse(info.updateDate)
+        : info.updateDate
+    }
+  })))
 }
 
 const getInfoByLng = (lng) =>
@@ -30,9 +37,7 @@ const updateInfo = (lng, content) =>
       const info = JSON.parse(localStorage.getItem('info'))
       const idx = info.findIndex(i => i.lng === lng)
       if (idx === -1) {
-        // =========================
         console.warn(`Error: Can't find language "${lng}"`)
-        // =========================
       } else {
         info[idx].updateDate = Date.now()
         info[idx].content = content

@@ -29,5 +29,7 @@
   "BACK_TO_PUBLIC": "Вернуться к публичным заметкам",
   "PRIVATE_JOTTERS": "Личные блокноты",
   "JOTTER_NAME": "Название блокнота",
-  "COLOR": "Цвет"
+  "COLOR": "Цвет",
+  "CHANGED": "Изменен",
+  "NOTES_COUNT": "Заметок"
 }

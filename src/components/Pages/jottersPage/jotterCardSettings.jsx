@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Notification from '../../common/modal/notification'
 import { useTranslation } from 'react-i18next'
+import Spinner from '../../common/spinner'
 
-const JotterCardSettings = ({header, title, color, onSubmit, onHideModal}) => {
+const JotterCardSettings = ({header, settingsData, onSubmit, onHideModal}) => {
   const {t} = useTranslation()
-  const [data, setData] = useState({title: title, color: color})
+  const [data, setData] = useState(settingsData)
+
+  useEffect(() => {
+    setData(settingsData)
+  }, [settingsData])
 
   const handleChange = (event) => {
     setData(prev => ({
@@ -12,6 +17,7 @@ const JotterCardSettings = ({header, title, color, onSubmit, onHideModal}) => {
       [event.target.name]: event.target.value
     }))
   }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     onSubmit(data)
@@ -25,29 +31,35 @@ const JotterCardSettings = ({header, title, color, onSubmit, onHideModal}) => {
 
       <div className="card-body">
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="title" className="form-label">
-              {t('JOTTER_NAME')}
-            </label>
-            <input name="title"
-                   value={data.title}
-                   onChange={handleChange}
-                   type="text"
-                   className="form-control"
-                   id="title"/>
-          </div>
 
-          <div className="mb-3">
-            <label htmlFor="color" className="form-label">
-              {t('COLOR')}
-            </label>
-            <input name="color"
-                   value={data.color}
-                   onChange={handleChange}
-                   type="text"
-                   className="form-control"
-                   id="color"/>
-          </div>
+          {data
+            ? <>
+              <div className="mb-3">
+                <label htmlFor="title" className="form-label">
+                  {t('JOTTER_NAME')}
+                </label>
+                <input name="title"
+                       value={data.title}
+                       onChange={handleChange}
+                       type="text"
+                       className="form-control"
+                       id="title"/>
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="color" className="form-label">
+                  {t('COLOR')}
+                </label>
+                <input name="color"
+                       value={data.color}
+                       onChange={handleChange}
+                       type="text"
+                       className="form-control"
+                       id="color"/>
+              </div>
+            </>
+
+            : <Spinner/>}
 
           <div className="d-flex justify-content-end gap-3">
             <button type="button"
@@ -62,6 +74,7 @@ const JotterCardSettings = ({header, title, color, onSubmit, onHideModal}) => {
             </button>
           </div>
         </form>
+
       </div>
 
       {/*</div>*/}

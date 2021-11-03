@@ -128,6 +128,17 @@ const notes = [
   }
 ]
 
+if (!localStorage.getItem('notes')) {
+  localStorage.setItem('notes', JSON.stringify(notes.map(note => {
+    return {
+      ...note,
+      updateDate: typeof note.updateDate === 'string'
+        ? Date.parse(note.updateDate)
+        : note.updateDate
+    }
+  })))
+}
+
 const fetchAllPublic = () =>
   new Promise((resolve) => {
     setTimeout(() => {
@@ -139,20 +150,16 @@ const fetchAllPublic = () =>
                const user = API.users.users.find(user => user._id === jotter.userId)
                return {
                  _id: note._id,
-                 title: getTitleFromContent(note.content),
                  userId: user._id,
                  username: user.name,
-                 updateDate: typeof note.updateDate === 'string' ? Date.parse(note.updateDate) : note.updateDate,
+                 updateDate: note.updateDate,
+                 title: getTitleFromContent(note.content),
                  summary: convertToPlain(note.content).slice(0, 130) + '...'
                }
              })
       )
     }, 1000)
   })
-
-if (!localStorage.getItem('notes')) {
-  localStorage.setItem('notes', JSON.stringify(notes))
-}
 
 const fetchAllByJotterId = (jotterId) =>
   new Promise((resolve) => {

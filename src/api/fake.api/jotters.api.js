@@ -44,7 +44,14 @@ const jotters = [
 ]
 
 if (!localStorage.getItem('jotters')) {
-  localStorage.setItem('jotters', JSON.stringify(jotters))
+  localStorage.setItem('jotters', JSON.stringify(jotters.map(jotter => {
+    return {
+      ...jotter,
+      updateDate: typeof jotter.updateDate === 'string'
+        ? Date.parse(jotter.updateDate)
+        : jotter.updateDate
+    }
+  })))
 }
 
 const fetchAllByUserId = (userId) =>
@@ -55,9 +62,6 @@ const fetchAllByUserId = (userId) =>
                                    .map(jotter => {
                                        return {
                                          ...jotter,
-                                         updateDate: typeof jotter.updateDate === 'string'
-                                           ? Date.parse(jotter.updateDate)
-                                           : jotter.updateDate,
                                          notesNumber: getNotesNumberFromLocalStorage(jotter._id)
                                        }
                                      }
@@ -81,9 +85,6 @@ const fetchPublicByUserId = (userId) =>
                                    .map(jotter => {
                                        return {
                                          ...jotter,
-                                         updateDate: typeof jotter.updateDate === 'string'
-                                           ? Date.parse(jotter.updateDate)
-                                           : jotter.updateDate,
                                          notesNumber: getNotesNumberFromLocalStorage(jotter._id)
                                        }
                                      }
@@ -113,24 +114,23 @@ const getById = (id) =>
     }, 500)
   })
 
-const addNewJotter = (userId) =>
+const addNewJotter = (userId, data) =>
   new Promise((resolve) => {
     setTimeout(() => {
       const jotters = JSON.parse(localStorage.getItem('jotters'))
       const newJotter = {
         _id: 'j' + Math.random().toString().slice(-6),
         userId: userId,
-        title: 'New Jotter',
         updateDate: Date.now(),
-        color: '#777777',
-        notesNumber: 0
+        notesNumber: 0,
+        ...data
       }
       jotters.push(newJotter)
       localStorage.setItem('jotters', JSON.stringify(jotters))
       resolve(jotters.filter(jotter => jotter.userId === userId)
                      .map(jotter => ({
                        ...jotter,
-                       notesNumber: getNotesNumberFromLocalStorage(jotter.id)
+                       notesNumber: getNotesNumberFromLocalStorage(jotter._id)
                      })))
     }, 500)
   })
@@ -144,7 +144,7 @@ const deleteJotter = (id, userId) =>
       resolve(jotters.filter(jotter => jotter.userId === userId)
                      .map(jotter => ({
                        ...jotter,
-                       notesNumber: getNotesNumberFromLocalStorage(jotter.id)
+                       notesNumber: getNotesNumberFromLocalStorage(jotter._id)
                      })))
     }, 500)
   })
@@ -160,7 +160,7 @@ const updateJotter = (id, userId, data) =>
       resolve(jotters.filter(jotter => jotter.userId === userId)
                      .map(jotter => ({
                        ...jotter,
-                       notesNumber: getNotesNumberFromLocalStorage(jotter.id)
+                       notesNumber: getNotesNumberFromLocalStorage(jotter._id)
                      })))
       }
     }, 500)
