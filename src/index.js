@@ -8,6 +8,7 @@ import './bootstrap-yeti.css'
 // import 'flag-icon-css/css/flag-icon.min.css'
 import 'react-quill/dist/quill.snow.css'
 import './index.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import App from './App'
 import { i18nInit } from './utils/i18next'

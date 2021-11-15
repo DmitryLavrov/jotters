@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import InfoSidebar from '../components/Pages/infoPage/infoSidebar'
 import Layout from '../components/common/layout'
 import NotePage from '../components/common/notePage'
-import API from '../api'
-import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
+import infoService from '../services/info.service'
+import { toast } from 'react-toastify'
 
 const InfoLayout = () => {
   const {i18n} = useTranslation()
@@ -16,10 +16,19 @@ const InfoLayout = () => {
   }, [i18n.language])
 
   useEffect(() => {
-      API.info
-         .getInfoByLng(i18next.language)
-         .then(data => setNote(data))
+    getInfo(lng)
   }, [lng])
+
+  const getInfo = async lng => {
+    try {
+      if (['en', 'ru'].includes(lng)) {
+        const info = await infoService.get(lng)
+        setNote(info.data)
+      }
+    } catch (err) {
+      toast.error(err.message)
+    }
+  }
 
   return (
     <Layout>

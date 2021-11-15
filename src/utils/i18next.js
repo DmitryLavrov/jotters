@@ -12,7 +12,7 @@ export const i18nInit = () => {
     supportedLngs: ['en', 'ru'],
     fallbackLng: 'en',
     detection: {
-      order: ['path', 'querystring', 'cookie', 'localStorage', 'htmlTag', 'subdomain'],
+      order: ['localStorage', 'cookie', 'path', 'querystring', 'htmlTag', 'subdomain'],
       caches: ['localStorage', 'cookie']
     },
     backend: {

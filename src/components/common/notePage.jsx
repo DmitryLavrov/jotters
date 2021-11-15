@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'react-toastify'
 
 import API from '../../api'
 import Spinner from './spinner'
 import QuillCard from './quill/quillCard'
+import infoService from '../../services/info.service'
 
 const NotePage = ({note, type, onUpdate}) => {
   const {t} = useTranslation()
   const [value, setValue] = useState('')
   const [readOnly, setReadOnly] = useState(true)
-  const [beforeEdit, setBeforeEdit] = useState()
+  const [beforeEdit, setBeforeEdit] = useState({})
 
   useEffect(() => {
     if (note) {
@@ -21,16 +23,17 @@ const NotePage = ({note, type, onUpdate}) => {
   }
 
   const handleBtnEdit = () => {
-    //todo : RESTRICT TO CHANGE LANGUAGE
-    setBeforeEdit(value)
+    setBeforeEdit({value, lng: note.lng})
     setReadOnly(false)
   }
 
-  const handleBtnSave = () => {
-    // console.log(value)
-    // console.log('plain text:', convertToPlain(value))
+  const handleBtnSave = async () => {
     if (type === 'INFO') {
-      API.info.updateInfo(note.lng, value)
+      try {
+        await infoService.update(beforeEdit.lng, value)
+      } catch (err) {
+        toast.error(err.message)
+      }
     } else if (type === 'PRIVATE' || type === 'PUBLIC') {
       API.notes.updateNote(note._id, value)
       onUpdate && onUpdate()
@@ -39,7 +42,7 @@ const NotePage = ({note, type, onUpdate}) => {
   }
 
   const handleBtnCancel = () => {
-    setValue(beforeEdit)
+    setValue(beforeEdit.value)
     setReadOnly(true)
   }
 
@@ -51,14 +54,12 @@ const NotePage = ({note, type, onUpdate}) => {
     <>
       <QuillCard readOnly={readOnly} value={value} onChange={handleChange}/>
 
-      {/*{readOnly && <hr/>}*/}
-
-      {type === 'PRIVATE' &&
+      {(type === 'PRIVATE' || type === 'INFO') &&
       <div className="d-flex justify-content-end gap-3 my-3">
         {readOnly
           ? <button className="btn btn-outline-warning w-25 text-truncate"
                     onClick={handleBtnEdit}>{t('EDIT')}
-            </button>
+          </button>
           : <>
             <button className="btn btn-outline-primary w-25 text-truncate"
                     onClick={handleBtnCancel}>{t('CANCEL')}
