@@ -11,9 +11,8 @@ import './index.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import App from './App'
-import { i18nInit } from './utils/i18next'
 
-i18nInit()
+import './utils/i18next'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react'
 import i18next from 'i18next'
-import cookie from 'js-cookie'
 import {useTranslation} from 'react-i18next'
 import globe from '../../assets/images/globe.svg'
 import flagGb from '../../assets/images/flag-gb.svg'
@@ -12,7 +11,7 @@ const languages = [
 ]
 
 const LanguageBtn = () => {
-  const currentLanguageCode = cookie.get('i18next') || 'en'
+  const currentLanguageCode = localStorage.getItem('i18nextLng') || 'en'
   const currentLanguage = languages.find(({code}) => code === currentLanguageCode)
 
   const {t} = useTranslation()
@@ -23,14 +22,22 @@ const LanguageBtn = () => {
 
   return (
     <span className="dropdown">
-      <button className="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownLanguages"
-              data-bs-toggle="dropdown" aria-expanded="false">
-        <span><img src={globe} alt="Lang" height="24px"/></span>
+      <button className="btn btn-outline-primary dropdown-toggle"
+              type="button"
+              id="dropdownLanguages"
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+        <span>
+          <img src={globe} alt="Lang" height="24px"/>
+        </span>
       </button>
 
-      <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguages">
+      <ul className="dropdown-menu dropdown-menu-end"
+          aria-labelledby="dropdownLanguages">
         <li className="dropdown-item-text">
-          <span>{t('language')}</span>
+          <span>
+            {t('language')}
+          </span>
         </li>
 
         {languages.map(({code, name, flagImg}) =>
