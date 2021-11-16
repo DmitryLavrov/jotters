@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-import API from '../api'
+// import API from '../api'
 import sortArrayBy from '../utils/sortArrayBy'
 import JottersSidebar from '../components/Pages/jottersPage/jottersSidebar'
 import JottersPage from '../components/Pages/jottersPage/jottersPage'
 import Layout from '../components/common/layout'
 import { useTranslation } from 'react-i18next'
 import JotterCardSettings from '../components/Pages/jottersPage/jotterCardSettings'
+import jotterService from '../services/jotter.service'
+import { toast } from 'react-toastify'
 
 const initialSettings = {
   title: 'New Jotter',
@@ -21,31 +23,26 @@ const JottersLayout = () => {
   const [isVisibleSettingsModal, setIsVisibleSettingsModal] = useState(false)
   const [settingsData, setSettingsData] = useState()
 
+  let filteredJotters
+
   useEffect(() => {
-    API.jotters.fetchAllByUserId('u01').then(data => {
-      setJotters(sortArrayBy(sort, data))
-    })
+    fetchJotters('619032cad8df581c4881d9a2')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  const fetchJotters = async (userId) => {
+    try {
+      const jotters = await jotterService.fetch(userId)
+      setJotters(sortArrayBy(sort, jotters.data))
+    } catch (err) {
+      toast(err.message)
+    }
+  }
 
   useEffect(() => {
     setJotters(sortArrayBy(sort, jotters))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
-
-  useEffect(() => {
-    setJotters()
-    if (filter === 'all') {
-      API.jotters.fetchAllByUserId('u01').then(data => {
-        setJotters(sortArrayBy(sort, data))
-      })
-    } else if (filter === 'withPublicNotes') {
-      API.jotters.fetchPublicByUserId('u01').then(data => {
-        setJotters(sortArrayBy(sort, data))
-      })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filter])
 
   const handleSort = (event) => {
     setSort(event.target.value)
@@ -68,28 +65,49 @@ const JottersLayout = () => {
     showSettings()
   }
 
-  const updateJotter = (id) => {
+  const updateJotter = async (id) => {
     setSettingsData()
     showSettings()
-    API.jotters.getById(id).then((jotter) => {
+    try {
+      const {data} = await jotterService.get(id)
       setSettingsData({
         _id: id,
-        title: jotter.title,
-        color: jotter.color
+        title: data.title,
+        color: data.color
       })
-    })
+    } catch (err) {
+      toast(err.message)
+    }
   }
 
-  const handleUpdateSettings = (data) => {
-    setJotters()
-    if (settingsData._id) {
-      API.jotters
-         .updateJotter(settingsData._id, 'u01', data)
-         .then((data) => setJotters(sortArrayBy(sort, data)))
-    } else {
-      API.jotters.addNewJotter('u01', data).then((data) => {
-        setJotters(sortArrayBy(sort, data))
-      })
+  const handleUpdateSettings = async (data) => {
+    if (data._id) {
+      try {
+        const jotter = await jotterService.update(data._id, {...data, updatedAt: Date.now()})
+        const newJotters = jotters.filter(j => j._id !== data._id)
+        newJotters.push(jotter.data)
+        setJotters(sortArrayBy(sort, newJotters))
+      } catch
+        (err) {
+        toast(err.message)
+      }
+    } else { // New jotter
+      try {
+        const jotter = await jotterService.add({...data, userId: '619032cad8df581c4881d9a2'})
+        const newJotters = [...jotters, jotter.data]
+        setJotters(sortArrayBy(sort, newJotters))
+      } catch
+        (err) {
+        toast(err.message)
+      }
+    }
+  }
+
+  if (jotters) {
+    if (filter === 'all') {
+      filteredJotters = jotters
+    } else if (filter === 'withPublicNotes') {
+      filteredJotters = jotters.filter(j => j.hasPublicNote === true)
     }
   }
 
@@ -101,7 +119,7 @@ const JottersLayout = () => {
                         onSort={handleSort}
                         onFilter={handleFilter}
                         addNewJotter={addNewJotter}/>
-        <JottersPage jotters={jotters}
+        <JottersPage jotters={filteredJotters}
                      onUpdateJotter={updateJotter}/>
       </Layout>
 

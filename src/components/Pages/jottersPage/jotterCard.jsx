@@ -21,7 +21,7 @@ const JotterCard = ({jotter, onUpdateJotter, onHideModal}) => {
             <p className="card-text">
               {`${t('NOTES_COUNT')}: ${jotter.notesNumber}`}
               <br/>
-              {`${t('CHANGED')}: ${dateToString(jotter.updateDate)}`}
+              {`${t('CHANGED')}: ${dateToString(jotter.updatedAt)}`}
             </p>
           </div>
         </Link>
