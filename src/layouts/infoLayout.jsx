@@ -16,17 +16,17 @@ const InfoLayout = () => {
   }, [i18n.language])
 
   useEffect(() => {
-    getInfo(lng)
+    getInfo(lng).then(data => setNote(data))
   }, [lng])
 
   const getInfo = async lng => {
     try {
       if (['en', 'ru'].includes(lng)) {
-        const info = await infoService.get(lng)
-        setNote(info.data)
+        const {data} = await infoService.get(lng)
+        return data
       }
     } catch (err) {
-      toast.error(err.message)
+      toast.error(err.response?.data?.message ? err.response.data.message : err.message)
     }
   }
 

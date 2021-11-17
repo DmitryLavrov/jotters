@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Notification from '../../common/modal/notification'
 import { useTranslation } from 'react-i18next'
 import Spinner from '../../common/spinner'
@@ -6,10 +6,6 @@ import Spinner from '../../common/spinner'
 const JotterCardSettings = ({header, settingsData, onSubmit, onHideModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState(settingsData)
-
-  useEffect(() => {
-    setData(settingsData)
-  }, [settingsData])
 
   const handleChange = (event) => {
     setData(prev => ({

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-// import API from '../api'
 import sortArrayBy from '../utils/sortArrayBy'
 import JottersSidebar from '../components/Pages/jottersPage/jottersSidebar'
 import JottersPage from '../components/Pages/jottersPage/jottersPage'
 import Layout from '../components/common/layout'
 import { useTranslation } from 'react-i18next'
 import JotterCardSettings from '../components/Pages/jottersPage/jotterCardSettings'
-import jotterService from '../services/jotter.service'
-import { toast } from 'react-toastify'
+import useJotters from '../hooks/useJotters'
 
 const initialSettings = {
   title: 'New Jotter',
@@ -20,27 +18,19 @@ const JottersLayout = () => {
   const [jotters, setJotters] = useState()
   const [sort, setSort] = useState('byDate')
   const [filter, setFilter] = useState('all')
-  const [isVisibleSettingsModal, setIsVisibleSettingsModal] = useState(false)
-  const [settingsData, setSettingsData] = useState()
-
-  let filteredJotters
+  const [isVisibleSettings, setIsVisibleSettings] = useState(false)
+  const [settings, setSettings] = useState()
+  const {fetchJotters, updateJotter, addNewJotter, getJotter} = useJotters(jotters, setJotters)
 
   useEffect(() => {
-    fetchJotters('619032cad8df581c4881d9a2')
+    fetchJotters('619032cad8df581c4881d9a2').then(data => {
+      setJotters(data)
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const fetchJotters = async (userId) => {
-    try {
-      const jotters = await jotterService.fetch(userId)
-      setJotters(sortArrayBy(sort, jotters.data))
-    } catch (err) {
-      toast(err.message)
-    }
-  }
-
   useEffect(() => {
-    setJotters(sortArrayBy(sort, jotters))
+    setJotters(jotters)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
 
@@ -53,62 +43,37 @@ const JottersLayout = () => {
   }
 
   const showSettings = () => {
-    setIsVisibleSettingsModal(true)
+    setIsVisibleSettings(true)
   }
 
   const hideSettings = () => {
-    setIsVisibleSettingsModal(false)
+    setIsVisibleSettings(false)
   }
 
-  const addNewJotter = () => {
-    setSettingsData(initialSettings)
+  const onAddNewJotter = () => {
+    setSettings(initialSettings)
     showSettings()
   }
 
-  const updateJotter = async (id) => {
-    setSettingsData()
+  const onUpdateJotter = async (id) => {
+    setSettings(getJotter(id))
     showSettings()
-    try {
-      const {data} = await jotterService.get(id)
-      setSettingsData({
-        _id: id,
-        title: data.title,
-        color: data.color
-      })
-    } catch (err) {
-      toast(err.message)
+  }
+
+  const handleUpdateSettings = async (jotter) => {
+    if (jotter._id) {
+      await updateJotter(jotter)
+    } else {
+      await addNewJotter(jotter, '619032cad8df581c4881d9a2')
     }
   }
 
-  const handleUpdateSettings = async (data) => {
-    if (data._id) {
-      try {
-        const jotter = await jotterService.update(data._id, {...data, updatedAt: Date.now()})
-        const newJotters = jotters.filter(j => j._id !== data._id)
-        newJotters.push(jotter.data)
-        setJotters(sortArrayBy(sort, newJotters))
-      } catch
-        (err) {
-        toast(err.message)
-      }
-    } else { // New jotter
-      try {
-        const jotter = await jotterService.add({...data, userId: '619032cad8df581c4881d9a2'})
-        const newJotters = [...jotters, jotter.data]
-        setJotters(sortArrayBy(sort, newJotters))
-      } catch
-        (err) {
-        toast(err.message)
-      }
+  const filteredAndSortedJotters = () => {
+    const sortedJotters = sortArrayBy(sort, jotters)
+    if (sortedJotters && (filter === 'withPublicNotes')) {
+      return sortedJotters.filter(j => j.hasPublicNote === true)
     }
-  }
-
-  if (jotters) {
-    if (filter === 'all') {
-      filteredJotters = jotters
-    } else if (filter === 'withPublicNotes') {
-      filteredJotters = jotters.filter(j => j.hasPublicNote === true)
-    }
+    return sortedJotters
   }
 
   return (
@@ -118,14 +83,14 @@ const JottersLayout = () => {
                         filter={filter}
                         onSort={handleSort}
                         onFilter={handleFilter}
-                        addNewJotter={addNewJotter}/>
-        <JottersPage jotters={filteredJotters}
-                     onUpdateJotter={updateJotter}/>
+                        onAddNewJotter={onAddNewJotter}/>
+        <JottersPage jotters={filteredAndSortedJotters()}
+                     onUpdateJotter={onUpdateJotter}/>
       </Layout>
 
-      {isVisibleSettingsModal &&
+      {isVisibleSettings &&
       <JotterCardSettings header={t('JOTTER')}
-                          settingsData={settingsData}
+                          settingsData={settings}
                           onHideModal={hideSettings}
                           onSubmit={handleUpdateSettings}/>
       }

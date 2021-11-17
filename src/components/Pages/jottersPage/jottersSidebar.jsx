@@ -3,7 +3,7 @@ import {useTranslation} from 'react-i18next'
 import Sidebar from '../../common/modal/sidebar'
 import Radio from '../../common/form/radio'
 
-const JottersSidebar = ({sort, filter, onSort, onFilter, addNewJotter, ...rest}) => {
+const JottersSidebar = ({sort, filter, onSort, onFilter, onAddNewJotter, ...rest}) => {
   const {t} = useTranslation()
 
   return (
@@ -21,7 +21,7 @@ const JottersSidebar = ({sort, filter, onSort, onFilter, addNewJotter, ...rest})
                {label: t('WITH_PUBLIC_NOTES'), checked: filter === 'withPublicNotes', value: 'withPublicNotes'}
              ]}/>
 
-      <button className="btn btn-outline-primary mt-3" onClick={addNewJotter}>{t('NEW_JOTTER')}</button>
+      <button className="btn btn-outline-primary mt-3" onClick={onAddNewJotter}>{t('NEW_JOTTER')}</button>
     </Sidebar>
   )
 }

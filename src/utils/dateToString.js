@@ -8,5 +8,5 @@ export function dateToString(milliseconds) {
   // console.log('date.toLocaleDateString(\'ru-RU\'):', date.toLocaleDateString('ru-RU'))
   // console.log('date.toString():', date.toString())
   // =========================
-  return date.toLocaleDateString('ru-RU')
+  return date.toLocaleDateString('ru-RU') + ' ' + date.toLocaleTimeString('ru-RU')
 }
