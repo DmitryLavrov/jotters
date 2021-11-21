@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink, useParams} from 'react-router-dom'
 
-const NoteItem = ({note, onDeleteNote, onHideMobileSideBar}) => {
+const NoteItem = ({note, onHideMobileSideBar}) => {
   const {jotterId} = useParams()
 
   return (

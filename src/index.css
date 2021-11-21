@@ -1,6 +1,7 @@
 :root {
   --border-radius: 8px;
   --text-color: white;
+  --primary: #008cba;
   /*--bs-secondary: hsl(36.9,98.3%,46.1%);*/
   --active-color-border: hsl(36.9,98.3%,66.1%);
   --active-color-bg: hsl(36.9,98.3%,92.1%);
@@ -26,7 +27,7 @@ body{
 
 .dropdown-menu.show {
   visibility: visible;
-  margin-top: 0.8rem;
+  margin: 0.75rem 0;
 }
 
 .dropdown-menu-end {
@@ -34,9 +35,9 @@ body{
   left: auto;
 }
 
-.dropdown-item-text {
-  color: var(--text-color);
-}
+/*.dropdown-item-text {*/
+/*  color: var(--text-color);*/
+/*}*/
 
 /* ================ BS dropdown ================ */
 

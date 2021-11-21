@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-import sortArrayBy from '../utils/sortArrayBy'
-import JottersSidebar from '../components/Pages/jottersPage/jottersSidebar'
-import JottersPage from '../components/Pages/jottersPage/jottersPage'
-import Layout from '../components/common/layout'
+import sortArrayBy from '../../utils/sortArrayBy'
+import JottersSidebar from '../pages/jottersPage/jottersSidebar'
+import JottersPage from '../pages/jottersPage/jottersPage'
+import Layout from '../common/layout'
 import { useTranslation } from 'react-i18next'
-import JotterCardSettings from '../components/Pages/jottersPage/jotterCardSettings'
-import useJotters from '../hooks/useJotters'
+import JotterCardSettings from '../pages/jottersPage/jotterCardSettings'
+import useJotters from '../../hooks/useJotters'
 
 const initialSettings = {
   title: 'New Jotter',

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import API from '../api'
+import API from '../../api'
 import { useTranslation } from 'react-i18next'
-import PublicSidebar from '../components/Pages/publicPage/publicSidebar'
-import PublicPage from '../components/Pages/publicPage/publicPage'
-import Layout from '../components/common/layout'
-import sortArrayBy from '../utils/sortArrayBy'
-import selectUsersFromNotes from '../utils/selectUsersFromNotes'
+import PublicSidebar from '../pages/publicPage/publicSidebar'
+import PublicPage from '../pages/publicPage/publicPage'
+import Layout from '../common/layout'
+import sortArrayBy from '../../utils/sortArrayBy'
+import selectUsersFromNotes from '../../utils/selectUsersFromNotes'
 
 const PublicLayout = () => {
   const {t} = useTranslation()

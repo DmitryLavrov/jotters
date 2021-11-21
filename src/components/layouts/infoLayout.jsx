@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import InfoSidebar from '../components/Pages/infoPage/infoSidebar'
-import Layout from '../components/common/layout'
-import NotePage from '../components/common/notePage'
+import InfoSidebar from '../pages/infoPage/infoSidebar'
+import Layout from '../common/layout'
+import NotePage from '../common/notePage'
 import { useTranslation } from 'react-i18next'
-import infoService from '../services/info.service'
+import infoService from '../../services/info.service'
 import { toast } from 'react-toastify'
 
 const InfoLayout = () => {

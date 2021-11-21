@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 export default function sortArrayBy(sort, arr) {
   if (!Array.isArray(arr)) return
 
@@ -10,4 +12,8 @@ export default function sortArrayBy(sort, arr) {
   if (sort === 'byName') {
     return copyArr.sort((a, b) => ((a.title > b.title) ? 1 : -1))
   }
+}
+
+sortArrayBy.propTypes = {
+  sort: PropTypes.oneOf(['byDate', 'byName']).isRequired,
 }

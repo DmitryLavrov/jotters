@@ -15,6 +15,7 @@
   "CREATE_NEW_NOTE": "Create a new note",
   "NO_NOTES": "No notes",
   "MY_NOTE": "My note",
+  "MY_NEW_NOTE": "My new note",
   "PUBLIC": "Public",
   "PRIVATE": "Private",
   "ALL_JOTTERS": "All jotters",
@@ -23,6 +24,7 @@
   "EDIT": "Edit",
   "SAVE": "Save",
   "DELETE": "Delete",
+  "DELETE_NOTE": "Delete note",
   "DELETE_JOTTER": "Delete jotter",
   "OPEN": "Open",
   "CANCEL": "Cancel",
@@ -34,5 +36,6 @@
   "JOTTER_NAME": "Jotter name",
   "COLOR": "Color",
   "CHANGED": "Changed",
-  "NOTES_COUNT": "Notes"
+  "NOTES_COUNT": "Notes",
+  "SETTINGS": "Settings"
 }

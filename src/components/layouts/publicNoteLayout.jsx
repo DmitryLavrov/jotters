@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import API from '../api'
-import Layout from '../components/common/layout'
-import NotePage from '../components/common/notePage'
-import PublicNotesSidebar from '../components/Pages/publicNotePage/publicNoteSidebar'
+import API from '../../api'
+import Layout from '../common/layout'
+import NotePage from '../common/notePage'
+import PublicNotesSidebar from '../pages/publicNotePage/publicNoteSidebar'
 
 const PublicNoteLayout = () => {
   const [note, setNote] = useState()

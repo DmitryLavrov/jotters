@@ -11,8 +11,9 @@ const JotterCard = ({jotter, onUpdateJotter, onHideModal}) => {
     <div className="col">
       <div className="card position-relative" style={{background: jotter.color}}>
 
-          <span className="btn position-absolute ps-2 pt-1" onClick={() => onUpdateJotter(jotter._id)}>
-            <img src={settings} alt="Lang" height="18px"/>
+          <span className="btn position-absolute top-0 end-0"
+                onClick={() => onUpdateJotter(jotter._id)}>
+            <img src={settings} alt="Settings" height="18px"/>
           </span>
 
         <Link to={`/jotters/${jotter._id}`} type="button" className="btn ">

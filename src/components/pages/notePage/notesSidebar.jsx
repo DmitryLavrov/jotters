@@ -5,7 +5,7 @@ import NoteItem from './noteItem'
 import Spinner from '../../common/spinner'
 import Sidebar from '../../common/modal/sidebar'
 
-const NotesSidebar = ({notes, onDeleteNote, onDeleteJotter, onCreateNewNote, isMobile, hideSidebar, ...rest}) => {
+const NotesSidebar = ({notes, onCreateNewNote, isMobile, hideSidebar, ...rest}) => {
   const {t} = useTranslation()
 
 
@@ -30,7 +30,6 @@ const NotesSidebar = ({notes, onDeleteNote, onDeleteJotter, onCreateNewNote, isM
           <ul className="nav flex-column">
             {notes.map(note => <NoteItem key={note._id}
                                          note={note}
-                                         onDeleteNote={onDeleteNote}
                                          onHideMobileSideBar={onHideMobileSideBar}/>)}
           </ul>
 
@@ -49,12 +48,6 @@ const NotesSidebar = ({notes, onDeleteNote, onDeleteJotter, onCreateNewNote, isM
         {t('NEW_NOTE')}
       </button>
 
-      {notes && notes.length === 0 &&
-      <button className="btn btn-outline-warning mt-3"
-              onClick={onDeleteJotter}>
-        {t('DELETE_JOTTER')}
-      </button>
-      }
     </Sidebar>
   )
 }

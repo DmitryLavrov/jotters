@@ -1,11 +1,11 @@
 import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
-import JottersLayout from '../layouts/jottersLayout'
-import NotesLayout from '../layouts/notesLayout'
+import JottersLayout from '../components/layouts/jottersLayout'
+import NotesLayout from '../components/layouts/notesLayout'
 import Error404 from '../components/common/error404'
-import InfoLayout from '../layouts/infoLayout'
-import PublicLayout from '../layouts/publicLayout'
-import PublicNoteLayout from '../layouts/publicNoteLayout'
+import InfoLayout from '../components/layouts/infoLayout'
+import PublicLayout from '../components/layouts/publicLayout'
+import PublicNoteLayout from '../components/layouts/publicNoteLayout'
 
 const Routing = () => {
   return (
