@@ -1,24 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react'
 import classes from './form.module.css'
 
-const DropdownBtn = ({name, image, title, items}) => {
+const DropdownBtn = ({paramsBtnSettings}) => {
+  const {img, position, title, items} = paramsBtnSettings
   const [open, setOpen] = useState(false)
-  const dropdown = useRef(null);
+  const dropdown = useRef(null)
 
   const handleClickOutside = event => {
     if (dropdown.current && !dropdown.current.contains(event.target)) {
-      setOpen(false);
+      setOpen(false)
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      // clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  });
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  })
 
   const handleSelect = (onClick, action) => {
     setOpen(false)
@@ -27,15 +26,12 @@ const DropdownBtn = ({name, image, title, items}) => {
 
   return (
     <span className={classes.dropdown} ref={dropdown}>
-      <button className={classes.dropdownBtn}
+      <button className={classes.dropdownBtn + ' ' + (position === 'absolute' ? classes.absolute : classes.static)}
               type="button"
               onClick={() => setOpen(!open)}>
-        <span>
-          <img src={image} alt={name} height="24px" className={classes.dropdownImg}/>
-        </span>
+        {img}
       </button>
 
-      {/*{open && (*/}
       <ul className={classes.dropdownMenu + (open ? (' ' + classes.show) : '')}>
         <li className={classes.dropdownTitle}>
           <span>
@@ -43,24 +39,20 @@ const DropdownBtn = ({name, image, title, items}) => {
           </span>
         </li>
 
-        {items.map(({action, name, itemImg, onClick, disabled}) =>
+        {items.map(({action, title, img, onClick, disabled}) =>
           <li key={action}
               className={classes.dropdownItem}>
-            <button className={classes.dropdownItemBtn}
+            <button className={classes.dropdownItemBtn + (disabled ? (' ' + classes.disabled) : '')}
                     onClick={() => handleSelect(onClick, action)}
                     disabled={disabled}>
-              {itemImg &&
-                <span className={classes.dropdownItemBtnImg}
-                      style={{opacity: disabled ? 0.5 : 1}}>
-                   <img src={itemImg} alt={name} height="24px"/>
-                </span>
-              }
-              {name}
+              <div>
+                {img}
+                <span>{title}</span>
+              </div>
             </button>
           </li>
         )}
       </ul>
-      {/*)}*/}
     </span>
   )
 }

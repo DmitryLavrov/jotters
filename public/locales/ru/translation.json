@@ -1,6 +1,6 @@
 {
   "welcome_to_React": "Добро пожаловать!!!",
-  "language": "Язык",
+  "LANGUAGE": "Язык",
   "notes": "Заметки",
   "JOTTERS": "Блокноты",
   "SEARCH": "Поиск",
@@ -37,5 +37,6 @@
   "COLOR": "Цвет",
   "CHANGED": "Изменен",
   "NOTES_COUNT": "Заметок",
-  "SETTINGS": "Настройки"
+  "SETTINGS": "Настройки",
+  "CONTROL": "Управление"
 }

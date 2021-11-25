@@ -1,6 +1,6 @@
 {
   "welcome_to_React": "Welcome to React and react-i18next",
-  "language": "Language",
+  "LANGUAGE": "Language",
   "notes": "Notes",
   "JOTTERS": "Jotters",
   "SEARCH": "Search",
@@ -37,5 +37,6 @@
   "COLOR": "Color",
   "CHANGED": "Changed",
   "NOTES_COUNT": "Notes",
-  "SETTINGS": "Settings"
+  "SETTINGS": "Settings",
+  "CONTROL": "Control"
 }

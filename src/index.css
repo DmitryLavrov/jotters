@@ -1,7 +1,32 @@
 :root {
+  --primary-sh: 195, 100%;
+  --primary-100: hsl(var(--primary-sh), 84%);
+  --primary-200: hsl(var(--primary-sh), 72%);
+  --primary-300: hsl(var(--primary-sh), 60%);
+  --primary-400: hsl(var(--primary-sh), 48%);
+  --primary-500: hsl(var(--primary-sh), 36%);
+  --primary-600: hsl(var(--primary-sh), 29%);
+  --primary-700: hsl(var(--primary-sh), 22%);
+  --primary-800: hsl(var(--primary-sh), 15%);
+  --primary-900: hsl(var(--primary-sh), 8%);
+  --primary: var(--primary-500);
+  /*--primary: #008cba;*/
+
+  --secondary-sh: 35, 98%;
+  --secondary-100: hsl(var(--secondary-sh), 90%);
+  --secondary-200: hsl(var(--secondary-sh), 81%);
+  --secondary-300: hsl(var(--secondary-sh), 72%);
+  --secondary-400: hsl(var(--secondary-sh), 63%);
+  --secondary-500: hsl(var(--secondary-sh), 54%);
+  --secondary-600: hsl(var(--secondary-sh), 43%);
+  --secondary-700: hsl(var(--secondary-sh), 32%);
+  --secondary-800: hsl(var(--secondary-sh), 21%);
+  --secondary-900: hsl(var(--secondary-sh), 10%);
+  --secondary: var(--secondary-500);
+  /*--secondary: #fd7e14;*/
+
   --border-radius: 8px;
   --text-color: white;
-  --primary: #008cba;
   /*--bs-secondary: hsl(36.9,98.3%,46.1%);*/
   --active-color-border: hsl(36.9,98.3%,66.1%);
   --active-color-bg: hsl(36.9,98.3%,92.1%);
@@ -12,7 +37,64 @@
   --transition-delay: 200ms;
 }
 
+/* ================ font icons ================ */
+
+@font-face {
+  font-family: 'Jotters';
+  src: url('./assets/fonts/Jotters.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon {
+  display: inline-block;
+  font: 1.5rem 'Jotters';
+  speak: none;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-settings::before {
+  content: "\ea04";
+}
+
+.icon-share::before {
+  content: "\ea05";
+}
+
+.icon-language::before {
+  content: "\ea06";
+}
+
+.icon-more_vert::before {
+  content: "\ea07";
+}
+
+.icon-delete::before {
+  content: "\ea08";
+}
+
+.icon-chevron_left::before {
+  content: "\ea09";
+}
+
+.icon-chevron_right::before {
+  content: "\ea0a";
+}
+
+.icon-menu::before {
+  content: "\ea0b";
+}
+
+.icon-arrow_drop_down_circle::before {
+  content: "\ea0c";
+}
+
+/* ================  ================ */
+
 body{
+  font-family: 'Open Sans', sans-serif;
   background-color: var(--bg-color);
 }
 

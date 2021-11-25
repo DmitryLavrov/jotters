@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react'
 import i18next from 'i18next'
 import {useTranslation} from 'react-i18next'
-import globe from '../../assets/images/globe.svg'
 import flagGb from '../../assets/images/flag-gb.svg'
 import flagRu from '../../assets/images/flag-ru.svg'
+
+import DropdownBtn from './form/dropdownBtn'
 
 const languages = [
   {code: 'en', name: 'English', flagImg: flagGb},
@@ -20,40 +21,27 @@ const LanguageBtn = () => {
     document.title = t('JOTTERS')
   }, [currentLanguage, t])
 
+  const handleBtnSettings = (action) => {
+    i18next.changeLanguage(action)
+  }
+
+  const paramsBtnLanguage = {
+    name: 'language',
+    position: 'static',
+    img: <span className="icon icon-language"/>,
+    title: t('LANGUAGE')
+  }
+
+  paramsBtnLanguage.items = languages.map(l => ({
+    action: l.code,
+    title: l.name,
+    img: <img src={l.flagImg} alt="flag" height="24px"/>,
+    onClick: handleBtnSettings,
+    disabled: l.code === currentLanguage.code
+  }))
+
   return (
-    <span className="dropdown">
-      <button className="btn btn-outline-primary dropdown-toggle"
-              type="button"
-              id="dropdownLanguages"
-              data-bs-toggle="dropdown"
-              aria-expanded="false">
-        <span>
-          <img src={globe} alt="Lang" height="24px"/>
-        </span>
-      </button>
-
-      <ul className="dropdown-menu dropdown-menu-end"
-          aria-labelledby="dropdownLanguages">
-        <li className="dropdown-item-text">
-          <span>
-            {t('language')}
-          </span>
-        </li>
-
-        {languages.map(({code, name, flagImg}) =>
-          <li key={code}>
-            <button className="dropdown-item"
-                    onClick={() => i18next.changeLanguage(code)}
-                    disabled={code === currentLanguageCode}>
-              <span className="me-2" style={{opacity: code === currentLanguageCode ? 0.5 : 1}}>
-                <img src={flagImg} alt="Flag" height="24px"/>
-              </span>
-              {name}
-            </button>
-          </li>
-        )}
-      </ul>
-    </span>
+    <DropdownBtn paramsBtnSettings={paramsBtnLanguage}/>
   )
 }
 

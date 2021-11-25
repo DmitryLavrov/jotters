@@ -8,7 +8,6 @@ import NotesSidebar from '../pages/notePage/notesSidebar'
 import Confirmation from '../common/modal/confirmation'
 import useNotes from '../../hooks/useNotes'
 import sortArrayBy from '../../utils/sortArrayBy'
-import settings from '../../assets/images/settings.svg'
 
 const NotesLayout = () => {
   const {t} = useTranslation()
@@ -74,19 +73,22 @@ const NotesLayout = () => {
   }
 
   const paramsBtnSettings = {
-    name: 'settings',
-    image: settings,
-    title: t('SETTINGS'),
+    name: 'control',
+    position: 'absolute',
+    img: <span className="icon icon-arrow_drop_down_circle"/>,
+    title: t('CONTROL'),
     items: [
       {
         action: 'settings',
-        name: t('SETTINGS'),
+        title: t('SETTINGS'),
+        img: <span className="icon icon-settings"/>,
         onClick: handleBtnSettings,
         disabled: false
       },
       {
         action: 'delete',
-        name: t('DELETE_NOTE'),
+        title: t('DELETE_NOTE'),
+        img: <span className="icon icon-delete"/>,
         onClick: handleBtnSettings,
         disabled: false
       }

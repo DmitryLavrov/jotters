@@ -18,8 +18,10 @@ const NotesSidebar = ({notes, onCreateNewNote, isMobile, hideSidebar, ...rest}) 
   return (
     <Sidebar {...{isMobile, hideSidebar, ...rest}}>
       <Link to="/jotters" className="btn btn-outline-primary">
-        <span className="fw-bold me-2 fs-5"> {'<'} </span>
-        <span className="fs-5">{t('JOTTERS')}</span>
+        <div className="d-flex align-items-center justify-content-center gap-2">
+          <span className="icon icon-chevron_left"/>
+          <span className="fs-5">{t('JOTTERS')}</span>
+        </div>
       </Link>
 
       <br/>

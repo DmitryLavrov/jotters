@@ -1,58 +1,73 @@
 
-
 .dropdown {
   position: relative;
   float: right;
-  width: 0;
-  height: 0;
-  z-index: 10;
+  width: 1.5rem;
+  height: 1.5rem;
+  z-index: 8;
 }
 
 .dropdownBtn {
-  position: absolute;
-  top: 0;
-  right: 0;
   padding: 0;
   border: 0;
   cursor: pointer;
   background: transparent;
 }
 
+.absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.static {
+  position: static;
+}
+
+.dropdownBtn span {
+  color: var(--secondary-300);
+}
+
+.dropdownBtn span:hover,
+.dropdownBtn span:active {
+  color: var(--secondary);
+}
+
 .dropdownMenu {
   position: absolute;
-  visibility: hidden;
   top: 1.5rem;
-  left: -10rem;
-  width: 10rem;
-  padding: 0.25rem 0 0.25rem;
+  left: -13rem;
+  visibility: hidden;
+  width: 13rem;
+  padding: 0.25rem 0 0.5rem;
   margin: 0;
   list-style: none;
   z-index: 10;
-  background: var(--active-color-bg);
-  border: 2px solid var(--active-color-border);
+  background: var(--secondary-100);
+  border: 2px solid var(--secondary-200);
   border-radius: .5rem;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
-  transition: margin-top var(--transition-delay) ease-out;
+  opacity: 0.5;
+  transition: margin-top var(--transition-delay) ease-out, opacity var(--transition-delay) ease-out;
 }
 
 .show {
   visibility: visible;
   margin: 0.75rem 0;
+  opacity: 1;
 }
-
-/*.dropdownMenu li {*/
-/*  padding: 0;*/
-/*}*/
 
 .dropdownTitle {
   color: var(--primary);
-  border-bottom: 1px solid var(--primary);
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 2px solid var(--secondary-200);
   padding: 0.5rem 1rem;
   margin-bottom: 0.5rem;
 }
 
 .dropdownItem {
-border: none;
+  border: none;
 }
 
 .dropdownItemBtn {
@@ -67,7 +82,19 @@ border: none;
 
 .dropdownItemBtn:hover,
 .dropdownItemBtn:active {
-  background-color: lightsteelblue;
+  background-color: var(--secondary-200);
+}
+
+.dropdownItemBtn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.dropdownItemBtn div {
+  display: flex;
+  align-content: center;
+  gap: 1rem;
 }
 
 .dropdownItemBtnImg {
