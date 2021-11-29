@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import classes from './form.module.css'
 
 const DropdownBtn = ({paramsBtnSettings}) => {
-  const {img, position, title, items} = paramsBtnSettings
+  const {img, title, items} = paramsBtnSettings
   const [open, setOpen] = useState(false)
   const dropdown = useRef(null)
 
@@ -25,8 +25,8 @@ const DropdownBtn = ({paramsBtnSettings}) => {
   }
 
   return (
-    <span className={classes.dropdown} ref={dropdown}>
-      <button className={classes.dropdownBtn + ' ' + (position === 'absolute' ? classes.absolute : classes.static)}
+    <span className={classes.dropdown + (open ? (' ' + classes.z) : '')} ref={dropdown}>
+      <button className={classes.dropdownBtn}
               type="button"
               onClick={() => setOpen(!open)}>
         {img}

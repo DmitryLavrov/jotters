@@ -1,27 +1,22 @@
 
 .dropdown {
   position: relative;
+  z-index: 10;
   float: right;
   width: 1.5rem;
   height: 1.5rem;
-  z-index: 8;
 }
 
 .dropdownBtn {
+  position: absolute;
   padding: 0;
   border: 0;
   cursor: pointer;
   background: transparent;
 }
 
-.absolute {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.static {
-  position: static;
+.z {
+  z-index: 12;
 }
 
 .dropdownBtn span {
@@ -36,13 +31,12 @@
 .dropdownMenu {
   position: absolute;
   top: 1.5rem;
-  left: -13rem;
+  left: -11rem;
   visibility: hidden;
   width: 13rem;
   padding: 0.25rem 0 0.5rem;
   margin: 0;
   list-style: none;
-  z-index: 10;
   background: var(--secondary-100);
   border: 2px solid var(--secondary-200);
   border-radius: .5rem;
@@ -95,8 +89,4 @@
   display: flex;
   align-content: center;
   gap: 1rem;
-}
-
-.dropdownItemBtnImg {
-
 }

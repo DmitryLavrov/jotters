@@ -74,7 +74,6 @@ const NotesLayout = () => {
 
   const paramsBtnSettings = {
     name: 'control',
-    position: 'absolute',
     img: <span className="icon icon-arrow_drop_down_circle"/>,
     title: t('CONTROL'),
     items: [
