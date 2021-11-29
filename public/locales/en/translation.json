@@ -1,7 +1,8 @@
 {
   "welcome_to_React": "Welcome to React and react-i18next",
   "LANGUAGE": "Language",
-  "notes": "Notes",
+  "NOTES": "Notes",
+  "NOTE": "Note",
   "JOTTERS": "Jotters",
   "SEARCH": "Search",
   "SEARCH_PLACEHOLDER": "Search...",
@@ -16,6 +17,7 @@
   "NO_NOTES": "No notes",
   "MY_NOTE": "My note",
   "MY_NEW_NOTE": "My new note",
+  "ACCESS": "Access",
   "PUBLIC": "Public",
   "PRIVATE": "Private",
   "ALL_JOTTERS": "All jotters",

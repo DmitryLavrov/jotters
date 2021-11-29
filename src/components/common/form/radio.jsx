@@ -1,10 +1,17 @@
 import React from 'react'
 
-const Radio = ({name, title, onChange, radioButtons}) => {
+const Radio = ({name, label, onChange, radioButtons}) => {
+  const handleChange = (event) => {
+    onChange({
+      name: event.target.name,
+      value: event.target.value
+    })
+  }
+
   return (
     <>
       <h4 className="mt-3">
-        {title}
+        {label}
       </h4>
 
       {radioButtons.map(r => (
@@ -12,7 +19,7 @@ const Radio = ({name, title, onChange, radioButtons}) => {
           <input name={name}
                  value={r.value}
                  checked={r.checked}
-                 onChange={onChange}
+                 onChange={handleChange}
                  type="radio"
                  className="form-check-input"
                  id={name + r.value}/>

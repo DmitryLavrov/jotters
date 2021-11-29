@@ -1,7 +1,8 @@
 {
   "welcome_to_React": "Добро пожаловать!!!",
   "LANGUAGE": "Язык",
-  "notes": "Заметки",
+  "NOTES": "Заметки",
+  "NOTE": "Заметка",
   "JOTTERS": "Блокноты",
   "SEARCH": "Поиск",
   "SEARCH_PLACEHOLDER": "Поиск...",
@@ -16,6 +17,7 @@
   "NO_NOTES": "Заметок пока нет",
   "MY_NOTE": "Моя заметка",
   "MY_NEW_NOTE": "Моя новая заметка",
+  "ACCESS": "Доступ",
   "PUBLIC": "Общие",
   "PRIVATE": "Личные",
   "ALL_JOTTERS": "Все блокноты",

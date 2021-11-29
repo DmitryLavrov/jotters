@@ -5,11 +5,11 @@ import JottersSidebar from '../pages/jottersPage/jottersSidebar'
 import JottersPage from '../pages/jottersPage/jottersPage'
 import Layout from '../common/layout'
 import { useTranslation } from 'react-i18next'
-import JotterCardSettings from '../pages/jottersPage/jotterCardSettings'
+import JotterSettingsCard from '../pages/jottersPage/jotterSettingsCard'
 import useJotters from '../../hooks/useJotters'
 import Confirmation from '../common/modal/confirmation'
 
-const initialSettings = {
+const initialSettingItems = {
   title: 'New Jotter',
   color: '#CCC'
 }
@@ -19,9 +19,9 @@ const JottersLayout = () => {
   const [jotters, setJotters] = useState()
   const [sort, setSort] = useState('byDate')
   const [filter, setFilter] = useState('all')
-  const [isVisibleSettings, setIsVisibleSettings] = useState(false)
-  const [settings, setSettings] = useState()
-  const [isVisibleConfirmation, setIsVisibleConfirmation] = useState(false)
+  const [SettingItems, setSettingItems] = useState()
+  const [isVisibleSettingsCard, setIsVisibleSettingsCard] = useState(false)
+  const [isVisibleDeleteConfirm, setIsVisibleDeleteConfirm] = useState(false)
   const [currentJotterId, setCurrentJotterId] = useState()
   const {fetchJotters, updateJotter, addNewJotter, deleteJotter, getJotter} = useJotters(jotters, setJotters)
 
@@ -37,40 +37,35 @@ const JottersLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
 
-  const handleSort = (event) => {
-    setSort(event.target.value)
+  const handleSort = ({value}) => {
+    setSort(value)
   }
 
-  const handleFilter = (event) => {
-    setFilter(event.target.value)
+  const handleFilter = ({value}) => {
+    setFilter(value)
   }
 
-  const showSettings = () => {
-    setIsVisibleSettings(true)
+  const showSettingsCard = () => {
+    setIsVisibleSettingsCard(true)
   }
 
-  const hideSettings = () => {
-    setIsVisibleSettings(false)
+  const hideSettingsCard = () => {
+    setIsVisibleSettingsCard(false)
   }
 
   const onAddNewJotter = () => {
-    setSettings(initialSettings)
-    showSettings()
-  }
-
-  const onUpdateJotter = async (id) => {
-    setSettings(getJotter(id))
-    showSettings()
+    setSettingItems(initialSettingItems)
+    showSettingsCard()
   }
 
   const handleDeleteJotter = async () => {
     if (currentJotterId) {
       await deleteJotter(currentJotterId)
     }
-    setIsVisibleConfirmation(false)
+    setIsVisibleDeleteConfirm(false)
   }
 
-  const handleUpdateSettings = async (jotter) => {
+  const handleUpdateJotter = async (jotter) => {
     if (jotter._id) {
       await updateJotter(jotter)
     } else {
@@ -82,11 +77,11 @@ const JottersLayout = () => {
 
   const handleDropdownBtn = (action, id) => {
     if (action === 'settings') {
-      setSettings(getJotter(id))
-      showSettings()
+      setSettingItems(getJotter(id))
+      showSettingsCard()
     } else if (action === 'delete') {
       setCurrentJotterId(id)
-      setIsVisibleConfirmation(true)
+      setIsVisibleDeleteConfirm(true)
     }
   }
 
@@ -129,23 +124,22 @@ const JottersLayout = () => {
                         onFilter={handleFilter}
                         onAddNewJotter={onAddNewJotter}/>
         <JottersPage jotters={filteredAndSortedJotters()}
-                     onUpdateJotter={onUpdateJotter}
                      paramsDropdownBtn={paramsDropdownBtn}/>
       </Layout>
 
-      {isVisibleSettings &&
-      <JotterCardSettings header={t('JOTTER')}
-                          settingsData={settings}
-                          onHideModal={hideSettings}
-                          onSubmit={handleUpdateSettings}/>
+      {isVisibleSettingsCard &&
+      <JotterSettingsCard header={t('JOTTER')}
+                          settingsData={SettingItems}
+                          onHideModal={hideSettingsCard}
+                          onSubmit={handleUpdateJotter}/>
       }
 
-      {isVisibleConfirmation &&
+      {isVisibleDeleteConfirm &&
       <Confirmation header={t('DELETE')}
                     context={`${t('DELETE_JOTTER')}`}
                     action={t('DELETE')}
                     onConfirm={handleDeleteJotter}
-                    onCancel={() => setIsVisibleConfirmation(false)}/>
+                    onCancel={() => setIsVisibleDeleteConfirm(false)}/>
       }
 
     </>

@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import Notification from '../../common/modal/notification'
 import { useTranslation } from 'react-i18next'
 import Spinner from '../../common/spinner'
+import TextInput from '../../common/form/textInput'
 
-const JotterCardSettings = ({header, settingsData, onSubmit, onHideModal}) => {
+const JotterSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState(settingsData)
 
-  const handleChange = (event) => {
+  const handleChange = (field) => {
     setData(prev => ({
       ...prev,
-      [event.target.name]: event.target.value
+      [field.name]: field.value
     }))
   }
 
@@ -30,29 +31,17 @@ const JotterCardSettings = ({header, settingsData, onSubmit, onHideModal}) => {
 
           {data
             ? <>
-              <div className="mb-3">
-                <label htmlFor="title" className="form-label">
-                  {t('JOTTER_NAME')}
-                </label>
-                <input name="title"
-                       value={data.title}
-                       onChange={handleChange}
-                       type="text"
-                       className="form-control"
-                       id="title"/>
-              </div>
+              <TextInput name="title"
+                         label={t('JOTTER_NAME')}
+                         value={data.title}
+                         onChange={handleChange}
+                         error=""/>
 
-              <div className="mb-3">
-                <label htmlFor="color" className="form-label">
-                  {t('COLOR')}
-                </label>
-                <input name="color"
-                       value={data.color}
-                       onChange={handleChange}
-                       type="text"
-                       className="form-control"
-                       id="color"/>
-              </div>
+              <TextInput name="color"
+                         label={t('COLOR')}
+                         value={data.color}
+                         onChange={handleChange}
+                         error=""/>
             </>
 
             : <Spinner/>}
@@ -78,4 +67,4 @@ const JotterCardSettings = ({header, settingsData, onSubmit, onHideModal}) => {
   )
 }
 
-export default JotterCardSettings
+export default JotterSettingsCard

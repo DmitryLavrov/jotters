@@ -29,7 +29,7 @@ const NotesSidebar = ({notes, onCreateNewNote, isMobile, hideSidebar, ...rest}) 
       {notes
         ? (notes.length > 0
           ?
-          <ul className="nav flex-column">
+          <ul className="nav flex-column gap-0">
             {notes.map(note => <NoteItem key={note._id}
                                          note={note}
                                          onHideMobileSideBar={onHideMobileSideBar}/>)}

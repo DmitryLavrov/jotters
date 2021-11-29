@@ -8,14 +8,17 @@ import NotesSidebar from '../pages/notePage/notesSidebar'
 import Confirmation from '../common/modal/confirmation'
 import useNotes from '../../hooks/useNotes'
 import sortArrayBy from '../../utils/sortArrayBy'
+import NoteSettingsCard from '../pages/notePage/noteSettingsCard'
 
 const NotesLayout = () => {
   const {t} = useTranslation()
   const [jotter, setJotter] = useState()
   const [notes, setNotes] = useState()
   const [selectedNote, setSelectedNote] = useState()
+  const [isVisibleSettingsCard, setIsVisibleSettingsCard] = useState(false)
   const [isVisibleConfirmation, setIsVisibleConfirmation] = useState(false)
-  const {getJotter, fetchNotes, getNote, updateNote, addNewNote, deleteNote} = useNotes(notes, setNotes)
+  const {getJotter, fetchNotes, getNote, updateNote, addNewNote, deleteNote}
+    = useNotes(notes, setNotes, setSelectedNote)
 
   const {jotterId, noteId} = useParams()
   const history = useHistory()
@@ -44,6 +47,14 @@ const NotesLayout = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes])
 
+  const hideSettingsCard = () => {
+    setIsVisibleSettingsCard(false)
+  }
+
+  const showSettingsCard = () => {
+    setIsVisibleSettingsCard(true)
+  }
+
   const handleUpdate = async (content) => {
     await updateNote({_id: selectedNote._id, content})
   }
@@ -69,6 +80,9 @@ const NotesLayout = () => {
   //========= DropdownBtn ============
 
   const handleDropdownBtn = (action) => {
+    if (action === 'settings') {
+      showSettingsCard()
+    }
     if (action === 'delete') {
       setIsVisibleConfirmation(true)
     }
@@ -115,6 +129,13 @@ const NotesLayout = () => {
                     paramsDropdownBtn={paramsDropdownBtn}/>
         }
       </Layout>
+
+      {isVisibleSettingsCard &&
+      <NoteSettingsCard header={t('NOTE')}
+                        settingsData={selectedNote}
+                        onHideModal={hideSettingsCard}
+                        onSubmit={updateNote}/>
+      }
 
       {isVisibleConfirmation &&
       <Confirmation header={t('DELETE')}

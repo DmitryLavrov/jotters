@@ -4,7 +4,7 @@ import jotterService from '../services/jotter.service'
 import noteService from '../services/noteService'
 import sortArrayBy from '../utils/sortArrayBy'
 
-const useNotes = (notes, setNotes) => {
+const useNotes = (notes, setNotes, setSelectedNote) => {
   const [error, setError] = useState()
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const useNotes = (notes, setNotes) => {
     try {
       const {data} = await noteService.update(note._id, note)
       setNotes(prev => sortArrayBy('byDate', prev.map(n => (n._id === note._id ? data : n))))
+      setSelectedNote(note)
     } catch (err) {
       setError(err.response?.data?.message ? err.response.data.message : err.message)
     }
