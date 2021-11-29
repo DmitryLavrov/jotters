@@ -32,7 +32,7 @@ const Navbar = ({title, navSidebar}) => {
             {title || t('JOTTERS')}
           </span>
 
-          <span className="d-flex flex-nowrap align-items-center gap-2">
+          <span className="me-5">
             <span className="text-light">UserName</span>
             <LanguageBtn/>
           </span>

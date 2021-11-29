@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import classes from './form.module.css'
 
-const DropdownBtn = ({paramsBtnSettings}) => {
-  const {img, title, items} = paramsBtnSettings
+const DropdownBtn = ({params}) => {
+  const {img, title, onClick, items} = params
   const [open, setOpen] = useState(false)
   const dropdown = useRef(null)
 
@@ -19,7 +19,7 @@ const DropdownBtn = ({paramsBtnSettings}) => {
     }
   })
 
-  const handleSelect = (onClick, action) => {
+  const handleSelect = (action) => {
     setOpen(false)
     onClick(action)
   }
@@ -39,11 +39,11 @@ const DropdownBtn = ({paramsBtnSettings}) => {
           </span>
         </li>
 
-        {items.map(({action, title, img, onClick, disabled}) =>
+        {items.map(({action, title, img, disabled}) =>
           <li key={action}
               className={classes.dropdownItem}>
             <button className={classes.dropdownItemBtn + (disabled ? (' ' + classes.disabled) : '')}
-                    onClick={() => handleSelect(onClick, action)}
+                    onClick={() => handleSelect(action)}
                     disabled={disabled}>
               <div>
                 {img}

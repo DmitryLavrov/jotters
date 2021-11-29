@@ -39,11 +39,20 @@ const useJotters = (jotters, setJotters) => {
     }
   }
 
+  const deleteJotter = async (jotterId) => {
+    try {
+      await jotterService.delete(jotterId)
+      setJotters(prev => prev.filter(j => (j._id !== jotterId)))
+    } catch (err) {
+      setError(err.response?.data?.message ? err.response.data.message : err.message)
+    }
+  }
+
   const getJotter = (id) => {
     return jotters.find(j => j._id === id)
   }
 
-  return {fetchJotters, updateJotter, addNewJotter, getJotter}
+  return {fetchJotters, updateJotter, addNewJotter, deleteJotter, getJotter}
 }
 
 export default useJotters

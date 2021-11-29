@@ -7,7 +7,7 @@ import QuillCard from './quill/quillCard'
 import infoService from '../../services/info.service'
 import DropdownBtn from '../common/form/dropdownBtn'
 
-const NotePage = ({note, type, onUpdate, paramsBtnSettings}) => {
+const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
   const {t} = useTranslation()
   const [value, setValue] = useState('')
   const [readOnly, setReadOnly] = useState(true)
@@ -54,9 +54,9 @@ const NotePage = ({note, type, onUpdate, paramsBtnSettings}) => {
   }
 
   return (
-    <div>
+    <div className="position-relative">
       {readOnly && type === 'PRIVATE' &&
-      <DropdownBtn paramsBtnSettings={paramsBtnSettings}/>
+      <DropdownBtn params={paramsDropdownBtn}/>
       }
 
       <QuillCard readOnly={readOnly} value={value} onChange={handleChange}/>

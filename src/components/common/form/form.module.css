@@ -1,14 +1,15 @@
 
 .dropdown {
-  position: relative;
-  z-index: 10;
-  float: right;
+  position: absolute;
+  z-index: 8;
+  /*float: right;*/
+  right: 0;
   width: 1.5rem;
   height: 1.5rem;
 }
 
 .dropdownBtn {
-  position: absolute;
+  /*position: absolute;*/
   padding: 0;
   border: 0;
   cursor: pointer;
@@ -16,7 +17,7 @@
 }
 
 .z {
-  z-index: 12;
+  z-index: 9;
 }
 
 .dropdownBtn span {

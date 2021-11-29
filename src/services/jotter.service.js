@@ -21,6 +21,11 @@ const jotterService = {
     return data
   },
 
+  delete: async (id) => {
+    await httpService.delete(jotterEndpoint + id,
+      {withCredentials: true})
+  },
+
   add: async (body) => {
     const {data} = await httpService.post(jotterEndpoint,
       body,

@@ -32,8 +32,8 @@ const NotesLayout = () => {
 
   useEffect(() => {
     if (notes && noteId) {
-        getNote(noteId).then(data => setSelectedNote(data))
-      }
+      getNote(noteId).then(data => setSelectedNote(data))
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noteId])
 
@@ -66,34 +66,35 @@ const NotesLayout = () => {
     setIsVisibleConfirmation(false)
   }
 
-  const handleBtnSettings = (action) => {
+  //========= DropdownBtn ============
+
+  const handleDropdownBtn = (action) => {
     if (action === 'delete') {
       setIsVisibleConfirmation(true)
     }
   }
 
-  const paramsBtnSettings = {
-    name: 'control',
+  const paramsDropdownBtn = {
     img: <span className="icon icon-arrow_drop_down_circle"/>,
     title: t('CONTROL'),
+    onClick: handleDropdownBtn,
     items: [
       {
         action: 'settings',
         title: t('SETTINGS'),
         img: <span className="icon icon-settings"/>,
-        onClick: handleBtnSettings,
         disabled: false
       },
       {
         action: 'delete',
         title: t('DELETE_NOTE'),
         img: <span className="icon icon-delete"/>,
-        onClick: handleBtnSettings,
         disabled: false
       }
     ]
   }
 
+  //===================================
 
   return (
     <>
@@ -111,7 +112,7 @@ const NotesLayout = () => {
           <NotePage note={selectedNote}
                     type="PRIVATE"
                     onUpdate={handleUpdate}
-                    paramsBtnSettings={paramsBtnSettings}/>
+                    paramsDropdownBtn={paramsDropdownBtn}/>
         }
       </Layout>
 
