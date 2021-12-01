@@ -22,10 +22,12 @@ const JottersLayout = () => {
     fetchJotters('619032cad8df581c4881d9a2').then(data => {
       setJotters(data)
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     setJotters(jotters)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
 
   const handleSort = ({value}) => {

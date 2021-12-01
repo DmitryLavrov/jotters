@@ -51,7 +51,7 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
              onChange={handleSearch}
              type="text" className="form-control" placeholder={t('SEARCH_PLACEHOLDER')}/>
 
-      <Radio name="sort" title={t('SORT')} onChange={onSort}
+      <Radio name="sort" label={t('SORT')} onChange={onSort}
              radioButtons={[
                {label: t('BY_DATE'), checked: sort === 'byDate', value: 'byDate'},
                {label: t('BY_NAME'), checked: sort === 'byName', value: 'byName'}

@@ -9,21 +9,22 @@ import DropdownBtn from '../common/form/dropdownBtn'
 
 const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
   const {t} = useTranslation()
-  const [value, setValue] = useState('')
+  const [content, setContent] = useState('')
   const [readOnly, setReadOnly] = useState(true)
   const [beforeEdit, setBeforeEdit] = useState({})
 
   useEffect(() => {
     if (note) {
-      setValue(note.content)
+      setContent(note.content)
     }
   }, [note])
+
   const handleChange = (content) => {
-    setValue(content)
+    setContent(content)
   }
 
   const handleBtnEdit = () => {
-    setBeforeEdit({value, lng: note.lng})
+    setBeforeEdit({content, lng: note.lng})
     setReadOnly(false)
   }
 
@@ -32,24 +33,24 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
 // =========================
 // TODO
       try {
-        await infoService.update(beforeEdit.lng, value)
+        await infoService.update(beforeEdit.lng, content)
       } catch (err) {
         toast.error(err.message)
       }
 // =========================
     } else if (type === 'PRIVATE' || type === 'PUBLIC') {
 
-      onUpdate && onUpdate(value)
+      onUpdate && onUpdate({_id: note._id, content})
     }
     setReadOnly(true)
   }
 
   const handleBtnCancel = () => {
-    setValue(beforeEdit.value)
+    setContent(beforeEdit.content)
     setReadOnly(true)
   }
 
-  if (value === undefined) {
+  if (content === undefined) {
     return <Spinner/>
   }
 
@@ -59,7 +60,7 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
       <DropdownBtn params={paramsDropdownBtn}/>
       }
 
-      <QuillCard readOnly={readOnly} value={value} onChange={handleChange}/>
+      <QuillCard readOnly={readOnly} value={content} onChange={handleChange}/>
       {/*</div>*/}
 
       {(type === 'PRIVATE' || type === 'INFO') &&

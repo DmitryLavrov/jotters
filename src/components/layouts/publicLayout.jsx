@@ -66,7 +66,7 @@ const PublicLayout = () => {
                      onSort={handleSort}
                      onSelect={handleSelect}/>
       <PublicPage notes={filteredNotes}/>
-  </Layout>
+    </Layout>
   )
 }
 

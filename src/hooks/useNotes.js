@@ -59,7 +59,6 @@ const useNotes = (notes, setNotes, setSelectedNote) => {
   const deleteNote = async (note) => {
     try {
       await noteService.delete(note._id)
-      setNotes(prev => sortArrayBy('byDate', prev.filter(n => (n._id !== note._id))))
     } catch (err) {
       setError(err.response?.data?.message ? err.response.data.message : err.message)
     }
