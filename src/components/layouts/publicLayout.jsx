@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import API from '../../api'
 import { useTranslation } from 'react-i18next'
 import PublicSidebar from '../pages/publicPage/publicSidebar'
 import PublicPage from '../pages/publicPage/publicPage'
 import Layout from '../common/layout'
 import sortArrayBy from '../../utils/sortArrayBy'
 import selectUsersFromNotes from '../../utils/selectUsersFromNotes'
+import useNotes from '../../hooks/useNotes'
 
 const PublicLayout = () => {
   const {t} = useTranslation()
@@ -13,9 +13,10 @@ const PublicLayout = () => {
   const [users, setUsers] = useState()
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('byDate')
+  const {fetchPublicNotes} = useNotes()
 
   useEffect(() => {
-    API.notes.fetchAllPublic().then((data) => {
+    fetchPublicNotes().then(data => {
       setNotes(sortArrayBy(sort, data))
       const users = selectUsersFromNotes(data)
       setUsers(users)
@@ -32,8 +33,8 @@ const PublicLayout = () => {
     setSearch(value)
   }
 
-  const handleSort = (event) => {
-    setSort(event.target.value)
+  const handleSort = ({value}) => {
+    setSort(value)
   }
 
   const handleSelect = (localUsers) => {
@@ -44,7 +45,7 @@ const PublicLayout = () => {
     let filtered = notes
 
     if (search) {
-      filtered = filtered.filter(note => note.summary.toLowerCase().includes(search.toLowerCase()))
+      filtered = filtered.filter(note => note.title.toLowerCase().includes(search.toLowerCase()))
     }
 
     if (users) {

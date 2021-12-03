@@ -9,6 +9,12 @@ const noteService = {
     return data
   },
 
+  fetchPublic: async () => {
+    const {data} = await httpService.get(noteEndpoint,
+      {params: {public: true}, withCredentials: true})
+    return data
+  },
+
   get: async (id) => {
     const {data} = await httpService.get(noteEndpoint + id,
       {withCredentials: true})

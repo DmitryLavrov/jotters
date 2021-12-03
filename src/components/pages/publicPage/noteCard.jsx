@@ -34,7 +34,7 @@ const NoteCard = ({note}) => {
             </h6>
 
             <p className="card-text">
-              {dateToString(note.updateDate)}
+              {dateToString(note.updatedAt)}
             </p>
           </div>
         </Link>

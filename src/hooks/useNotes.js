@@ -24,6 +24,15 @@ const useNotes = (notes, setNotes, setSelectedNote) => {
     }
   }
 
+  const fetchPublicNotes = async () => {
+    try {
+      const {data} = await noteService.fetchPublic()
+      return data
+    } catch (err) {
+      handleError(err)
+    }
+  }
+
   const getNote = async (id) => {
     return notes.find(n => n._id === id)
   }
@@ -56,7 +65,7 @@ const useNotes = (notes, setNotes, setSelectedNote) => {
     }
   }
 
-  return {getJotter, fetchNotes, getNote, updateNote, addNewNote, deleteNote}
+  return {getJotter, fetchNotes, getNote, updateNote, addNewNote, deleteNote, fetchPublicNotes}
 }
 
 export default useNotes
