@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { toast } from 'react-toastify'
 
 import Spinner from './spinner'
 import QuillCard from './quill/quillCard'
-import infoService from '../../services/info.service'
 import DropdownBtn from '../common/form/dropdownBtn'
 
 const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
@@ -30,17 +28,9 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
 
   const handleBtnSave = async () => {
     if (type === 'INFO') {
-// =========================
-// TODO
-      try {
-        await infoService.update(beforeEdit.lng, content)
-      } catch (err) {
-        toast.error(err.message)
-      }
-// =========================
+      onUpdate({lng: beforeEdit.lng, content})
     } else if (type === 'PRIVATE' || type === 'PUBLIC') {
-
-      onUpdate && onUpdate({_id: note._id, content})
+      onUpdate({_id: note._id, content})
     }
     setReadOnly(true)
   }
@@ -61,7 +51,6 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
       }
 
       <QuillCard readOnly={readOnly} value={content} onChange={handleChange}/>
-      {/*</div>*/}
 
       {(type === 'PRIVATE' || type === 'INFO') &&
       <div className="d-flex justify-content-end gap-3 my-3">

@@ -31,18 +31,21 @@ const NotesLayout = () => {
         setNotes(sortArrayBy('byDate', data))
       })
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jotterId])
 
   useEffect(() => {
     if (notes && noteId) {
       getNote(noteId).then(data => setSelectedNote(data))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [noteId])
 
   useEffect(() => {
     if (!noteId && notes && (notes.length > 0)) {
       history.push(`/jotters/${jotterId}/${notes[0]._id}`)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes])
 
   async function handleUpdateNote(note) {
