@@ -6,6 +6,12 @@ const userService = {
     const {data} = await httpService.get(userEndpoint,
       {withCredentials: true})
     return data
+  },
+
+  get: async (id) => {
+    const {data} = await httpService.get(userEndpoint + id,
+      {withCredentials: true})
+    return data
   }
 }
 

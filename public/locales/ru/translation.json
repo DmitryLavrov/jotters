@@ -40,5 +40,9 @@
   "CHANGED": "Изменен",
   "NOTES_COUNT": "Заметок",
   "SETTINGS": "Настройки",
-  "CONTROL": "Управление"
+  "CONTROL": "Управление",
+  "LOGIN": "Вход",
+  "SIGN_IN": "Войти",
+  "SIGN_UP": "Регистрация",
+  "SIGN_OUT": "Выйти"
 }

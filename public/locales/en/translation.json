@@ -40,5 +40,9 @@
   "CHANGED": "Changed",
   "NOTES_COUNT": "Notes",
   "SETTINGS": "Settings",
-  "CONTROL": "Control"
+  "CONTROL": "Control",
+  "LOGIN": "Login",
+  "SIGN_IN": "Sign in",
+  "SIGN_UP": "Sign up",
+  "SIGN_OUT": "Sign out"
 }

@@ -5,6 +5,7 @@ import menu from '../../assets/images/menu.svg'
 
 import LanguageBtn from '../common/languageBtn'
 import {Link} from 'react-router-dom'
+import LoginBtn from './login/loginBtn'
 
 const Navbar = ({title, navSidebar}) => {
   const {t} = useTranslation()
@@ -28,12 +29,12 @@ const Navbar = ({title, navSidebar}) => {
             </button>
           </Link>
 
-          <span className="fs-4 text-light lh-1">
+          <span className="fs-4 text-light">
             {title || t('JOTTERS')}
           </span>
 
-          <span className="me-5">
-            <span className="text-light">UserName</span>
+          <span className="me-5">.
+            <LoginBtn/>
             <LanguageBtn/>
           </span>
         </div>
