@@ -35,11 +35,15 @@ const NotesLayout = () => {
   }, [jotterId])
 
   useEffect(() => {
+    // =========================
+    console.log('notes:', notes)
+    console.log('noteId:', noteId)
+    // =========================
     if (notes && noteId) {
       getNote(noteId).then(data => setSelectedNote(data))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [noteId])
+  }, [notes, noteId])
 
   useEffect(() => {
     if (!noteId && notes && (notes.length > 0)) {

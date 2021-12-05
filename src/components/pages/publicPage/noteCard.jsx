@@ -3,10 +3,12 @@ import { useTranslation } from 'react-i18next'
 
 import { Link } from 'react-router-dom'
 import { dateToString } from '../../../utils/dateToString'
+import { htmlToPlain } from '../../../utils/htmlToPlain'
 
 const NoteCard = ({note}) => {
   const {t} = useTranslation()
-  const isOwnNote = note.userId === 'u01'
+  const isOwnNote = note.userId === '619032cad8df581c4881d9a2'
+  const summary = htmlToPlain(note.content).slice(note.title.length, note.title.length + 130) + '...'
 
   return (
     <div className="col p-0">
@@ -26,7 +28,7 @@ const NoteCard = ({note}) => {
             </p>
 
             <p className="card-text ellipsis">
-              {note.summary}
+              {summary}
             </p>
 
             <h6 className="card-subtitle mb-2 text-muted">

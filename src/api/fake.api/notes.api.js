@@ -1,6 +1,6 @@
-import convertToPlain from '../../utils/convertToPlain'
 import getTitleFromContent from '../../utils/getTitleFromContent'
 import API from '../index'
+import { htmlToPlain } from '../../utils/htmlToPlain'
 
 const notes = [
   {
@@ -154,7 +154,7 @@ const fetchAllPublic = () =>
                  username: user.name,
                  updateDate: note.updateDate,
                  title: getTitleFromContent(note.content),
-                 summary: convertToPlain(note.content).slice(0, 130) + '...'
+                 summary: htmlToPlain(note.content).slice(0, 130) + '...'
                }
              })
       )
@@ -174,7 +174,7 @@ const fetchAllByJotterId = (jotterId) =>
                  private: note.private,
                  updateDate: note.updateDate,
                  title: getTitleFromContent(note.content),
-                 summary: convertToPlain(note.content).slice(0, 130) + '...'
+                 summary: htmlToPlain(note.content).slice(0, 130) + '...'
                }
              })
       )

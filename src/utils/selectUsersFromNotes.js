@@ -1,4 +1,8 @@
 export default function selectUsersFromNotes(notes) {
+  if (!notes) {
+    return []
+  }
+
   const usernameList = notes.map(note => ({
     _id: note.userId,
     name: note.username,

@@ -12,6 +12,10 @@ const useError = () => {
   }, [error])
 
   const handleError = (err) => {
+    // =========================
+    console.log('err.response?.data?.message:', err.response?.data?.message)
+    console.log('err.message:', err.message)
+    // =========================
     setError(err.response?.data?.message ? err.response.data.message : err.message)
   }
 

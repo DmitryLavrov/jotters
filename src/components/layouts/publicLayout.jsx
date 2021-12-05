@@ -44,11 +44,11 @@ const PublicLayout = () => {
   const filterNotes = () => {
     let filtered = notes
 
-    if (search) {
+    if (notes && search) {
       filtered = filtered.filter(note => note.title.toLowerCase().includes(search.toLowerCase()))
     }
 
-    if (users) {
+    if (notes && users) {
       const selectedUserList = users.filter(user => user.selected === true).map(user => user._id)
       filtered = filtered.filter(note => selectedUserList.includes(note.userId))
     }

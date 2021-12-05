@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import API from '../../api'
 import Layout from '../common/layout'
 import NotePage from '../common/notePage'
 import PublicNotesSidebar from '../pages/publicNotePage/publicNoteSidebar'
+import useNotes from '../../hooks/useNotes'
 
 const PublicNoteLayout = () => {
   const [note, setNote] = useState()
-
+  const {getNote} = useNotes()
   const {noteId} = useParams()
 
   useEffect(() => {
-    API.notes.getById(noteId).then((data) => setNote(data))
+    getNote(noteId).then((data) => setNote(data))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

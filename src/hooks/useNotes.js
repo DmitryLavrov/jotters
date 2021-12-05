@@ -34,7 +34,16 @@ const useNotes = (notes, setNotes, setSelectedNote) => {
   }
 
   const getNote = async (id) => {
-    return notes.find(n => n._id === id)
+    if (notes) {
+      return notes.find(n => n._id === id)
+    }
+
+    try {
+      const {data} = await noteService.get(id)
+      return data
+    } catch (err) {
+      handleError(err)
+    }
   }
 
   const updateNote = async (note) => {
