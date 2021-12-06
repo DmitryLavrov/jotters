@@ -3,10 +3,23 @@ import TextInput from '../../common/form/textInput'
 import Spinner from '../../common/spinner'
 import Notification from '../../common/modal/notification'
 import { useTranslation } from 'react-i18next'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../../hooks/useAuth'
 
-const SignInCard = ({header, user, onSubmit, onHideModal}) => {
+const initUser = {
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirm: ''
+}
+
+const SignupCard = ({header, onHideModal}) => {
   const {t} = useTranslation()
-  const [data, setData] = useState(user)
+  const [data, setData] = useState(initUser)
+  const [errors, setErrors] = useState({})
+  const {signup} = useAuth()
+
+  const history = useHistory()
 
   const handleChange = (field) => {
     setData(prev => ({
@@ -15,10 +28,18 @@ const SignInCard = ({header, user, onSubmit, onHideModal}) => {
     }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    // =========================
+    console.log('Signup user:', data)
+    // =========================
     event.preventDefault()
-    onSubmit(data)
-    onHideModal()
+    try {
+      await signup(data)
+      history.push('/')
+      onHideModal()
+    } catch (err) {
+      setErrors(err)
+    }
   }
 
   return (
@@ -48,6 +69,12 @@ const SignInCard = ({header, user, onSubmit, onHideModal}) => {
                          value={data.password}
                          onChange={handleChange}
                          error=""/>
+
+              <TextInput name="passwordConfirm"
+                         label={t('PASSWORD_CONFIRM')}
+                         value={data.passwordConfirm}
+                         onChange={handleChange}
+                         error=""/>
             </>
 
             : <Spinner/>}
@@ -73,4 +100,4 @@ const SignInCard = ({header, user, onSubmit, onHideModal}) => {
   )
 }
 
-export default SignInCard
+export default SignupCard

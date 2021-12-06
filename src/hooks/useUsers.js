@@ -22,7 +22,6 @@ const useUsers = () => {
     }
   }
 
-
   return {fetchUsers, getCurrentUser}
 }
 

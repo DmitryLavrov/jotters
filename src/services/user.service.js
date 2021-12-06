@@ -1,5 +1,5 @@
 import httpService from './http.service'
-const userEndpoint = 'user/'
+const userEndpoint = 'users/'
 
 const userService = {
   fetch: async () => {

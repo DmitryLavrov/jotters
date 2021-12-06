@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
-import {useTranslation} from 'react-i18next'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import logo from '../../assets/images/notebook.svg'
 import menu from '../../assets/images/menu.svg'
 
 import LanguageBtn from '../common/languageBtn'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import LoginBtn from './login/loginBtn'
 
 const Navbar = ({title, navSidebar}) => {
@@ -33,10 +33,10 @@ const Navbar = ({title, navSidebar}) => {
             {title || t('JOTTERS')}
           </span>
 
-          <span className="me-5">.
-            <LoginBtn/>
-            <LanguageBtn/>
-          </span>
+          <div className="d-flex">
+              <LoginBtn/>
+              <LanguageBtn/>
+          </div>
         </div>
       </nav>
 

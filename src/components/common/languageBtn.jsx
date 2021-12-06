@@ -43,10 +43,9 @@ const LanguageBtn = () => {
   //===================================
 
   return (
-    <div className="d-inline  position-relative" style={{right: '-3rem'}}>
-
+    <span className="position-relative">
       <DropdownBtn params={paramsDropdownBtn}/>
-    </div>
+    </span>
   )
 }
 
