@@ -93,33 +93,8 @@
 
 /* ================  ================ */
 
-body{
-  font-family: 'Open Sans', sans-serif;
-  background-color: var(--bg-color);
-}
 
 /* ================ BS dropdown ================ */
-
-.dropdown-menu {
-  display: block;
-  visibility: hidden;
-  border-radius: var(--border-radius);
-  transition: margin-top var(--transition-delay) ease-out;
-}
-
-.dropdown-menu.show {
-  visibility: visible;
-  margin: 0.75rem 0;
-}
-
-.dropdown-menu-end {
-  right: 0;
-  left: auto;
-}
-
-/*.dropdown-item-text {*/
-/*  color: var(--text-color);*/
-/*}*/
 
 /* ================ BS dropdown ================ */
 

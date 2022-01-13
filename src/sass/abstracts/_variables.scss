@@ -1,0 +1,16 @@
+$color-white: #fff;
+$color-black: #000;
+$color-bg: seashell;
+
+$color-secondary: hsl(35, 98%, 54%);
+$color-secondary-lighter: lighten($color-secondary, 12);
+$color-secondary-light: lighten($color-secondary-lighter, 12);
+$color-secondary-lightest: lighten($color-secondary-light, 12);
+
+//$color-secondary-lighter: hsl(35, 98%, 70%);
+//$color-secondary-light: hsl(35, 98%, 80%);
+//$color-secondary-lightest: hsl(35, 98%, 90%);
+
+$border-radius: 4px;
+
+$transition-delay: 200ms;

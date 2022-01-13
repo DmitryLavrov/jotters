@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import classes from './form.module.css'
+// import classes from './form.module.scss'
 
 const DropdownBtn = ({params}) => {
   const {img, title, onClick, items} = params
@@ -25,15 +25,15 @@ const DropdownBtn = ({params}) => {
   }
 
   return (
-    <span className={classes.dropdown + (open ? (' ' + classes.z) : '')} ref={dropdown}>
-      <button className={classes.dropdownBtn}
+    <span className={'dropdown' + (open ? (' dropdown--z') : '')} ref={dropdown}>
+      <button className={'dropdown__btn'}
               type="button"
               onClick={() => setOpen(!open)}>
         {img}
       </button>
 
-      <ul className={classes.dropdownMenu + (open ? (' ' + classes.show) : '')}>
-        <li className={classes.dropdownTitle}>
+      <ul className={'dropdown__menu' + (open ? (' dropdown__menu--show') : '')}>
+        <li className="dropdown__title">
           <span>
             {title}
           </span>
@@ -41,8 +41,8 @@ const DropdownBtn = ({params}) => {
 
         {items.map(({action, title, img, disabled}) =>
           <li key={action}
-              className={classes.dropdownItem}>
-            <button className={classes.dropdownItemBtn + (disabled ? (' ' + classes.disabled) : '')}
+              className="dropdown-item">
+            <button className={'dropdown-item__btn' + (disabled ? ' dropdown-item__btn--disabled' : '')}
                     onClick={() => handleSelect(action)}
                     disabled={disabled}>
               <div>

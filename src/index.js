@@ -7,8 +7,9 @@ import './bootstrap-yeti.css'
 // import 'bootstrap-icons/font/bootstrap-icons.css'
 // import 'flag-icon-css/css/flag-icon.min.css'
 import 'react-quill/dist/quill.snow.css'
-import './index.css'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
+import './sass/main.scss'
+import './index.scss'
 
 import App from './App'
 
@@ -16,7 +17,7 @@ import './utils/i18next'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback='loading...'>
+    <Suspense fallback="loading...">
       <App/>
     </Suspense>
   </React.StrictMode>,
