@@ -3,10 +3,21 @@ import TextInput from '../../common/form/textInput'
 import Spinner from '../../common/spinner'
 import Notification from '../../common/modal/notification'
 import { useTranslation } from 'react-i18next'
+import { useAuth } from '../../../hooks/useAuth'
+import { useHistory } from 'react-router-dom'
 
-const SignInCard = ({header, user, onSubmit, onHideModal}) => {
+const initUser = {
+  email: '',
+  password: ''
+}
+
+const LoginCard = ({onHideModal}) => {
   const {t} = useTranslation()
-  const [data, setData] = useState(user)
+  const [data, setData] = useState(initUser)
+  const [errors, setErrors] = useState({})
+  const {login} = useAuth()
+
+  const history = useHistory()
 
   const handleChange = (field) => {
     setData(prev => ({
@@ -15,39 +26,43 @@ const SignInCard = ({header, user, onSubmit, onHideModal}) => {
     }))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    // =========================
+    console.log('Login user:', data)
+    // =========================
     event.preventDefault()
-    onSubmit(data)
-    onHideModal()
+    try {
+      await login(data)
+      history.push('/')
+      onHideModal()
+    } catch (err) {
+      setErrors(err)
+    }
   }
 
   return (
     <Notification onCancel={onHideModal}>
       {/*<div className="card">*/}
-      <h5 className="card-header">{header}</h5>
+      <h5 className="card-header">
+        {t('SIGN_IN')}
+      </h5>
 
       <div className="card-body">
         <form onSubmit={handleSubmit}>
 
           {data
             ? <>
-              <TextInput name="name"
-                         label={t('NAME')}
-                         value={data.name}
-                         onChange={handleChange}
-                         error=""/>
-
               <TextInput name="email"
                          label={t('EMAIL')}
                          value={data.email}
                          onChange={handleChange}
-                         error=""/>
+                         error={errors.email}/>
 
               <TextInput name="password"
                          label={t('PASSWORD')}
                          value={data.password}
                          onChange={handleChange}
-                         error=""/>
+                         error={errors.password}/>
             </>
 
             : <Spinner/>}
@@ -73,4 +88,4 @@ const SignInCard = ({header, user, onSubmit, onHideModal}) => {
   )
 }
 
-export default SignInCard
+export default LoginCard

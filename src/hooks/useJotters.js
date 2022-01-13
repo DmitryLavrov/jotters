@@ -4,9 +4,9 @@ import useError from './useError'
 const useJotters = (jotters, setJotters) => {
   const {handleError} = useError()
 
-  const fetchJotters = async (userId) => {
+  const fetchJotters = async () => {
     try {
-      const {data} = await jotterService.fetch(userId)
+      const {data} = await jotterService.fetch()
       return data
     } catch (err) {
       handleError(err)

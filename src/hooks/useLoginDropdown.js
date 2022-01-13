@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import SignInCard from '../components/ui/login/signInCard'
+import LoginCard from '../components/ui/login/loginCard'
 import SignupCard from '../components/ui/login/signupCard'
+import useUsers from './useUsers'
 
-const useLoginDropdown = (getCurrentUser, handleSignIn) => {
+const useLoginDropdown = () => {
   const {t} = useTranslation()
   const [isVisibleSingIn, setIsVisibleSingIn] = useState(false)
   const [isVisibleSingUp, setIsVisibleSingUp] = useState(false)
   const [isVisibleSingOut, setIsVisibleSingOut] = useState(false)
+  const {getCurrentUser} = useUsers()
 
   const paramsDropdownBtn = {
     img: <span className="icon icon-arrow_drop_down_circle"/>,
@@ -60,10 +62,7 @@ const useLoginDropdown = (getCurrentUser, handleSignIn) => {
 
   const renderLoginCard = (<>
     {isVisibleSingIn &&
-    <SignInCard header={t('SIGN_IN')}
-                // user={user}
-                onHideModal={hideAllCards}
-                onSubmit={handleSignIn}/>}
+    <LoginCard onHideModal={hideAllCards}/>}
 
     {isVisibleSingUp &&
     <SignupCard header={t('SIGN_UP')}

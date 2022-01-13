@@ -12,7 +12,10 @@ const useError = () => {
   }, [error])
 
   const handleError = (err) => {
-    setError(err.response?.data?.message ? err.response.data.message : err.message)
+    if (err.response?.data) {
+      err.message = 'Status ' + err.response.data.status + '. ' + err.response.data.message
+    }
+    setError(err.message)
   }
 
   return {handleError}

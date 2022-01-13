@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import authService from '../services/authService'
 import useError from './useError'
+import localStorageService from '../services/localStorage.service'
 
 const AuthContext = React.createContext()
 
@@ -12,29 +13,46 @@ const AuthProvider = ({children}) => {
 
   const signup = async (user) => {
     try {
-      // await createUser(user)
-      const newUser = await authService.signup(user)
-      setCurrentUser(newUser)
+      const {data, token} = await authService.signup(user)
+      localStorageService.setToken(token)
+      // =========================
+      console.log('currentUser:', data)
+      // =========================
+      setCurrentUser(data)
     } catch (err) {
       handleError(err)
       const {status, errors} = err.response.data
       if (status === '400') {
-        const errorObject = {
+        const errorsObject = {
           name: errors?.name?.message ?? '',
           email: errors?.email?.message ?? '',
           password: errors?.password?.message ?? '',
           passwordConfirm: errors?.passwordConfirm?.message ?? ''
         }
-        // =========================
-        console.log('errorObject:', errorObject)
-        // =========================
-        throw errorObject
+        throw errorsObject
       }
     }
   }
 
-  const login = () => {
-
+  const login = async (user) => {
+    try {
+      const {data, token} = await authService.login(user)
+      localStorageService.setToken(token)
+      // =========================
+      console.log('currentUser:', data)
+      // =========================
+      setCurrentUser(data)
+    } catch (err) {
+      handleError(err)
+      const {status, errors} = err.response.data
+      if (status === '401') {
+        const errorsObject = {
+          email: errors?.email?.message ?? '',
+          password: errors?.password?.message ?? '',
+        }
+        throw errorsObject
+      }
+    }
   }
 
 

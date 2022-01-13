@@ -42,6 +42,10 @@ const SignupCard = ({header, onHideModal}) => {
     }
   }
 
+  // =========================
+  console.log('errors:', errors)
+  // =========================
+
   return (
     <Notification onCancel={onHideModal}>
       {/*<div className="card">*/}
@@ -56,25 +60,25 @@ const SignupCard = ({header, onHideModal}) => {
                          label={t('NAME')}
                          value={data.name}
                          onChange={handleChange}
-                         error=""/>
+                         error={errors.name}/>
 
               <TextInput name="email"
                          label={t('EMAIL')}
                          value={data.email}
                          onChange={handleChange}
-                         error=""/>
+                         error={errors.email}/>
 
               <TextInput name="password"
                          label={t('PASSWORD')}
                          value={data.password}
                          onChange={handleChange}
-                         error=""/>
+                         error={errors.password}/>
 
               <TextInput name="passwordConfirm"
                          label={t('PASSWORD_CONFIRM')}
                          value={data.passwordConfirm}
                          onChange={handleChange}
-                         error=""/>
+                         error={errors.passwordConfirm}/>
             </>
 
             : <Spinner/>}

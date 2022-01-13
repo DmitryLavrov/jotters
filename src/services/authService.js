@@ -7,6 +7,13 @@ const authService = {
       body,
       {withCredentials: true})
     return data
+  },
+
+  login: async (body) => {
+    const {data} = await httpService.post(userEndpoint + 'login',
+      body,
+      {withCredentials: true})
+    return data
   }
 }
 
