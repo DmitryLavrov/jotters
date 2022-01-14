@@ -1,0 +1,36 @@
+.note-item {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+
+    &__link {
+        display: block;
+        overflow: hidden;
+        flex: 1 1 auto;
+        padding: 0.5rem 1rem;
+        list-style: none;
+        cursor: pointer;
+        white-space: nowrap;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        color: $color-primary;
+        border: 3px solid transparent;
+
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+        &--public {box-shadow: $box-shadow-red;}
+        &.active {
+            border: $border-secondary;
+            border-radius: $border-radius;
+            background-color: $color-secondary-lightest;
+        }
+
+        &:hover {
+            background-color: $color-secondary-lightest;
+        }
+
+    }
+}

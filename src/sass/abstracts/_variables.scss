@@ -1,6 +1,12 @@
-$color-white: #fff;
+$color-white: #FFF;
 $color-black: #000;
 $color-bg: seashell;
+$color-base: #222;
+
+$color-primary: hsl(195, 100%, 36%);
+$color-primary-darker: darken($color-primary, 12);
+$color-primary-dark: darken($color-primary-darker, 12);
+$color-primary-darkest: darken($color-primary-dark, 12);
 
 $color-secondary: hsl(35, 98%, 54%);
 $color-secondary-lighter: lighten($color-secondary, 12);
@@ -13,4 +19,10 @@ $color-secondary-lightest: lighten($color-secondary-light, 12);
 
 $border-radius: 4px;
 
+$border-secondary: 3px solid $color-secondary-lighter;
+
 $transition-delay: 200ms;
+$transition-delay-long: 600ms;
+
+$box-shadow-norm: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+$box-shadow-red: 0 0 .25rem .25rem rgb(255 0 0 / 30%);

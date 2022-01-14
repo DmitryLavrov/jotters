@@ -1,17 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import classes from './modal.module.css'
 
 const Backdrop = ({removeModal}) => {
   return (
-    <div className={classes.backdrop}
+    <div className='backdrop'
          onClick={removeModal}/>
   )
 }
 
 const ModalOverlay = ({children, modalClass}) => {
   return (
-    // <div className={modalClass + ' ' + classes.open}>
     <div className={modalClass}>
       {children}
     </div>

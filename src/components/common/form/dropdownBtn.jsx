@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-// import classes from './form.module.scss'
 
 const DropdownBtn = ({params}) => {
   const {img, title, onClick, items} = params

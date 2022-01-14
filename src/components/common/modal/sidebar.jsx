@@ -1,15 +1,15 @@
 import React from 'react'
+
 import Modal from './modal'
-import classes from './modal.module.css'
 
 const Sidebar = ({isMobile = false, hideSidebar, children}) => {
   return isMobile
     ?
-    <Modal modalClass={classes.mobileSidebar}
+    <Modal modalClass='sidebar mobile'
            removeModal={hideSidebar}>
-      <div className="d-flex flex-column pt-5 px-md-5 px-3">
+      {/*<div className="mobile-sidebar__content">*/}
         {children}
-      </div>
+      {/*</div>*/}
     </Modal>
     :
     <div className="d-flex flex-column">

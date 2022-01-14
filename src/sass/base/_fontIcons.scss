@@ -1,0 +1,27 @@
+/* ================ font icons ================ */
+
+@font-face {
+    font-family: "Jotters";
+    src: url("../../assets/fonts/Jotters.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon {
+    display: inline-block;
+    font: 1.5rem "Jotters";
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &-settings::before {content: "\ea04";}
+    &-share::before {content: "\ea05";}
+    &-language::before {content: "\ea06";}
+    &-more_vert::before {content: "\ea07";}
+    &-delete::before {content: "\ea08";}
+    &-chevron_left::before {content: "\ea09";}
+    &-chevron_right::before {content: "\ea0a";}
+    &-menu::before {content: "\ea0b";}
+    &-arrow_drop_down_circle::before {content: "\ea0c";}
+}

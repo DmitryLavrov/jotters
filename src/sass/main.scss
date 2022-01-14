@@ -1,14 +1,22 @@
-@import 'abstracts/variables',
-'abstracts/functions',
-'abstracts/mixins';
+@import "abstracts/variables",
+        "abstracts/functions",
+        "abstracts/mixins";
 
-@import 'base/reset',
-'base/typography';
+@import "base/base",
+        "base/typography",
+        "base/fontIcons";
 
-@import 'layout/navigation',
-'layout/grid';
+@import "layout/navigation",
+        "layout/grid";
 
-@import 'components/buttons',
-'components/dropDownMenu';
+@import "components/button",
+        "components/card",
+"components/formCheck",
+        "components/quillCard",
+        "components/modal",
+        "components/dropDownMenu";
 
-@import 'pages/infoPage';
+@import "pages/infoPage",
+        "pages/notePage";
+
+@import "vendors/quillEditor";

@@ -69,6 +69,10 @@ const useLoginDropdown = () => {
                 onHideModal={hideAllCards}/>}
   </>)
 
+  // =========================
+  console.log('isVisibleSingOut:', isVisibleSingOut)
+  // =========================
+
   return {paramsDropdownBtn, renderLoginCard}
 }
 

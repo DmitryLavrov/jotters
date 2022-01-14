@@ -2,14 +2,10 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import 'bootstrap'
 
-// import 'bootstrap/dist/css/bootstrap.css'
 import './bootstrap-yeti.css'
-// import 'bootstrap-icons/font/bootstrap-icons.css'
-// import 'flag-icon-css/css/flag-icon.min.css'
 import 'react-quill/dist/quill.snow.css'
 import 'react-toastify/dist/ReactToastify.css'
 import './sass/main.scss'
-import './index.scss'
 
 import App from './App'
 
