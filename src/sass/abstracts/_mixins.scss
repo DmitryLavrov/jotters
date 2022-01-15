@@ -1,0 +1,42 @@
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+1200 - 1800px:  Regular desktop
+1800px + :      Big desktop
+
+$breakpoint argument choices:
+- tiny
+- small
+- medium
+- big
+- large
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+    @if $breakpoint == tiny {
+        @media only screen and (max-width: 37.5em) { @content }; // less then 600px
+    }
+    @if $breakpoint == small {
+        @media only screen and (max-width: 56.25em) { @content }; // less then 900px
+    }
+    @if $breakpoint == medium {
+        @media only screen and (max-width: 75em) { @content }; // less then 1200px
+    }
+    @if $breakpoint == big {
+        @media only screen and (max-width: 112.5em) { @content }; // less then 1800px
+    }
+    @if $breakpoint == large {
+        @media only screen and (min-width: 112.5em) { @content }; // more then 1800px
+    }
+}
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}

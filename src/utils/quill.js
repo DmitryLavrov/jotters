@@ -1,4 +1,4 @@
-export const showToolbar = {
+export const toolbarModules = {
   toolbar: [
     [{header: [1, 2, 3, 4, 5, 6, false]}],
     ['bold', 'italic', 'underline', 'strike'],
@@ -12,7 +12,7 @@ export const showToolbar = {
   ]
 }
 
-export const hideToolbar = {
+export const toolbarModulesEmpty = {
   toolbar: null
 }
 

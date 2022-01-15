@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../ui/navbar'
+import Navbar from '../../ui/navbar'
+
+// Breakpoint 900px for phones and tablets portrait
+const BP_SMALL = 900
 
 const Layout = ({children, ...rest}) => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992)
+  const [showSidebar, setShowSidebar] = useState(window.innerWidth >= BP_SMALL)
 
   const updateMedia = () => {
-    setIsDesktop(window.innerWidth >= 992)
+    setShowSidebar(window.innerWidth >= BP_SMALL)
   }
 
   useEffect(() => {
@@ -27,17 +30,15 @@ const Layout = ({children, ...rest}) => {
     <div className="container">
       <Navbar navSidebar={navSidebar} {...rest}/>
 
-      <div className="container-fluid">
-        <div className="row">
-          <div className="d-none d-lg-block col-lg-4 col-xl-3 py-2">
-            {isDesktop && clonedSidebar}
+        <div className="row-layout">
+          <div className="col-layout-sidebar">
+            {showSidebar && clonedSidebar}
           </div>
 
-          <div className="col-md-12 col-lg-8 col-xl-9 py-2">
+          <div className="col-layout-content">
             {clonedPage}
           </div>
         </div>
-      </div>
     </div>
   )
 }

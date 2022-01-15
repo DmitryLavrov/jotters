@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import PublicSidebar from '../pages/publicPage/publicSidebar'
 import PublicPage from '../pages/publicPage/publicPage'
-import Layout from '../common/layout'
+import Layout from './common/layout'
 import sortArrayBy from '../../utils/sortArrayBy'
 import selectUsersFromNotes from '../../utils/selectUsersFromNotes'
 import useNotes from '../../hooks/useNotes'
 
-const PublicLayout = () => {
+const PublicNotesLayout = () => {
   const {t} = useTranslation()
   const [notes, setNotes] = useState([])
   const [users, setUsers] = useState()
@@ -71,4 +71,4 @@ const PublicLayout = () => {
   )
 }
 
-export default PublicLayout
+export default PublicNotesLayout

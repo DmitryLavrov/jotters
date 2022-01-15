@@ -1,28 +1,47 @@
-$color-white: #FFF;
-$color-black: #000;
-$color-bg: seashell;
-$color-base: #222;
+// COLOR
+$color-white:              #FFF;
+$color-black:              #000;
+$color-bg:                 seashell;
+$color-base:               #222;
 
-$color-primary: hsl(195, 100%, 36%);
-$color-primary-darker: darken($color-primary, 12);
-$color-primary-dark: darken($color-primary-darker, 12);
-$color-primary-darkest: darken($color-primary-dark, 12);
+$color-primary:            hsl(195, 100%, 36%);
+$color-primary-darker:     darken($color-primary, 12);
+$color-primary-dark:       darken($color-primary-darker, 12);
+$color-primary-darkest:    darken($color-primary-dark, 12);
 
-$color-secondary: hsl(35, 98%, 54%);
-$color-secondary-lighter: lighten($color-secondary, 12);
-$color-secondary-light: lighten($color-secondary-lighter, 12);
+$color-secondary:          hsl(35, 98%, 54%);
+$color-secondary-lighter:  lighten($color-secondary, 12);
+$color-secondary-light:    lighten($color-secondary-lighter, 12);
 $color-secondary-lightest: lighten($color-secondary-light, 12);
 
 //$color-secondary-lighter: hsl(35, 98%, 70%);
 //$color-secondary-light: hsl(35, 98%, 80%);
 //$color-secondary-lightest: hsl(35, 98%, 90%);
 
-$border-radius: 4px;
+// RESPONSIVE BREAKPOINTS
+$bp-large:                 1000em; // more then big
+$bp-big:                   112.5em; // 1800px
+$bp-medium:                75em; // 1200px
+$bp-small:                 56.25em; // 900px;
+$bp-tiny:                  37.5em; // 600px;
 
-$border-secondary: 3px solid $color-secondary-lighter;
+// FONT
+$font-primary:             "Open Sans", sans-serif;
+$default-font-size:        1.6rem;
 
-$transition-delay: 200ms;
-$transition-delay-long: 600ms;
+// BORDER
+$border-radius:            4px;
+$border-secondary:         3px solid $color-secondary-lighter;
 
-$box-shadow-norm: 0 0.5rem 1rem rgb(0 0 0 / 15%);
-$box-shadow-red: 0 0 .25rem .25rem rgb(255 0 0 / 30%);
+// TRANSITION
+$transition-delay:         200ms;
+$transition-delay-long:    600ms;
+
+// BOX-SHADOW
+$box-shadow-norm:          0 0.5rem 1rem rgb(0 0 0 / 15%);
+$box-shadow-red:           0 0 .25rem .25rem rgb(255 0 0 / 30%);
+
+// GRID
+$grid-width:               114rem;
+$gutter-vertical:          8rem;
+$gutter-horizontal:        2rem;

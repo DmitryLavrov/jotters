@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import InfoSidebar from '../pages/infoPage/infoSidebar'
-import Layout from '../common/layout'
-import NotePage from '../common/notePage'
+import Layout from './common/layout'
+import NotePage from '../pages/common/notePage'
 import { useTranslation } from 'react-i18next'
 import useInfo from '../../hooks/useInfo'
 
@@ -17,7 +17,6 @@ const InfoLayout = () => {
 
   useEffect(() => {
     getInfo(lng).then(data => setNote(data))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lng])
 
   const handleUpdateInfo = async (info) => {

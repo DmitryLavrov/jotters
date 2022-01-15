@@ -1,15 +1,81 @@
 *,
-*::before,
-*::after {
+*::after,
+*::before {
+    margin:     0;
+    padding:    0;
+    box-sizing: inherit;
+}
+
+.text-truncate {
+    overflow:      hidden;
+    text-overflow: ellipsis;
+    white-space:   nowrap;
+}
+
+input, button, select, optgroup, textarea {
+    margin:      0;
+    font-family: inherit;
+    font-size:   inherit;
+    line-height: inherit;
+}
+
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled) {
+    cursor: pointer;
+}
+
+.position-relative {
+    position: relative;
+}
+
+html {
+    // This defines what 1rem is
+    font-size: 75%; // 1 rem = 12px; 12px/16px = 75% (large)
+
+    @include respond(big) { // width < 1800?
+        font-size: 62.5%; // 1 rem = 10px; 10px/16px = 62.5% (big)
+    }
+
+    @include respond(medium) { // width < 1200?
+        font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
+    }
+
+    @include respond(small) { // width < 900?
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+
+    @include respond(tiny) {
+        font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    }
+}
+
+body {
     box-sizing: border-box;
 }
 
+.container {
+    width:        100%;
+    //padding-right: 0.75rem;
+    //padding-left:  0.75rem;
+    margin-right: auto;
+    margin-left:  auto;
+
+    @include respond(large) {max-width: 120rem;}
+    @include respond(big) {max-width: 110rem;}
+    @include respond(medium) {max-width: 90rem;}
+    @include respond(small) {max-width: 70rem;}
+    @include respond(tiny) {max-width: 100%;}
+}
+
+
 hr {
-    margin: 1rem 0;
-    color: inherit;
+    margin:           1rem 0;
+    color:            inherit;
     background-color: $color-primary;
-    border: 0;
-    opacity: 0.25;
+    border:           0;
+    opacity:          0.25;
 }
 
 hr:not([size]) {

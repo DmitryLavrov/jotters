@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Spinner from './spinner'
-import QuillCard from './quill/quillCard'
-import DropdownBtn from '../common/form/dropdownBtn'
+import Spinner from '../../common/spinner'
+import QuillCard from '../../common/quill/quillCard'
+import DropdownBtn from '../../common/form/dropdownBtn'
 
 const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
   const {t} = useTranslation()
@@ -56,18 +56,18 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
       <div className="d-flex justify-content-end gap-3 my-3">
         {readOnly
           ? <>
-            <button className="btn btn-outline-warning w-25 text-truncate"
+            <button className="btn btn--secondary w-33 text-truncate"
                     onClick={handleBtnEdit}>
               {t('EDIT')}
             </button>
           </>
 
           : <>
-            <button className="btn btn-outline-primary w-25 text-truncate"
+            <button className="btn btn--primary w-33 text-truncate"
                     onClick={handleBtnCancel}>
               {t('CANCEL')}
             </button>
-            <button className="btn btn-outline-warning w-25 text-truncate"
+            <button className="btn btn--secondary w-33 text-truncate"
                     onClick={handleBtnSave}>
               {t('SAVE')}
             </button>

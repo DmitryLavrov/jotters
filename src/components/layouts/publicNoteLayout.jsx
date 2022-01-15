@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import Layout from '../common/layout'
-import NotePage from '../common/notePage'
+import Layout from './common/layout'
+import NotePage from '../pages/common/notePage'
 import PublicNotesSidebar from '../pages/publicNotePage/publicNoteSidebar'
 import useNotes from '../../hooks/useNotes'
 

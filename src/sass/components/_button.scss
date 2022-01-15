@@ -1,3 +1,63 @@
 .btn {
-    border-radius: $border-radius;
+    &,
+    &:link,
+    &:visited {
+        display:          inline-block;
+        font-size:        $default-font-size;
+        font-weight:      500;
+        line-height:      1.5;
+        padding:          1.5rem 2.5rem;
+        cursor:           pointer;
+        user-select:      none;
+        text-align:       center;
+        vertical-align:   middle;
+        text-decoration:  none;
+        //border-width:     1px;
+        border:           1px solid transparent;
+        border-radius:    $border-radius;
+        background-color: transparent;
+        transition:       all $transition-delay ease-in-out;
+    }
+
+    &:hover {
+        transform:  translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+    }
+
+    &:active,
+    &:focus {
+        transform:  translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+
+    &--primary {
+        &,
+        &:link,
+        &:visited {
+            color:        $color-primary;
+            border-color: $color-primary;
+
+            &:hover {
+                color:            $color-white;
+                background-color: $color-primary;
+            }
+        }
+    }
+    &--secondary {
+        &,
+        &:link,
+        &:visited {
+            color:        $color-secondary;
+            border-color: $color-secondary;
+
+            &:hover {
+                color:            $color-white;
+                background-color: $color-secondary;
+            }
+        }
+    }
+
+    &.w-33 {
+        width: 33%;
+    }
 }

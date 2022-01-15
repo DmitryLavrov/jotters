@@ -8,11 +8,11 @@ const InfoSidebar = ({...rest}) => {
 
   return (
     <Sidebar {...rest}>
-      <Link to="/public" className="btn btn-outline-primary btn-lg mt-3">
+      <Link to="/public" className="btn btn--primary">
         {t('TO_PUBLIC')}
       </Link>
 
-      <Link to="/jotters" className="btn btn-outline-warning btn-lg mt-3">
+      <Link to="/jotters" className="btn btn--secondary">
         {t('TO_PRIVATE')}
       </Link>
     </Sidebar>
