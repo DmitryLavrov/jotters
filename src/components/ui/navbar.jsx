@@ -17,28 +17,24 @@ const Navbar = ({title, navSidebar}) => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-primary">
-        <div className="container-fluid d-flex flex-nowrap">
-          <button onClick={showSidebar} className="btn btn-link d-lg-none p-0" type="button">
-            <img src={menu} alt="Menu button" height="38px"/>
+      <header className="header">
+          <button onClick={showSidebar} className="btn btn--menu" type="button">
+            <img src={menu} alt="Navigation button"/>
           </button>
 
-          <Link to="/info">
-            <button className="btn btn-link d-none d-lg-block p-0" type="button">
-              <img src={logo} alt="Logo Jotter" height="38px"/>
-            </button>
+          <Link to="/info" className="btn btn--logo" type="button">
+              <img src={logo} alt="Logo Jotter"/>
           </Link>
 
-          <span className="fs-4 text-light">
+          <h1 className="h1">
             {title || t('JOTTERS')}
-          </span>
+          </h1>
 
-          <div className="d-flex">
+          <div className="buttons-block">
               <LoginBtn/>
               <LanguageBtn/>
           </div>
-        </div>
-      </nav>
+      </header>
 
       {isVisibleSidebar && navSidebar(hideSidebar)}
     </>

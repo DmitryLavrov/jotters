@@ -43,9 +43,9 @@ const LanguageBtn = () => {
   //===================================
 
   return (
-    <span className="position-relative">
+    <div className="language-block">
       <DropdownBtn params={paramsDropdownBtn}/>
-    </span>
+    </div>
   )
 }
 

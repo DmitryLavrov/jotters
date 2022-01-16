@@ -2,18 +2,18 @@
     &,
     &:link,
     &:visited {
-        display:          inline-block;
-        font-size:        $default-font-size;
-        font-weight:      500;
-        line-height:      1.5;
-        padding:          1.5rem 2.5rem;
-        cursor:           pointer;
-        user-select:      none;
-        text-align:       center;
-        vertical-align:   middle;
-        text-decoration:  none;
+        display:         inline-block;
+        font-size:       $font-size-default;
+        font-weight:     500;
+        line-height:     1.5;
+        padding:         1.5rem 2.5rem;
+        cursor:          pointer;
+        user-select:     none;
+        text-align:      center;
+        vertical-align:  middle;
+        text-decoration: none;
         //border-width:     1px;
-        border:           1px solid transparent;
+        border:          1px solid transparent;
         border-radius:    $border-radius;
         background-color: transparent;
         transition:       all $transition-delay ease-in-out;
@@ -53,6 +53,36 @@
             &:hover {
                 color:            $color-white;
                 background-color: $color-secondary;
+            }
+        }
+    }
+
+    &--menu {
+        &,
+        &:link,
+        &:visited {
+            padding: 0;
+            display: none;
+            & > img {
+                height: 4.5rem;
+            }
+            @include respond(small) {
+                display: block;
+            }
+        }
+    }
+
+    &--logo {
+        &,
+        &:link,
+        &:visited {
+            padding: 0;
+            display: block;
+            & > img {
+                height: 4.5rem;
+            }
+            @include respond(small) {
+                display: none;
             }
         }
     }

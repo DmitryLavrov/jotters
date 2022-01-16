@@ -1,68 +1,68 @@
 .dropdown {
     position: absolute;
-    z-index: 8;
-    right: 0;
-    width: 1.5rem;
-    height: 1.5rem;
+    top:      0;
+    right:    0;
+    height:   $font-size-large;
+    z-index:  8;
 
     &--z {
         z-index: 9;
     }
 
     &__btn {
-        display: inline-block;
-        height: inherit;
-        padding: 0;
-        border: 0;
-        cursor: pointer;
-        background: transparent;
-
-        & span {
-            color: $color-secondary-lighter;
-
-            &:hover,
-            &:active {
-                color: $color-secondary;
-            }
-        }
+        position:      absolute;
+        top:           0;
+        right:         0;
+        height:        100%;
+        padding:       0;
+        cursor:        pointer;
+        border:        0;
+        border-radius: 50%;
+        background:    transparent;
     }
 
     &__menu {
-        position: absolute;
-        top: 1.5rem;
-        left: -11rem;
-        visibility: hidden;
-        width: 13rem;
-        padding: 0.25rem 0 0.5rem;
-        margin: 0;
-        list-style: none;
-        background: $color-secondary-lightest;
-        border: 2px solid $color-secondary-light;
+        position:      absolute;
+        visibility:    hidden;
+        top:           3rem;
+        right:         .25rem;
+        width:         auto;
+        margin:        0;
+        padding:       0.25rem 0 0.5rem;
+        list-style:    none;
+        opacity:       0.5;
+        border:        1px solid $color-secondary-light;
         border-radius: $border-radius;
-        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
-        opacity: 0.5;
-        transition: margin-top $transition-delay ease-out, opacity $transition-delay ease-out;
+        background:    $color-secondary-lightest;
+        box-shadow:    0 16px 24px 2px rgba(0, 0, 0, 0.14);
+        transition:    margin-top $transition-delay ease-out,
+                       opacity $transition-delay ease-out;
 
         &--show {
             visibility: visible;
-            margin: 0.75rem 0;
-            opacity: 1;
+            margin:     0.75rem 0;
+            opacity:    1;
         }
     }
 
     &__title {
-        color: $color-primary;
-        font-weight: 600;
-        text-align: center;
-        border-bottom: 2px solid $color-secondary-light;
-        padding: 0.5rem 1rem;
+        font-size:     $font-size-default;
+        font-weight:   600;
         margin-bottom: 0.5rem;
+        padding:       0.5rem 1rem;
+        text-align:    center;
+        color:         $color-primary;
+        border-bottom: 2px solid $color-secondary-light;
     }
-
 }
 
 .dropdown-item {
-    border: none;
+    padding:         0;
+    text-align:      inherit;
+    white-space:     nowrap;
+    text-decoration: none;
+    color:           #222;
+    border:          none;
 
     &:hover,
     &:active {
@@ -70,25 +70,54 @@
     }
 
     &__btn {
-        color: var(--primary);
-        border: none;
-        padding: 0.5rem 1rem;
-        margin: 0;
-        text-align: left;
-        width: 100%;
-        background: none;
-        cursor: pointer;
+        display:       flex;
+        font-size:     $font-size-small;
+        align-content: center;
+        width:         100%;
+        margin:        0;
+        padding:       0.5rem 1rem;
+        cursor:        pointer;
+        text-align:    left;
+        color:         $color-primary;
+        border:        none;
+        background:    none;
+        gap:           1rem;
 
         &--disabled {
-            opacity: 0.5;
-            pointer-events: none;
+            pointer-events:   none;
+            opacity:          0.5;
             background-color: transparent;
         }
+    }
+}
 
-        & div {
-            display: flex;
-            align-content: center;
-            gap: 1rem;
-        }
+.dropdown__btn > .icon,
+.dropdown-item__btn > .icon {
+    color:         $color-secondary-lighter;
+    border-radius: 50%;
+
+    &:hover {
+        color:      $color-secondary;
+        transform:  translateY(-2px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+    }
+
+    &:active,
+    &:focus {
+        transform:  translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+}
+
+.dropdown-item__btn > img {
+    &:hover {
+        transform:  translateY(-2px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+    }
+
+    &:active,
+    &:focus {
+        transform:  translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
     }
 }

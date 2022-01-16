@@ -7,8 +7,10 @@ const LoginBtn = () => {
   const {paramsDropdownBtn, renderLoginCard} = useLoginDropdown()
 
   return (<>
-    <div className="position-relative text-light" style={{marginRight: '2rem'}}>
-      <span style={{marginRight: '2rem'}}>{paramsDropdownBtn.label}</span>
+    <div className="login-block">
+      <div className="login-block__label">
+        {paramsDropdownBtn.label}
+      </div>
       <DropdownBtn params={paramsDropdownBtn}/>
     </div>
 

@@ -24,7 +24,8 @@ const DropdownBtn = ({params}) => {
   }
 
   return (
-    <span className={'dropdown' + (open ? (' dropdown--z') : '')} ref={dropdown}>
+    <div className={'dropdown' + (open ? (' dropdown--z') : '')} ref={dropdown}>
+      &nbsp;
       <button className={'dropdown__btn'}
               type="button"
               onClick={() => setOpen(!open)}>
@@ -33,9 +34,7 @@ const DropdownBtn = ({params}) => {
 
       <ul className={'dropdown__menu' + (open ? (' dropdown__menu--show') : '')}>
         <li className="dropdown__title">
-          <span>
             {title}
-          </span>
         </li>
 
         {items.map(({action, title, img, disabled}) =>
@@ -44,15 +43,13 @@ const DropdownBtn = ({params}) => {
             <button className={'dropdown-item__btn' + (disabled ? ' dropdown-item__btn--disabled' : '')}
                     onClick={() => handleSelect(action)}
                     disabled={disabled}>
-              <div>
                 {img}
                 <span>{title}</span>
-              </div>
             </button>
           </li>
         )}
       </ul>
-    </span>
+    </div>
   )
 }
 

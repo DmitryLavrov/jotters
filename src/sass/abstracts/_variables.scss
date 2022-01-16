@@ -1,3 +1,8 @@
+:root {
+    --color-primary: hsl(195, 100%, 36%);
+    --color-primary-darker: darken(--color-primary, 12)
+}
+
 // COLOR
 $color-white:              #FFF;
 $color-black:              #000;
@@ -14,10 +19,6 @@ $color-secondary-lighter:  lighten($color-secondary, 12);
 $color-secondary-light:    lighten($color-secondary-lighter, 12);
 $color-secondary-lightest: lighten($color-secondary-light, 12);
 
-//$color-secondary-lighter: hsl(35, 98%, 70%);
-//$color-secondary-light: hsl(35, 98%, 80%);
-//$color-secondary-lightest: hsl(35, 98%, 90%);
-
 // RESPONSIVE BREAKPOINTS
 $bp-large:                 1000em; // more then big
 $bp-big:                   112.5em; // 1800px
@@ -27,7 +28,9 @@ $bp-tiny:                  37.5em; // 600px;
 
 // FONT
 $font-primary:             "Open Sans", sans-serif;
-$default-font-size:        1.6rem;
+$font-size-default:        1.6rem;
+$font-size-small:          1.4rem;
+$font-size-large:          2.5rem;
 
 // BORDER
 $border-radius:            4px;

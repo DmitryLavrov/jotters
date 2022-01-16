@@ -30,15 +30,15 @@ const Layout = ({children, ...rest}) => {
     <div className="container">
       <Navbar navSidebar={navSidebar} {...rest}/>
 
-        <div className="row-layout">
-          <div className="col-layout-sidebar">
+        <main className="row-layout">
+          <aside className="col-layout-sidebar">
             {showSidebar && clonedSidebar}
-          </div>
+          </aside>
 
-          <div className="col-layout-content">
+          <section className="col-layout-content">
             {clonedPage}
-          </div>
-        </div>
+          </section>
+        </main>
     </div>
   )
 }

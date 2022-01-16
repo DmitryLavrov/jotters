@@ -1,0 +1,39 @@
+.header {
+    display:          flex;
+    align-items:      center;
+    flex-wrap:        nowrap;
+    justify-content:  space-between;
+    width:            100%;
+    margin:           0 auto;
+    padding:          0.5rem 1.5rem 0.5rem 1rem;
+    background-color: $color-primary;
+    & > .h1 {
+        color: $color-bg;
+    }
+
+}
+
+.buttons-block {
+    display:         flex;
+    flex-wrap:       nowrap;
+    justify-content: space-between;
+    gap:             1rem;
+
+}
+
+.login-block {
+    position:     relative;
+    margin-right: 2rem;
+
+    &__label {
+        color:        $color-bg;
+        font-size:    $font-size-default;
+        margin-right: 3rem;
+    }
+
+}
+
+.language-block {
+    position: relative;
+    display: block;
+}
