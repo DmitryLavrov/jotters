@@ -9,27 +9,27 @@ const Radio = ({name, label, onChange, radioButtons}) => {
   }
 
   return (
-    <>
-      <h4 className="mt-3">
+    <div className="form-check">
+      <p className="form-check__label">
         {label}
-      </h4>
+      </p>
 
       {radioButtons.map(r => (
-        <div key={r.value} className="form-check">
+        <div key={r.value} className="check-element">
           <input name={name}
                  value={r.value}
                  checked={r.checked}
                  onChange={handleChange}
                  type="radio"
-                 className="form-check-input"
+                 className="check-element__input"
                  id={name + r.value}/>
-          <label className="form-check-label"
+          <label className="check-element__label"
                  htmlFor={name + r.value}>
             {r.label}
           </label>
         </div>
       ))}
-    </>
+    </div>
   )
 }
 

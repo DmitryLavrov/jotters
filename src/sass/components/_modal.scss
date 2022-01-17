@@ -20,8 +20,9 @@
 .sidebar {
     display:        flex;
     flex-direction: column;
-    margin:         2rem 0;
-    gap:            2rem;
+    align-items: center;
+    margin:         3rem 0;
+    gap:            3rem;
 
     &.mobile {
         position:         fixed;

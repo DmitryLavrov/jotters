@@ -7,7 +7,7 @@ import Checkbox from '../../common/form/checkbox'
 
 const DELIMITER = String.fromCodePoint(9733)
 
-const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest}) => {
+const PublicNotesSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest}) => {
   const {t} = useTranslation()
   const [localSearch, setLocalSearch] = useState(search)
   const [localUsers, setLocalUsers] = useState(users)
@@ -46,12 +46,12 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
   return (
     <Sidebar {...rest}>
 
-      <br/>
-
       <input name="search"
              value={localSearch}
              onChange={handleSearch}
-             type="text" className="form-control" placeholder={t('SEARCH_PLACEHOLDER')}/>
+             type="text"
+             className="search-input"
+             placeholder={t('SEARCH_PLACEHOLDER')}/>
 
       <Radio name="sort"
              label={t('SORT')}
@@ -71,4 +71,4 @@ const PublicSidebar = ({search, sort, users, onSearch, onSort, onSelect, ...rest
   )
 }
 
-export default PublicSidebar
+export default PublicNotesSidebar

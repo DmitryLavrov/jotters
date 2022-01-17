@@ -31,7 +31,13 @@
     }
 
     .col-layout-content {
-        width: calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}); // 3/4
+        display:         flex;
+        align-content:   flex-start;
+        justify-content: space-between;
+        flex-wrap:       wrap;
+        width:           calc(3 * ((100% - 3 * #{$gutter-horizontal}) / 4) + 2 * #{$gutter-horizontal}); // 3/4
+        gap:             $gutter-horizontal;
+        padding:         $gutter-horizontal 0;
 
         @include respond(medium) {
             width: calc(2 * ((100% - 2 * #{$gutter-horizontal}) / 3) + #{$gutter-horizontal}); // 2/3

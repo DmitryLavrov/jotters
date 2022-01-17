@@ -3,7 +3,7 @@
     &:link,
     &:visited {
         display:         inline-block;
-        font-size:       $font-size-default;
+        font-size:       inherit;
         font-weight:     500;
         line-height:     1.5;
         padding:         1.5rem 2.5rem;
@@ -34,6 +34,7 @@
         &,
         &:link,
         &:visited {
+            width: 100%;
             color:        $color-primary;
             border-color: $color-primary;
 
@@ -47,6 +48,7 @@
         &,
         &:link,
         &:visited {
+            width: 100%;
             color:        $color-secondary;
             border-color: $color-secondary;
 

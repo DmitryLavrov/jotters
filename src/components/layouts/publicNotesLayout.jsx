@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import PublicSidebar from '../pages/publicPage/publicSidebar'
-import PublicPage from '../pages/publicPage/publicPage'
+import PublicNotesSidebar from '../pages/publicNotesPage/publicNotesSidebar'
+import PublicNotesPage from '../pages/publicNotesPage/publicNotesPage'
 import Layout from './common/layout'
 import sortArrayBy from '../../utils/sortArrayBy'
 import selectUsersFromNotes from '../../utils/selectUsersFromNotes'
@@ -60,13 +60,13 @@ const PublicNotesLayout = () => {
 
   return (
     <Layout title={notes ? t('PUBLIC_NOTES') : '...'}>
-      <PublicSidebar search={search}
-                     sort={sort}
-                     users={users}
-                     onSearch={handleSearch}
-                     onSort={handleSort}
-                     onSelect={handleSelect}/>
-      <PublicPage notes={filteredNotes}/>
+      <PublicNotesSidebar search={search}
+                          sort={sort}
+                          users={users}
+                          onSearch={handleSearch}
+                          onSort={handleSort}
+                          onSelect={handleSelect}/>
+      <PublicNotesPage notes={filteredNotes}/>
     </Layout>
   )
 }

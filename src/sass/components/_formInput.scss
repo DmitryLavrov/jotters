@@ -1,0 +1,23 @@
+.search-input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: inherit;
+    border: 1px solid $color-primary-lighter;
+    padding: .7rem 2rem;
+    border-radius: $border-radius;
+    width: 80%;
+    transition: all $transition-delay;
+
+    &:focus {
+        outline: none;
+        width: 100%;
+        border: 2px solid $color-primary-light;
+        background-color: $color-white;
+    }
+
+    &::placeholder {
+        font-weight: 100;
+        color: $color-grey;
+    }
+}

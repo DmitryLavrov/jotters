@@ -1,5 +1,5 @@
 :root {
-    --color-primary: hsl(195, 100%, 36%);
+    --color-primary:        hsl(195, 100%, 36%);
     --color-primary-darker: darken(--color-primary, 12)
 }
 
@@ -13,11 +13,15 @@ $color-primary:            hsl(195, 100%, 36%);
 $color-primary-darker:     darken($color-primary, 12);
 $color-primary-dark:       darken($color-primary-darker, 12);
 $color-primary-darkest:    darken($color-primary-dark, 12);
+$color-primary-lighter:    lighten($color-primary, 12);
+$color-primary-light:      lighten($color-primary-lighter, 12);
 
 $color-secondary:          hsl(35, 98%, 54%);
 $color-secondary-lighter:  lighten($color-secondary, 12);
 $color-secondary-light:    lighten($color-secondary-lighter, 12);
 $color-secondary-lightest: lighten($color-secondary-light, 12);
+
+$color-grey:               #777;
 
 // RESPONSIVE BREAKPOINTS
 $bp-large:                 1000em; // more then big
@@ -30,11 +34,14 @@ $bp-tiny:                  37.5em; // 600px;
 $font-primary:             "Open Sans", sans-serif;
 $font-size-default:        1.6rem;
 $font-size-small:          1.4rem;
+$font-size-smallest:       1.2rem;
 $font-size-large:          2.5rem;
+$font-size-larger:         1.8rem;
 
 // BORDER
 $border-radius:            4px;
 $border-secondary:         3px solid $color-secondary-lighter;
+$border-primary:           3px solid $color-primary-lighter;
 
 // TRANSITION
 $transition-delay:         200ms;
@@ -46,5 +53,5 @@ $box-shadow-red:           0 0 .25rem .25rem rgb(255 0 0 / 30%);
 
 // GRID
 $grid-width:               114rem;
-$gutter-vertical:          8rem;
+$gutter-vertical:          2rem;
 $gutter-horizontal:        2rem;

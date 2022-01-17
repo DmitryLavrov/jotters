@@ -37,6 +37,12 @@ $breakpoint argument choices:
     &::after {
         content: "";
         display: table;
-        clear: both;
+        clear:   both;
     }
+}
+
+@mixin text-truncate {
+    overflow:      hidden;
+    text-overflow: ellipsis;
+    white-space:   nowrap;
 }
