@@ -12,28 +12,32 @@ const Navbar = ({title, navSidebar}) => {
 
   const [isVisibleSidebar, setIsVisibleSidebar] = useState(false)
 
-  const showSidebar = () => setIsVisibleSidebar(true)
-  const hideSidebar = () => setIsVisibleSidebar(false)
+  const showSidebar = () => {
+    setIsVisibleSidebar(true)
+  }
+
+  const hideSidebar = () => {
+    setIsVisibleSidebar(false)
+  }
 
   return (
     <>
       <header className="header">
-          <button onClick={showSidebar} className="btn btn--menu" type="button">
-            <img src={menu} alt="Navigation button"/>
-          </button>
+        <button onClick={showSidebar} className="btn btn--menu" type="button">
+          <img src={menu} alt="Navigation button"/>
+        </button>
 
-          <Link to="/info" className="btn btn--logo" type="button">
-              <img src={logo} alt="Logo Jotter"/>
-          </Link>
+        <Link to="/info" className="btn btn--logo" type="button">
+          <img src={logo} alt="Logo Jotter"/>
+        </Link>
 
-          <h1 className="h1">
-            {title || t('JOTTERS')}
-          </h1>
+        <h1 className="h1">
+          {title || t('JOTTERS')}
+        </h1>
 
-          <div className="buttons-block">
-              <LoginBtn/>
-              <LanguageBtn/>
-          </div>
+        <LoginBtn/>
+
+        <LanguageBtn/>
       </header>
 
       {isVisibleSidebar && navSidebar(hideSidebar)}

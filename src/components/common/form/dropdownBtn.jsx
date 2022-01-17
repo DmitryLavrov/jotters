@@ -25,7 +25,6 @@ const DropdownBtn = ({params}) => {
 
   return (
     <div className={'dropdown' + (open ? (' dropdown--z') : '')} ref={dropdown}>
-      &nbsp;
       <button className={'dropdown__btn'}
               type="button"
               onClick={() => setOpen(!open)}>

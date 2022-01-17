@@ -1,5 +1,6 @@
 .header {
     display:          flex;
+    gap: 1rem;
     align-items:      center;
     flex-wrap:        nowrap;
     justify-content:  space-between;
@@ -9,32 +10,25 @@
     background-color: $color-primary;
     & > .h1 {
         color: $color-bg;
-        text-align: center;
+        margin: auto;
     }
-
-}
-
-.buttons-block {
-    display:         flex;
-    flex-wrap:       nowrap;
-    justify-content: space-between;
-    gap:             1rem;
 
 }
 
 .login-block {
     position:     relative;
-    margin-right: 2rem;
+    //margin-right: 2.5rem;
 
     &__label {
         color:        $color-bg;
         font-size:    $font-size-default;
-        margin-right: 3rem;
+        margin-right: 2.75rem;
     }
 
 }
 
 .language-block {
+    width: 2.5rem;
     position: relative;
     display: block;
 }
