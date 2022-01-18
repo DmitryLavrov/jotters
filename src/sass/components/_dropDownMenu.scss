@@ -1,7 +1,7 @@
 .dropdown {
-    position: absolute;
-    top:      0;
-    right:    0;
+    display:  inline-block;
+    position: relative;
+    width:    $font-size-large;
     height:   $font-size-large;
     z-index:  8;
 
@@ -10,15 +10,13 @@
     }
 
     &__btn {
-        position:      absolute;
-        top:           0;
-        right:         0;
         height:        100%;
         padding:       0;
         cursor:        pointer;
         border:        0;
         border-radius: 50%;
         background:    transparent;
+        z-index:       8;
     }
 
     &__menu {
@@ -51,6 +49,7 @@
         margin-bottom: 0.5rem;
         padding:       0.5rem 1rem;
         text-align:    center;
+        pointer-events:   none;
         color:         $color-primary;
         border-bottom: 2px solid $color-secondary-light;
     }
@@ -64,10 +63,6 @@
     color:           #222;
     border:          none;
 
-    &:hover,
-    &:active {
-        background-color: $color-secondary-light;
-    }
 
     &__btn {
         display:       flex;
@@ -83,10 +78,15 @@
         background:    none;
         gap:           1rem;
 
-        &--disabled {
+        &:disabled {
             pointer-events:   none;
             opacity:          0.5;
             background-color: transparent;
+        }
+
+        &:hover:not(:disabled),
+        &:active:not(:disabled) {
+            background-color: $color-secondary-light;
         }
     }
 }
@@ -98,26 +98,26 @@
 
     &:hover {
         color:      $color-secondary;
-        transform:  translateY(-2px);
         box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        transform:  translateY(-2px);
     }
 
     &:active,
     &:focus {
-        transform:  translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        transform:  translateY(-1px);
     }
 }
 
 .dropdown-item__btn > img {
     &:hover {
-        transform:  translateY(-2px);
         box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        transform:  translateY(-2px);
     }
 
     &:active,
     &:focus {
-        transform:  translateY(-1px);
         box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        transform:  translateY(-1px);
     }
 }

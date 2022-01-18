@@ -33,17 +33,17 @@ const DropdownBtn = ({params}) => {
 
       <ul className={'dropdown__menu' + (open ? (' dropdown__menu--show') : '')}>
         <li className="dropdown__title">
-            {title}
+          {title}
         </li>
 
         {items.map(({action, title, img, disabled}) =>
           <li key={action}
               className="dropdown-item">
-            <button className={'dropdown-item__btn' + (disabled ? ' dropdown-item__btn--disabled' : '')}
+            <button className="dropdown-item__btn"
                     onClick={() => handleSelect(action)}
                     disabled={disabled}>
-                {img}
-                <span>{title}</span>
+              {img}
+              <span>{title}</span>
             </button>
           </li>
         )}

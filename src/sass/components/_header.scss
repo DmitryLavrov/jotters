@@ -16,19 +16,13 @@
 }
 
 .login-block {
-    position:     relative;
-    //margin-right: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 
     &__label {
         color:        $color-bg;
         font-size:    $font-size-default;
-        margin-right: 2.75rem;
     }
 
-}
-
-.language-block {
-    width: 2.5rem;
-    position: relative;
-    display: block;
 }

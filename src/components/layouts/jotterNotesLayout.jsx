@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next'
 
 import Layout from './common/layout'
 import NotePage from '../pages/common/notePage'
-import NotesSidebar from '../pages/notePage/notesSidebar'
+import JotterNotesSidebar from '../pages/jotterNotePage/jotterNotesSidebar'
 import useNotes from '../../hooks/useNotes'
 import sortArrayBy from '../../utils/sortArrayBy'
 import useNoteControlDropdown from '../../hooks/useNoteControlDropdown'
 
-const NotesLayout = () => {
+const JotterNotesLayout = () => {
   const {t} = useTranslation()
   const [selectedNote, setSelectedNote] = useState()
   const [notes, setNotes] = useState()
@@ -31,7 +31,6 @@ const NotesLayout = () => {
         setNotes(sortArrayBy('byDate', data))
       })
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [jotterId])
 
   useEffect(() => {
@@ -42,14 +41,12 @@ const NotesLayout = () => {
     if (notes && noteId) {
       getNote(noteId).then(data => setSelectedNote(data))
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes, noteId])
 
   useEffect(() => {
     if (!noteId && notes && (notes.length > 0)) {
       history.push(`/jotters/${jotterId}/${notes[0]._id}`)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [notes])
 
   async function handleUpdateNote(note) {
@@ -75,8 +72,8 @@ const NotesLayout = () => {
 
   return (<>
     <Layout title={jotter ? jotter.title : '...'}>
-      <NotesSidebar notes={notes}
-                    onCreateNewNote={handleCreateNewNote}/>
+      <JotterNotesSidebar notes={notes}
+                          onCreateNewNote={handleCreateNewNote}/>
 
       {(notes && notes.length === 0)
         ?
@@ -96,4 +93,4 @@ const NotesLayout = () => {
   </>)
 }
 
-export default NotesLayout
+export default JotterNotesLayout

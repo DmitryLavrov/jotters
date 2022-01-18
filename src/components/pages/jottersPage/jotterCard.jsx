@@ -23,21 +23,24 @@ const JotterCard = ({jotter, paramsDropdownBtn}) => {
   }
 
   return (
-    <div className="col">
-      <div className="card" style={{background: jotter.color}}>
-        <DropdownBtn params={newParamsDropdownBtn}/>
+    <div className="jotter-card">
+      <DropdownBtn params={newParamsDropdownBtn}/>
 
-        <Link to={`/jotters/${jotter._id}`} type="button" className="btn ">
-          <div className="card-body text-center">
-            <h5 className="card-title text-truncate">{jotter.title}</h5>
-            <p className="card-text">
-              {`${t('NOTES_COUNT')}: ${jotter.notesNumber}`}
-              <br/>
-              {`${t('CHANGED')}: ${dateToString(jotter.updatedAt)}`}
-            </p>
-          </div>
-        </Link>
-      </div>
+      <Link to={`/jotters/${jotter._id}`}
+            className="card"
+            style={{background: jotter.color}}>
+
+        <p className="jotter-card__title">{jotter.title}</p>
+
+        <p className="jotter-card__text">
+          {`${t('NOTES_COUNT')}: ${jotter.notesNumber}`}
+        </p>
+
+        <p className="jotter-card__date">
+          {`${t('CHANGED')}: ${dateToString(jotter.updatedAt)}`}
+        </p>
+
+      </Link>
     </div>
   )
 }

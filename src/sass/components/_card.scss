@@ -1,19 +1,18 @@
-.note-card {
-    transition:       all $transition-delay ease-out;
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $gutter-vertical;
+    flex:             0 0 calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    padding:          3rem 1rem;
+    text-decoration:  none;
+    color:            $color-primary;
     border-radius:    $border-radius;
     background-color: $color-secondary-lightest;
-    position:         relative;
-    text-decoration:  none;
-    text-align: center;
-    padding: 1rem 1rem;
-    color: $color-primary;
-
-    //@extend .col-1-of-3;
-    width:            calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    transition:       all $transition-delay ease-out;
 
     @include respond(medium) {
-        //@extend .col-1-of-2;
-        width: calc((100% - #{$gutter-horizontal}) / 2);
+        flex: 0 0 calc((100% - #{$gutter-horizontal}) / 2);
     }
 
     @include respond(tiny) {
@@ -26,8 +25,14 @@
     &:active {
         filter:     brightness(102%);
         box-shadow: 0 0 1rem 0.125rem rgba(0, 0, 0, 0.14);
-        /*transform: scale(1.01);*/
     }
+
+}
+
+/////////////////////////////////////////////////////////////////////
+
+.note-card {
+    position:         relative;
 
     &__title {
         @include text-truncate;
@@ -37,53 +42,72 @@
     &__text {
         overflow:      hidden;
         text-overflow: ellipsis;
-        font-size: $font-size-smallest;
-        line-height: 1.4rem;
-        max-height: 4.3rem;
-        text-align: start;
-        word-wrap: break-word;
+        font-size:     $font-size-smallest;
+        line-height:   1.4rem;
+        max-height:    4.3rem;
+        text-align:    start;
+        word-wrap:     break-word;
     }
 
     &__name {
         @include text-truncate;
-        color: $color-secondary;
-        font-size: $font-size-larger;
+        color:       $color-secondary;
+        font-size:   $font-size-larger;
         font-weight: 500;
-        margin: 1rem 0;
+        margin:      1rem 0;
+    }
+
+    &__date {
+        font-size: $font-size-small;
+    }
+}
+
+.note-card.own-note {
+    border: $border-secondary;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+.no-card {
+    font-size:  $font-size-large;
+    text-align: center;
+    width:      100%;
+    margin:     $gutter-vertical $gutter-horizontal;
+    color:      $color-primary;
+}
+
+///////////////////////////////////////////////////////////////////////////
+
+.jotter-card {
+    position:         relative;
+
+    &__title {
+        @include text-truncate;
+        font-size:   $font-size-larger;
+    }
+
+    &__text {
+        overflow:      hidden;
+        text-overflow: ellipsis;
+        line-height:   1.4rem;
+        max-height:    4.3rem;
+        word-wrap:     break-word;
     }
 
     &__date {
         font-size: $font-size-small;
     }
 
-}
+    & .dropdown {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 
-.note-card.own-note {
-    border: $border-primary;
-}
+    & .dropdown__btn {
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+    }
 
-.own-note__label {
-    position:         absolute;
-    top:              0;
-    left:             50%;
-    transform:        translate(-50%, -50%);
-    display:          inline-block;
-    padding:          0.25em 1rem;
-    font-size:        $font-size-smallest;
-    font-weight:      400;
-    line-height:      1;
-    color:            $color-white;
-    text-align:       center;
-    white-space:      nowrap;
-    vertical-align:   baseline;
-    border-radius:    50rem;
-    background-color: $color-primary-lighter;
-}
-
-.no-card {
-    font-size:     $font-size-large;
-    text-align:    center;
-    width: 100%;
-    margin: $gutter-vertical $gutter-horizontal;
-    color: $color-primary;
 }

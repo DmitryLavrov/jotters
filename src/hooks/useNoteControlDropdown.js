@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import NoteSettingsCard from '../components/pages/notePage/noteSettingsCard'
+import NoteSettingsCard from '../components/pages/jotterNotePage/noteSettingsCard'
 import Confirmation from '../components/common/modal/confirmation'
 
 const useNoteControlDropdown = (handleDeleteNote, handleUpdateNote, selectedNote) => {

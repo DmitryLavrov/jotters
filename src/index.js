@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import 'bootstrap'
+// import 'bootstrap'
 
-import './bootstrap-yeti.css'
+// import './bootstrap-yeti.css'
 import 'react-quill/dist/quill.snow.css'
 import 'react-toastify/dist/ReactToastify.css'
 import './sass/main.scss'

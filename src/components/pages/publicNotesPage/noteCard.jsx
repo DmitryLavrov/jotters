@@ -12,28 +12,28 @@ const NoteCard = ({note}) => {
 
   return (
     <Link to={`/public/${note._id}`}
-          className={'note-card' + (isOwnNote ? ' own-note' : '')}>
+          className={'card note-card' + (isOwnNote ? ' own-note' : '')}>
 
       {isOwnNote &&
-      <span className="own-note__label">
+      <span className="badge-secondary">
           {t('MY_NOTE')}
-        </span>}
+      </span>}
 
-        <p className="note-card__title">
-          {note.title}
-        </p>
+      <p className="note-card__title">
+        {note.title}
+      </p>
 
-        <p className="note-card__text">
-          {summary}
-        </p>
+      <p className="note-card__text">
+        {summary}
+      </p>
 
-        <h6 className="note-card__name">
-          {note.username}
-        </h6>
+      <h6 className="note-card__name">
+        {note.username}
+      </h6>
 
-        <p className="note-card__date">
-          {dateToString(note.updatedAt)}
-        </p>
+      <p className="note-card__date">
+        {dateToString(note.updatedAt)}
+      </p>
     </Link>
   )
 }

@@ -2,39 +2,41 @@
     &,
     &:link,
     &:visited {
-        display:         inline-block;
-        font-size:       inherit;
-        font-weight:     500;
-        line-height:     1.5;
-        padding:         1.5rem 2.5rem;
-        cursor:          pointer;
-        user-select:     none;
-        text-align:      center;
-        vertical-align:  middle;
-        text-decoration: none;
-        //border-width:     1px;
-        border:          1px solid transparent;
+        display:          flex;
+        font-size:        inherit;
+        font-weight:      500;
+        line-height:      1.5;
+        align-items:      center;
+        justify-content:  center;
+        padding:          1.5rem 2.5rem;
+        cursor:           pointer;
+        user-select:      none;
+        text-align:       center;
+        vertical-align:   middle;
+        text-decoration:  none;
+        border:           1px solid transparent;
         border-radius:    $border-radius;
         background-color: transparent;
         transition:       all $transition-delay ease-in-out;
     }
 
     &:hover {
-        transform:  translateY(-3px);
         box-shadow: 0 1rem 2rem rgba($color-black, .2);
+        transform:  translateY(-3px);
     }
 
-    &:active,
-    &:focus {
-        transform:  translateY(-1px);
+    //&:focus,
+    &:active {
         box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+        transform:  translateY(-1px);
     }
 
     &--primary {
         &,
         &:link,
         &:visited {
-            width: 100%;
+            width:        100%;
+            @include text-truncate;
             color:        $color-primary;
             border-color: $color-primary;
 
@@ -48,7 +50,8 @@
         &,
         &:link,
         &:visited {
-            width: 100%;
+            @include text-truncate;
+            width:        100%;
             color:        $color-secondary;
             border-color: $color-secondary;
 
@@ -63,8 +66,8 @@
         &,
         &:link,
         &:visited {
-            padding: 0;
             display: none;
+            padding: 0;
             & > img {
                 height: 4.5rem;
             }
@@ -78,8 +81,8 @@
         &,
         &:link,
         &:visited {
-            padding: 0;
             display: block;
+            padding: 0;
             & > img {
                 height: 4.5rem;
             }
@@ -90,6 +93,25 @@
     }
 
     &.w-33 {
-        width: 33%;
+        flex: 0 0 calc((100% - 2 * #{$gutter-horizontal}) / 3);
     }
+}
+
+.btn-block {
+    display:         flex;
+    justify-content: flex-end;
+    gap:             $gutter-horizontal;
+    margin-top:      $gutter-vertical;
+}
+
+// --------------------- Icon animation when hovering over Btn --------------
+.btn > .icon {
+    flex: 0 0 4rem;
+    text-align: right;
+    margin-left: -2rem;
+    transition: padding $transition-delay-long ease-in-out;
+}
+
+.btn:hover > .icon {
+    padding-right: calc(4rem - #{$font-size-large});
 }

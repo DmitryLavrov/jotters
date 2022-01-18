@@ -43,10 +43,7 @@ const LanguageBtn = () => {
   //===================================
 
   return (
-    <div className="language-block">
-      &nbsp;
       <DropdownBtn params={paramsDropdownBtn}/>
-    </div>
   )
 }
 

@@ -12,18 +12,14 @@ const PublicNotesSidebar = ({note, isMobile, hideSidebar, ...rest}) => {
   return (
     <Sidebar {...{isMobile, hideSidebar, ...rest}}>
       <Link to="/public"
-            className="btn btn-outline-primary">
-        <div className="d-flex align-items-center justify-content-center gap-2">
+            className="btn btn--primary">
           <span className="icon icon-chevron_left"/>
           <span>{t('PUBLIC_NOTES')}</span>
-        </div>
       </Link>
-
-      <br/>
 
       {isOwnNote &&
       <Link to={'/jotters/' + note.jotterId + '/' + note._id}
-            className="btn btn-outline-warning">
+            className="btn btn--secondary">
         <span>{t('TO_PRIVATE')}</span>
       </Link>
       }

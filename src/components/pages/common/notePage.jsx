@@ -45,29 +45,31 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
   }
 
   return (
-    <div className="position-relative">
+    <div className="note-page">
       {readOnly && type === 'PRIVATE' &&
       <DropdownBtn params={paramsDropdownBtn}/>
       }
 
-      <QuillCard readOnly={readOnly} value={content} onChange={handleChange}/>
+      <QuillCard readOnly={readOnly}
+                 value={content}
+                 onChange={handleChange}/>
 
       {(type === 'PRIVATE' || type === 'INFO') &&
-      <div className="d-flex justify-content-end gap-3 my-3">
+      <div className="btn-block">
         {readOnly
           ? <>
-            <button className="btn btn--secondary w-33 text-truncate"
+            <button className="btn btn--secondary w-33"
                     onClick={handleBtnEdit}>
               {t('EDIT')}
             </button>
           </>
 
           : <>
-            <button className="btn btn--primary w-33 text-truncate"
+            <button className="btn btn--primary w-33"
                     onClick={handleBtnCancel}>
               {t('CANCEL')}
             </button>
-            <button className="btn btn--secondary w-33 text-truncate"
+            <button className="btn btn--secondary w-33"
                     onClick={handleBtnSave}>
               {t('SAVE')}
             </button>

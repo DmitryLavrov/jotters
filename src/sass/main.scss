@@ -12,6 +12,7 @@
 
 @import "components/button",
         "components/card",
+        "components/badge",
         "components/formCheck",
         "components/formInput",
         "components/quillCard",
@@ -20,6 +21,7 @@
         "components/dropDownMenu";
 
 @import "pages/infoPage",
-        "pages/notePage";
+        "pages/notePage",
+        "pages/jottersPage";
 
 @import "vendors/quillEditor";

@@ -12,11 +12,14 @@
     white-space:   nowrap;
 }
 
-input, button, select, optgroup, textarea {
+input, button, select, optgroup, textarea, a {
     margin:      0;
     font-family: inherit;
     font-size:   inherit;
     line-height: inherit;
+    &:focus-visible {
+        outline: 0.25em solid $color-primary-light;
+    }
 }
 
 button:not(:disabled),
