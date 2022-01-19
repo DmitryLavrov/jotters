@@ -8,6 +8,7 @@ $color-white:              #FFF;
 $color-black:              #000;
 $color-bg:                 seashell;
 $color-base:               #222;
+$color-error:              #F04124;
 
 $color-primary:            hsl(195, 100%, 36%);
 $color-primary-darker:     darken($color-primary, 12);
@@ -24,19 +25,26 @@ $color-secondary-lightest: lighten($color-secondary-light, 12);
 $color-grey:               #777;
 
 // RESPONSIVE BREAKPOINTS
-$bp-large:                 1000em; // more then big
+$bp-large:                 112.5em; // same as big but min-width
 $bp-big:                   112.5em; // 1800px
 $bp-medium:                75em; // 1200px
 $bp-small:                 56.25em; // 900px;
 $bp-tiny:                  37.5em; // 600px;
+
+$bp-large-container:       120rem;
+$bp-big-container:         110rem;
+$bp-medium-container:      90rem;
+$bp-small-container:       75rem;
+$bp-tiny-container:        100%;
 
 // FONT
 $font-primary:             "Open Sans", sans-serif;
 $font-size-default:        1.6rem;
 $font-size-small:          1.4rem;
 $font-size-smallest:       1.2rem;
-$font-size-large:          2.5rem;
 $font-size-larger:         1.8rem;
+$font-size-large:          2.5rem;
+$font-size-largest:        3.5rem;
 
 // BORDER
 $border-radius:            4px;

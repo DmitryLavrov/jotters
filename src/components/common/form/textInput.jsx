@@ -15,16 +15,29 @@ const TextInput = ({name, label, type = 'text', value, onChange, error}) => {
 
   return (
     <div className="mb-3">
-      <label htmlFor={name}>{label}</label>
-      <div className="input-group has-validation">
-        <input name={name} id={name} type={showPassword ? 'text' : type} value={value} onChange={handleChange}
+      <label htmlFor={name} className="text-input__label">
+        {label}
+      </label>
+
+      <div className="text-input has-validation">
+        <input name={name}
+               id={name}
+               type={showPassword ? 'text' : type}
+               value={value}
+               placeholder={label}
+               onChange={handleChange}
                className={inputClasses}/>
+
         {type === 'password' &&
-        <button className="btn btn-outline-secondary" type="button" onClick={toggleShowPassword}>
-          <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}/>
+        <button className="btn btn--secondary"
+                type="button"
+                onClick={toggleShowPassword}>
+          <i className={'bi bi-eye' + (showPassword ? '-slash' : '')}/> // todo !!!!!!!!!!!!!!!!!
         </button>}
+
         {error && <div className="invalid-feedback">{error}</div>}
       </div>
+
     </div>
   )
 }

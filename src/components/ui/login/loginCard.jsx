@@ -14,7 +14,7 @@ const initUser = {
 const LoginCard = ({onHideModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState(initUser)
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({email: 'Error-email'})
   const {login} = useAuth()
 
   const history = useHistory()
@@ -42,48 +42,43 @@ const LoginCard = ({onHideModal}) => {
 
   return (
     <Notification onCancel={onHideModal}>
-      {/*<div className="card">*/}
-      <h5 className="card-header">
-        {t('SIGN_IN')}
-      </h5>
+      <form onSubmit={handleSubmit}
+            className="form">
 
-      <div className="card-body">
-        <form onSubmit={handleSubmit}>
+        <h1 className="form__title">
+          {t('SIGN_IN')}
+        </h1>
 
-          {data
-            ? <>
-              <TextInput name="email"
-                         label={t('EMAIL')}
-                         value={data.email}
-                         onChange={handleChange}
-                         error={errors.email}/>
+        {data
+          ? <>
+            <TextInput name="email"
+                       label={t('EMAIL')}
+                       value={data.email}
+                       onChange={handleChange}
+                       error={errors.email}/>
 
-              <TextInput name="password"
-                         label={t('PASSWORD')}
-                         value={data.password}
-                         onChange={handleChange}
-                         error={errors.password}/>
-            </>
+            <TextInput name="password"
+                       label={t('PASSWORD')}
+                       value={data.password}
+                       onChange={handleChange}
+                       error={errors.password}/>
+          </>
 
-            : <Spinner/>}
+          : <Spinner/>}
 
-          <div className="d-flex justify-content-end gap-3">
-            <button type="button"
-                    className="btn btn-primary w-25"
-                    onClick={onHideModal}>
-              {t('CANCEL')}
-            </button>
+        <div className="btn-block">
+          <button type="button"
+                  className="btn btn--primary w-33"
+                  onClick={onHideModal}>
+            {t('CANCEL')}
+          </button>
 
-            <button type="submit"
-                    className="btn btn-warning w-25 ms-5">
-              {t('SAVE')}
-            </button>
-          </div>
-        </form>
-
-      </div>
-
-      {/*</div>*/}
+          <button type="submit"
+                  className="btn btn--secondary w-33">
+            {t('SAVE')}
+          </button>
+        </div>
+      </form>
     </Notification>
   )
 }

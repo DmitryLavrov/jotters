@@ -44,5 +44,9 @@
   "LOGIN": "LoginLogin",
   "SIGN_IN": "Sign in",
   "SIGN_UP": "Sign up",
-  "SIGN_OUT": "Sign out"
+  "SIGN_OUT": "Sign out",
+  "NAME": "Name",
+  "EMAIL": "Email",
+  "PASSWORD": "Password",
+  "PASSWORD_CONFIRM": "Password confirm"
 }

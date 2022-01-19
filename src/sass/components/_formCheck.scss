@@ -30,6 +30,7 @@
     }
 
     &__input {
+        flex-shrink: 0;
         color:            currentColor;
         background-color: $color-bg;
         width:            1.5rem;

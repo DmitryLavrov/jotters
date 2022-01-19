@@ -44,5 +44,9 @@
   "LOGIN": "Вход",
   "SIGN_IN": "Войти",
   "SIGN_UP": "Регистрация",
-  "SIGN_OUT": "Выйти"
+  "SIGN_OUT": "Выйти",
+  "NAME": "Имя",
+  "EMAIL": "Email",
+  "PASSWORD": "Пароль",
+  "PASSWORD_CONFIRM": "Подтверждение пароля"
 }

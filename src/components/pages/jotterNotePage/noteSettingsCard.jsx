@@ -23,10 +23,10 @@ const NoteSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
 
   return (
     <Notification onCancel={onHideModal}>
-      <h5 className="card-header">{header}</h5>
+      <form onSubmit={handleSubmit}
+            className="form">
 
-      <div className="card-body">
-        <form onSubmit={handleSubmit}>
+      <h1 className="form__title">{header}</h1>
 
           {data
             ? <>
@@ -41,21 +41,19 @@ const NoteSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
 
             : <Spinner/>}
 
-          <div className="d-flex justify-content-end gap-3">
+          <div className="btn-block">
             <button type="button"
-                    className="btn btn-primary w-25"
+                    className="btn btn--primary w-33"
                     onClick={onHideModal}>
               {t('CANCEL')}
             </button>
 
             <button type="submit"
-                    className="btn btn-warning w-25 ms-5">
+                    className="btn btn--secondary w-33">
               {t('SAVE')}
             </button>
           </div>
         </form>
-
-      </div>
 
     </Notification>
   )

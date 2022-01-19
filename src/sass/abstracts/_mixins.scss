@@ -17,19 +17,19 @@ $breakpoint argument choices:
 */
 @mixin respond($breakpoint) {
     @if $breakpoint == tiny {
-        @media only screen and (max-width: 37.5em) { @content }; // less then 600px
+        @media only screen and (max-width: $bp-tiny) { @content }; // less then 600px
     }
     @if $breakpoint == small {
-        @media only screen and (max-width: 56.25em) { @content }; // less then 900px
+        @media only screen and (max-width: $bp-small) { @content }; // less then 900px
     }
     @if $breakpoint == medium {
-        @media only screen and (max-width: 75em) { @content }; // less then 1200px
+        @media only screen and (max-width: $bp-medium) { @content }; // less then 1200px
     }
     @if $breakpoint == big {
-        @media only screen and (max-width: 112.5em) { @content }; // less then 1800px
+        @media only screen and (max-width: $bp-big) { @content }; // less then 1800px
     }
     @if $breakpoint == large {
-        @media only screen and (min-width: 112.5em) { @content }; // more then 1800px
+        @media only screen and (min-width: $bp-big) { @content }; // more then 1800px
     }
 }
 

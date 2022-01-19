@@ -59,22 +59,19 @@ html {
 }
 
 body {
-    box-sizing: border-box;
+    box-sizing:       border-box;
     background-color: $color-bg;
 }
 
 .container {
-    width:        100%;
-    //padding-right: 0.75rem;
-    //padding-left:  0.75rem;
-    margin-right: auto;
-    margin-left:  auto;
+    width:     100%;
+    margin:    0 auto;
+    max-width: $bp-large-container;
 
-    @include respond(large) {max-width: 120rem;}
-    @include respond(big) {max-width: 110rem;}
-    @include respond(medium) {max-width: 90rem;}
-    @include respond(small) {max-width: 70rem;}
-    @include respond(tiny) {max-width: 100%;}
+    @include respond(big) {max-width: $bp-big-container;}
+    @include respond(medium) {max-width: $bp-medium-container;}
+    @include respond(small) {max-width: $bp-small-container;}
+    @include respond(tiny) {max-width: $bp-tiny-container;}
 }
 
 
