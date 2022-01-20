@@ -67,8 +67,8 @@ const useJotterControlDropdown = (getJotter, handleUpdateJotter, handleDeleteJot
     }
 
     {isVisibleDeleteConfirm &&
-    <Confirmation header={t('DELETE')}
-                  context={`${t('DELETE_JOTTER')}`}
+    <Confirmation header={t('DELETE_JOTTER')}
+                  context={`${getJotter(currentJotterId)?.title}`}
                   action={t('DELETE')}
                   onConfirm={() => handleDeleteJotter(currentJotterId)}
                   onCancel={() => setIsVisibleDeleteConfirm(false)}/>

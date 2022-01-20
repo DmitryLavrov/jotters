@@ -25,10 +25,10 @@ const JottersSidebar = ({sort, filter, onSort, onFilter, onAddNewJotter, ...rest
                {label: t('WITH_PUBLIC_NOTES'), checked: filter === 'withPublicNotes', value: 'withPublicNotes'}
              ]}/>
 
-      <button className="btn btn--primary"
-              onClick={onAddNewJotter}>
-        {t('NEW_JOTTER')}
-      </button>
+      {/*<button className="btn btn--primary"*/}
+      {/*        onClick={onAddNewJotter}>*/}
+      {/*  {t('NEW_JOTTER')}*/}
+      {/*</button>*/}
     </Sidebar>
   )
 }

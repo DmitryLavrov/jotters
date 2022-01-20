@@ -10,9 +10,9 @@ const Checkbox = ({name, label, onChange, checkboxItems = []}) => {
 
   return (
     <div className="form-check">
-      <p className="form-check__label">
+      <h2 className="form-check__label">
         {label}
-      </p>
+      </h2>
 
       {checkboxItems.map(c => (
         <div key={c._id} className="check-element">

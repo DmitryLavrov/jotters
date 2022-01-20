@@ -38,28 +38,25 @@ button:not(:disabled),
 }
 
 html {
-    // This defines what 1rem is
-    font-size: 75%; // 1 rem = 12px; 12px/16px = 75% (large)
+    box-sizing: border-box;
 
-    @include respond(big) { // width < 1800?
-        font-size: 62.5%; // 1 rem = 10px; 10px/16px = 62.5% (big)
-    }
+    // width > 1800? 1 rem = 12px; 12px/16px = 75% (large)
+    font-size:  75%;
 
-    @include respond(medium) { // width < 1200?
-        font-size: 56.25%; //1 rem = 9px, 9/16 = 56.25%
-    }
+    // width < 1800? 1 rem = 10px; 10px/16px = 62.5%
+    @include respond(big) {font-size: 62.5%;}
 
-    @include respond(small) { // width < 900?
-        font-size: 50%; //1 rem = 8px, 8/16 = 50%
-    }
+    // width < 1200? 1 rem = 9px, 9/16 = 56.25%
+    @include respond(medium) {font-size: 56.25%;}
 
-    @include respond(tiny) {
-        font-size: 50%; //1 rem = 8px, 8/16 = 50%
-    }
+    // width < 900? 1 rem = 8px, 8/16 = 50%
+    @include respond(small) {font-size: 50%;}
+
+    // width < 600? 1 rem = 8px, 8/16 = 50%
+    @include respond(tiny) {font-size: 50%;}
 }
 
 body {
-    box-sizing:       border-box;
     background-color: $color-bg;
 }
 
@@ -73,7 +70,6 @@ body {
     @include respond(small) {max-width: $bp-small-container;}
     @include respond(tiny) {max-width: $bp-tiny-container;}
 }
-
 
 hr {
     margin:           1rem 0;

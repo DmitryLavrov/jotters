@@ -1,30 +1,31 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $gutter-vertical;
+    display:          flex;
+    align-items:      center;
+    justify-content: center;
     flex:             0 0 calc((100% - 2 * #{$gutter-horizontal}) / 3);
+    flex-direction:   column;
     padding:          3rem 1rem;
     text-decoration:  none;
     color:            $color-primary;
     border-radius:    $border-radius;
     background-color: $color-secondary-lightest;
     transition:       all $transition-delay ease-out;
+    gap:              $gutter-vertical;
 
     @include respond(medium) {
         flex: 0 0 calc((100% - #{$gutter-horizontal}) / 2);
     }
 
     @include respond(tiny) {
-        width:        100%;
-        margin-left:  $gutter-vertical;
-        margin-right: $gutter-vertical;
+        flex: 0 0 95%;
+        //margin-right: $gutter-horizontal;
+        //margin-left:  $gutter-horizontal;
     }
 
     &:hover,
     &:active {
-        filter:     brightness(102%);
         box-shadow: 0 0 1rem 0.125rem rgba(0, 0, 0, 0.14);
+        filter:     brightness(102%);
     }
 
 }
@@ -32,7 +33,7 @@
 /////////////////////////////////////////////////////////////////////
 
 .note-card {
-    position:         relative;
+    position: relative;
 
     &__title {
         @include text-truncate;
@@ -40,21 +41,21 @@
     }
 
     &__text {
-        overflow:      hidden;
-        text-overflow: ellipsis;
         font-size:     $font-size-smallest;
         line-height:   1.4rem;
+        overflow:      hidden;
         max-height:    4.3rem;
         text-align:    start;
+        text-overflow: ellipsis;
         word-wrap:     break-word;
     }
 
     &__name {
         @include text-truncate;
-        color:       $color-secondary;
         font-size:   $font-size-larger;
         font-weight: 500;
         margin:      1rem 0;
+        color:       $color-secondary;
     }
 
     &__date {
@@ -70,27 +71,28 @@
 
 .no-card {
     font-size:  $font-size-large;
-    text-align: center;
     width:      100%;
     margin:     $gutter-vertical $gutter-horizontal;
+    text-align: center;
     color:      $color-primary;
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
 .jotter-card {
-    position:         relative;
+    position: relative;
+    padding:  0;
 
     &__title {
         @include text-truncate;
-        font-size:   $font-size-larger;
+        font-size: $font-size-larger;
     }
 
     &__text {
-        overflow:      hidden;
-        text-overflow: ellipsis;
         line-height:   1.4rem;
+        overflow:      hidden;
         max-height:    4.3rem;
+        text-overflow: ellipsis;
         word-wrap:     break-word;
     }
 
@@ -100,16 +102,25 @@
 
     & .dropdown {
         position: absolute;
-        top: 0;
-        right: 0;
+        top:      0;
+        right:    0;
     }
 
     & .dropdown__btn {
         position: absolute;
-        top: .5rem;
-        right: .5rem;
+        top:      .5rem;
+        right:    .5rem;
     }
 
+    & a {
+        display:         flex;
+        align-items:     center;
+        flex-direction:  column;
+        padding:         3rem 1rem;
+        text-decoration: none;
+        color:           inherit;
+        gap:             $gutter-vertical;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////

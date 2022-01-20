@@ -26,34 +26,34 @@ const NoteSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
       <form onSubmit={handleSubmit}
             className="form">
 
-      <h1 className="form__title">{header}</h1>
+        <h1 className="form__title">{header}</h1>
 
-          {data
-            ? <>
-              <Radio name="public"
-                     label={t('ACCESS')}
-                     onChange={handleChange}
-                     radioButtons={[
-                       {label: t('PRIVATE'), checked: data.public === 'false', value: 'false'},
-                       {label: t('PUBLIC'), checked: data.public === 'true', value: 'true'}
-                     ]}/>
-            </>
+        {data
+          ? <>
+            <Radio name="public"
+                   label={t('ACCESS')}
+                   onChange={handleChange}
+                   radioButtons={[
+                     {label: t('PRIVATE'), checked: data.public === 'false', value: 'false'},
+                     {label: t('PUBLIC'), checked: data.public === 'true', value: 'true'}
+                   ]}/>
+          </>
 
-            : <Spinner/>}
+          : <Spinner/>}
 
-          <div className="btn-block">
-            <button type="button"
-                    className="btn btn--primary w-33"
-                    onClick={onHideModal}>
-              {t('CANCEL')}
-            </button>
+        <div className="btn-block">
+          <button type="button"
+                  className="btn btn--primary w-33"
+                  onClick={onHideModal}>
+            {t('CANCEL')}
+          </button>
 
-            <button type="submit"
-                    className="btn btn--secondary w-33">
-              {t('SAVE')}
-            </button>
-          </div>
-        </form>
+          <button type="submit"
+                  className="btn btn--secondary w-33">
+            {t('SAVE')}
+          </button>
+        </div>
+      </form>
 
     </Notification>
   )

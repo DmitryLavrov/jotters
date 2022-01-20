@@ -69,7 +69,8 @@ const JottersLayout = () => {
                       onFilter={handleFilter}
                       onAddNewJotter={onAddNewJotter}/>
       <JottersPage jotters={filteredAndSortedJotters()}
-                   paramsDropdownBtn={paramsDropdownBtn}/>
+                   paramsDropdownBtn={paramsDropdownBtn}
+                   onAddNewJotter={onAddNewJotter}/>
     </Layout>
 
     {renderControlDropdown}

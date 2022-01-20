@@ -57,7 +57,7 @@ $transition-delay-long:    600ms;
 
 // BOX-SHADOW
 $box-shadow-norm:          0 0.5rem 1rem rgb(0 0 0 / 15%);
-$box-shadow-red:           0 0 .25rem .25rem rgb(255 0 0 / 30%);
+$box-shadow-error:         0 0 0 0.25rem rgba(240, 65, 36, 0.25);
 
 // GRID
 $grid-width:               114rem;

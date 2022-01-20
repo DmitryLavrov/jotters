@@ -1,8 +1,11 @@
 import React from 'react'
 import JotterCard from './jotterCard'
 import Spinner from '../../common/spinner'
+import { useTranslation } from 'react-i18next'
 
-const JottersPage = ({jotters, paramsDropdownBtn}) => {
+const JottersPage = ({jotters, paramsDropdownBtn, onAddNewJotter}) => {
+  const {t} = useTranslation()
+
   return (
     <>
       {jotters
@@ -11,6 +14,11 @@ const JottersPage = ({jotters, paramsDropdownBtn}) => {
                                             paramsDropdownBtn={paramsDropdownBtn}/>)
         : <Spinner/>
       }
+
+        <button className="btn btn--new-jotter"
+                onClick={onAddNewJotter}>
+          {t('NEW_JOTTER')}
+        </button>
     </>
   )
 }

@@ -23,12 +23,12 @@ const JotterCard = ({jotter, paramsDropdownBtn}) => {
   }
 
   return (
-    <div className="jotter-card">
+    <div className="card jotter-card"
+         style={{background: jotter.color}}>
+
       <DropdownBtn params={newParamsDropdownBtn}/>
 
-      <Link to={`/jotters/${jotter._id}`}
-            className="card"
-            style={{background: jotter.color}}>
+      <Link to={`/jotters/${jotter._id}`}>
 
         <p className="jotter-card__title">{jotter.title}</p>
 

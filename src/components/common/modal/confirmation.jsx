@@ -8,29 +8,31 @@ const Confirmation = ({header, context, action, onConfirm, onCancel}) => {
 
   return (
     <Notification onCancel={onCancel}>
-      <h5 className="card-header">{header}</h5>
-
       <div className="card-body">
 
-        <h3 className="mb-3 text-center">
-          {context}
-        </h3>
+        <h1 className="form__title">
+          {header}
+        </h1>
 
-        <div className="d-flex justify-content-between">
+        <h2 className="form__title">
+          {context}
+        </h2>
+
+        <div className="btn-block">
           <button type="button"
-                  className="btn btn-primary w-25"
+                  className="btn btn--primary w-33"
                   onClick={onCancel}>
             {t('CANCEL')}
           </button>
 
           <button type="button"
-                  className="btn btn-warning w-25 ms-5"
+                  className="btn btn--secondary w-33"
                   onClick={onConfirm}>
             {action}
           </button>
         </div>
 
-    </div>
+      </div>
     </Notification>
   )
 }
