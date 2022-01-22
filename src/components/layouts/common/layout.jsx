@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../ui/navbar'
 
-// Breakpoint 900px for phones and tablets portrait
+// Breakpoint 900px for phones and tablets portrait ($bp-small)
 const BP_SMALL = 900
 
 const Layout = ({children, ...rest}) => {
@@ -24,21 +24,21 @@ const Layout = ({children, ...rest}) => {
     React.cloneElement(clonedSidebar, {
       ...clonedSidebar.props,
       isMobile: true,
-      hideSidebar: hideSidebar})
+      hideSidebar: hideSidebar
+    })
 
   return (
     <div className="container">
       <Navbar navSidebar={navSidebar} {...rest}/>
 
-        <main className="row-layout">
-          <aside className="col-layout-sidebar">
-            {showSidebar && clonedSidebar}
-          </aside>
+      {showSidebar &&
+      <aside className="sidebar">
+        {clonedSidebar}
+      </aside>}
 
-          <section className="col-layout-content">
-            {clonedPage}
-          </section>
-        </main>
+      <section className="main">
+        {clonedPage}
+      </section>
     </div>
   )
 }

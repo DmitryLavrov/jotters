@@ -10,6 +10,7 @@
     overflow:      hidden;
     text-overflow: ellipsis;
     white-space:   nowrap;
+    width:         100%;
 }
 
 input, button, select, optgroup, textarea, a {
@@ -58,17 +59,6 @@ html {
 
 body {
     background-color: $color-bg;
-}
-
-.container {
-    width:     100%;
-    margin:    0 auto;
-    max-width: $bp-large-container;
-
-    @include respond(big) {max-width: $bp-big-container;}
-    @include respond(medium) {max-width: $bp-medium-container;}
-    @include respond(small) {max-width: $bp-small-container;}
-    @include respond(tiny) {max-width: $bp-tiny-container;}
 }
 
 hr {

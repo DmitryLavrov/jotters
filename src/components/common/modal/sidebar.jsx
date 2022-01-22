@@ -5,14 +5,14 @@ import Modal from './modal'
 const Sidebar = ({isMobile = false, hideSidebar, children}) => {
   return isMobile
     ?
-    <Modal modalClass="sidebar mobile"
+    <Modal modalClass="mobile-sidebar"
            removeModal={hideSidebar}>
         {children}
     </Modal>
     :
-    <div className="sidebar">
+    <>
       {children}
-    </div>
+    </>
 }
 
 export default Sidebar

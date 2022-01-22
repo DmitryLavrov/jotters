@@ -15,7 +15,8 @@
     }
 }
 
-.sidebar .form-check {
+.sidebar .form-check,
+.mobile-sidebar .form-check {
     display:        flex;
     flex-wrap:      nowrap;
     flex-direction: column;
@@ -97,6 +98,7 @@
     }
 }
 
-.sidebar .check-element {
+.sidebar .check-element,
+.mobile-sidebar .check-element {
     margin: 0;
 }

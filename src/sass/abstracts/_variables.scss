@@ -9,6 +9,7 @@ $color-black:              #000;
 $color-bg:                 seashell;
 $color-base:               #222;
 $color-error:              #F04124;
+$color-grey:               #777;
 
 $color-primary:            hsl(195, 100%, 36%);
 $color-primary-darker:     darken($color-primary, 12);
@@ -22,7 +23,6 @@ $color-secondary-lighter:  lighten($color-secondary, 12);
 $color-secondary-light:    lighten($color-secondary-lighter, 12);
 $color-secondary-lightest: lighten($color-secondary-light, 12);
 
-$color-grey:               #777;
 
 // RESPONSIVE BREAKPOINTS
 $bp-large:                 112.5em; // same as big but min-width

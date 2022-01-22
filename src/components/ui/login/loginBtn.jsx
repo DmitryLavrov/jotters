@@ -7,12 +7,12 @@ const LoginBtn = () => {
   const {paramsDropdownBtn, renderLoginCard} = useLoginDropdown()
 
   return (<>
-    <div className="login-block">
-      <div className="login-block__label">
+    {/*<div className="login-block">*/}
+      <div className="header__user-name">
         {paramsDropdownBtn.label}
       </div>
       <DropdownBtn params={paramsDropdownBtn}/>
-    </div>
+    {/*</div>*/}
 
     {renderLoginCard}
   </>)

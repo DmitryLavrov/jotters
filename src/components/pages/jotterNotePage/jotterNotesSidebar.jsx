@@ -19,7 +19,7 @@ const JotterNotesSidebar = ({notes, onCreateNewNote, isMobile, hideSidebar, ...r
     <Sidebar {...{isMobile, hideSidebar, ...rest}}>
       <Link to="/jotters" className="btn btn--primary">
           <span className="icon icon-chevron_left"/>
-          <span className="fs-5">{t('JOTTERS')}</span>
+          <span>{t('JOTTERS')}</span>
       </Link>
 
       {notes

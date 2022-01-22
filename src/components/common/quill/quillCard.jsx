@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactQuill from 'react-quill'
 import {toolbarModules} from '../../../utils/quill'
+import DropdownBtn from '../form/dropdownBtn'
 
-const QuillCard = ({readOnly, value, onChange}) => {
+const QuillCard = ({readOnly, value, onChange, type, paramsDropdownBtn}) => {
   return (
-    <div className={'quill-card' + (readOnly ? ' quill-card--read-only' : '')}>
+    <div className={'quill-card card-container'}>
+
+      {readOnly && type === 'PRIVATE' &&
+      <DropdownBtn params={paramsDropdownBtn}/>}
+
       <ReactQuill modules={toolbarModules}
                   readOnly={readOnly}
                   className={readOnly ? 'hide-toolbar' : ''}

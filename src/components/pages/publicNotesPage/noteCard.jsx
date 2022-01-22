@@ -19,17 +19,17 @@ const NoteCard = ({note}) => {
           {t('MY_NOTE')}
       </span>}
 
-      <p className="note-card__title">
+      <span className="note-card__title">
         {note.title}
-      </p>
+      </span>
 
       <p className="note-card__text">
         {summary}
       </p>
 
-      <h6 className="note-card__name">
+      <p className="note-card__name">
         {note.username}
-      </h6>
+      </p>
 
       <p className="note-card__date">
         {dateToString(note.updatedAt)}

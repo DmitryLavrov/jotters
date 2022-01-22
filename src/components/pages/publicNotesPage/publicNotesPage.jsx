@@ -11,14 +11,16 @@ const PublicNotesPage = ({notes}) => {
   }
 
   return (
-        notes.length > 0
-        ?
-        notes.map(note => <NoteCard key={note._id} note={note}/>)
-
-        :
-        <p className="no-card">
-          {t('NO_NOTES')}
-        </p>
+    notes.length > 0
+      ?
+      <div className="cards-container">
+        {notes.map(note => <NoteCard key={note._id}
+                                     note={note}/>)}
+      </div>
+      :
+      <p className="no-card">
+        {t('NO_NOTES')}
+      </p>
   )
 }
 

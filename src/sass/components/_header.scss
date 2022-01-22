@@ -5,24 +5,16 @@
     flex-wrap:        nowrap;
     justify-content:  space-between;
     width:            100%;
-    margin:           0 auto;
     padding:          0.5rem 1.5rem 0.5rem 1rem;
     background-color: $color-primary;
-    & > .h1 {
-        color: $color-bg;
+    color: $color-bg;
+
+    &__title {
         margin: auto;
+        color: currentColor;
     }
 
-}
-
-.login-block {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-
-    &__label {
-        color:        $color-bg;
-        font-size:    $font-size-default;
+    &__user-name {
+        color: currentColor;
     }
-
 }

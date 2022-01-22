@@ -17,28 +17,28 @@
 }
 
 //================ mobile-sidebar ================
-.sidebar {
+.mobile-sidebar {
     display:        flex;
     align-items:    center;
     flex-direction: column;
-    margin:         3rem 0;
+    //margin:         3rem 0;
     gap:            3rem;
 
-    &.mobile {
+    //&.mobile {
         position:         fixed;
         top:              0;
         left:             0;
         width:            80%;
         max-width:        300px;
         height:           100vh;
-        margin-top:       0;
-        margin-left:      -100vw;
-        padding:          3rem;
+        //margin-top:       0;
+        //margin-left:      -100vw;
+        padding:          6rem 3rem;
         background-color: $color-bg;
         z-index:          12;
         transition:       margin $transition-delay-long ease-in-out;
         animation:        slide-right $transition-delay-long ease-in-out forwards;
-    }
+    //}
 }
 
 @keyframes slide-right {

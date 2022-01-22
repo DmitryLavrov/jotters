@@ -6,9 +6,10 @@
         "base/typography",
         "base/fontIcons";
 
-@import "layout/navigation",
-        "layout/grid",
-        "layout/layout";
+@import "layout/container",
+        "layout/navigation",
+        "layout/cardsContainer",
+        "layout/cardContainer";
 
 @import "components/button",
         "components/card",
@@ -18,9 +19,11 @@
         "components/quillCard",
         "components/modal",
         "components/header",
+        "components/sidebar",
         "components/dropDownMenu";
 
-@import "pages/infoPage",
-        "pages/notePage";
+@import "pages/notePage",
+        "pages/notesPage",
+        "pages/jottersPage";
 
 @import "vendors/quillEditor";

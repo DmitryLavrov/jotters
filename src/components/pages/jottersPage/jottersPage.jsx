@@ -7,7 +7,7 @@ const JottersPage = ({jotters, paramsDropdownBtn, onAddNewJotter}) => {
   const {t} = useTranslation()
 
   return (
-    <>
+    <div className="cards-container">
       {jotters
         ? jotters.map(jotter => <JotterCard key={jotter._id}
                                             jotter={jotter}
@@ -15,11 +15,13 @@ const JottersPage = ({jotters, paramsDropdownBtn, onAddNewJotter}) => {
         : <Spinner/>
       }
 
-        <button className="btn btn--new-jotter"
+      <div className="card card--new-jotter">
+        <button className="btn btn--secondary"
                 onClick={onAddNewJotter}>
           {t('NEW_JOTTER')}
         </button>
-    </>
+      </div>
+    </div>
   )
 }
 

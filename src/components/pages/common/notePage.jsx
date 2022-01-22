@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import Spinner from '../../common/spinner'
 import QuillCard from '../../common/quill/quillCard'
-import DropdownBtn from '../../common/form/dropdownBtn'
+// import DropdownBtn from '../../common/form/dropdownBtn'
 
 const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
   const {t} = useTranslation()
@@ -46,13 +46,11 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
 
   return (
     <div className="note-page">
-      {readOnly && type === 'PRIVATE' &&
-      <DropdownBtn params={paramsDropdownBtn}/>
-      }
-
       <QuillCard readOnly={readOnly}
+                 type={type}
                  value={content}
-                 onChange={handleChange}/>
+                 onChange={handleChange}
+                 paramsDropdownBtn={paramsDropdownBtn}/>
 
       {(type === 'PRIVATE' || type === 'INFO') &&
       <div className="btn-block">

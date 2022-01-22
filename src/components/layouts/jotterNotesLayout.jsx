@@ -77,7 +77,7 @@ const JotterNotesLayout = () => {
 
       {(notes && notes.length === 0)
         ?
-        <p className="w-100 text-center my-5">
+        <p className="no-card">
           {t('CREATE_NEW_NOTE')}
         </p>
 

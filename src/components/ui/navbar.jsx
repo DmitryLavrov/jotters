@@ -31,7 +31,7 @@ const Navbar = ({title, navSidebar}) => {
           <img src={logo} alt="Logo Jotter"/>
         </Link>
 
-        <h1 className="h1">
+        <h1 className="h1 header__title">
           {title || t('JOTTERS')}
         </h1>
 
