@@ -1,9 +1,9 @@
 import React from 'react'
 import JotterCard from './jotterCard'
-import Spinner from '../../common/spinner'
+import Spinner from '../../../common/spinner'
 import { useTranslation } from 'react-i18next'
 
-const JottersPage = ({jotters, paramsDropdownBtn, onAddNewJotter}) => {
+const Jotters = ({jotters, paramsDropdownBtn, onAddNewJotter}) => {
   const {t} = useTranslation()
 
   return (
@@ -25,4 +25,4 @@ const JottersPage = ({jotters, paramsDropdownBtn, onAddNewJotter}) => {
   )
 }
 
-export default JottersPage
+export default Jotters

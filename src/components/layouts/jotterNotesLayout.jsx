@@ -3,8 +3,8 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import Layout from './common/layout'
-import NotePage from '../pages/common/notePage'
-import JotterNotesSidebar from '../pages/jotterNotePage/jotterNotesSidebar'
+import Note from '../pages/main/common/note'
+import JotterNotesSidebar from '../pages/sidebar/jotterNotesSidebar/jotterNotesSidebar'
 import useNotes from '../../hooks/useNotes'
 import sortArrayBy from '../../utils/sortArrayBy'
 import useNoteControlDropdown from '../../hooks/useNoteControlDropdown'
@@ -82,10 +82,10 @@ const JotterNotesLayout = () => {
         </p>
 
         :
-        <NotePage note={selectedNote}
-                  type="PRIVATE"
-                  onUpdate={handleUpdateNote}
-                  paramsDropdownBtn={paramsDropdownBtn}/>
+        <Note note={selectedNote}
+              type="PRIVATE"
+              onUpdate={handleUpdateNote}
+              paramsDropdownBtn={paramsDropdownBtn}/>
       }
     </Layout>
 

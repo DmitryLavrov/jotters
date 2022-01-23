@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { dateToString } from '../../../utils/dateToString'
+import { dateToString } from '../../../../utils/dateToString'
 import { useTranslation } from 'react-i18next'
-import DropdownBtn from '../../common/form/dropdownBtn'
+import DropdownBtn from '../../../forms/formElements/dropdownBtn'
 
 const JotterCard = ({jotter, paramsDropdownBtn}) => {
   const {t} = useTranslation()

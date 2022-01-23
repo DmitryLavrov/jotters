@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Notification from '../../common/modal/notification'
-import Spinner from '../../common/spinner'
-import Radio from '../../common/form/radio'
+import Notification from '../modal/notification'
+import Spinner from '../common/spinner'
+import Radio from './formElements/radio'
 
-const NoteSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
+const NoteSettings = ({header, settingsData, onSubmit, onHideModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState({...settingsData, public: settingsData.public.toString()})
 
@@ -60,4 +60,4 @@ const NoteSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
 
 }
 
-export default NoteSettingsCard
+export default NoteSettings

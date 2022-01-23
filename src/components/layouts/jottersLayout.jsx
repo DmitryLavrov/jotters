@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import sortArrayBy from '../../utils/sortArrayBy'
-import JottersSidebar from '../pages/jottersPage/jottersSidebar'
-import JottersPage from '../pages/jottersPage/jottersPage'
+import JottersSidebar from '../pages/sidebar/jottersSidebar'
+import Jotters from '../pages/main/jotters/jotters'
 import Layout from './common/layout'
 import { useTranslation } from 'react-i18next'
 import useJotters from '../../hooks/useJotters'
@@ -68,9 +68,9 @@ const JottersLayout = () => {
                       onSort={handleSort}
                       onFilter={handleFilter}
                       onAddNewJotter={onAddNewJotter}/>
-      <JottersPage jotters={filteredAndSortedJotters()}
-                   paramsDropdownBtn={paramsDropdownBtn}
-                   onAddNewJotter={onAddNewJotter}/>
+      <Jotters jotters={filteredAndSortedJotters()}
+               paramsDropdownBtn={paramsDropdownBtn}
+               onAddNewJotter={onAddNewJotter}/>
     </Layout>
 
     {renderControlDropdown}

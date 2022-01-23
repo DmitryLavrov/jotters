@@ -2,8 +2,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Link } from 'react-router-dom'
-import { dateToString } from '../../../utils/dateToString'
-import { htmlToPlain } from '../../../utils/htmlToPlain'
+import { dateToString } from '../../../../utils/dateToString'
+import { htmlToPlain } from '../../../../utils/htmlToPlain'
 
 const NoteCard = ({note}) => {
   const {t} = useTranslation()

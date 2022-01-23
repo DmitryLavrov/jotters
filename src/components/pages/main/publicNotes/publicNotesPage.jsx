@@ -1,6 +1,6 @@
 import React from 'react'
 import NoteCard from './noteCard'
-import Spinner from '../../common/spinner'
+import Spinner from '../../../common/spinner'
 import { useTranslation } from 'react-i18next'
 
 const PublicNotesPage = ({notes}) => {

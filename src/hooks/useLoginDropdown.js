@@ -1,40 +1,40 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import LoginCard from '../components/ui/login/loginCard'
-import SignupCard from '../components/ui/login/signupCard'
+import LoginForm from '../components/pages/header/login/loginForm'
+import RegisterForm from '../components/pages/header/login/registerForm'
 import useUsers from './useUsers'
 
 const useLoginDropdown = () => {
   const {t} = useTranslation()
-  const [isVisibleSingIn, setIsVisibleSingIn] = useState(false)
-  const [isVisibleSingUp, setIsVisibleSingUp] = useState(false)
-  const [isVisibleSingOut, setIsVisibleSingOut] = useState(false)
+  const [isVisibleLogin, setIsVisibleLogin] = useState(false)
+  const [isVisibleRegister, setIsVisibleRegister] = useState(false)
+  const [isVisibleLogout, setIsVisibleLogout] = useState(false)
   const {getCurrentUser} = useUsers()
 
   const paramsDropdownBtn = {
     img: <span className="icon icon-arrow_drop_down_circle"/>,
-    label: t('LOGIN'),
     title: t('LOGIN'),
+    label: t('LOG_IN'),
     onClick: handleDropdownBtn
   }
 
   paramsDropdownBtn.items = [
     {
-      action: 'signIn',
-      title: t('SIGN_IN'),
+      action: 'login',
+      title: t('LOG_IN'),
       img: <span/>,
       disabled: false
     },
     {
-      action: 'signup',
-      title: t('SIGN_UP'),
+      action: 'register',
+      title: t('REGISTER'),
       img: <span/>,
       disabled: false
     },
     {
-      action: 'signOut',
-      title: t('SIGN_OUT'),
+      action: 'logout',
+      title: t('LOG_OUT'),
       img: <span/>,
       disabled: true
     }
@@ -44,33 +44,33 @@ const useLoginDropdown = () => {
     // =========================
     console.log('action:', action)
     // =========================
-    if (action === 'signIn') {
+    if (action === 'login') {
       getCurrentUser().then(user => {
         // setUser(user)
-        setIsVisibleSingIn(true)
+        setIsVisibleLogin(true)
       })
-    } else if (action === 'signup'){
-      setIsVisibleSingUp(true)
+    } else if (action === 'register'){
+      setIsVisibleRegister(true)
     }
   }
 
   const hideAllCards = () => {
-    setIsVisibleSingIn(false)
-    setIsVisibleSingUp(false)
-    setIsVisibleSingOut(false)
+    setIsVisibleLogin(false)
+    setIsVisibleRegister(false)
+    setIsVisibleLogout(false)
   }
 
   const renderLoginCard = (<>
-    {isVisibleSingIn &&
-    <LoginCard onHideModal={hideAllCards}/>}
+    {isVisibleLogin &&
+    <LoginForm onHideModal={hideAllCards}/>}
 
-    {isVisibleSingUp &&
-    <SignupCard header={t('SIGN_UP')}
-                onHideModal={hideAllCards}/>}
+    {isVisibleRegister &&
+    <RegisterForm header={t('REGISTER')}
+                  onHideModal={hideAllCards}/>}
   </>)
 
   // =========================
-  console.log('isVisibleSingOut:', isVisibleSingOut)
+  console.log('isVisibleLogout:', isVisibleLogout)
   // =========================
 
   return {paramsDropdownBtn, renderLoginCard}

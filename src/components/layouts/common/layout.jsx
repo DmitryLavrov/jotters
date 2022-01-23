@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../ui/navbar'
+import Header from '../../pages/header/header'
 
 // Breakpoint 900px for phones and tablets portrait ($bp-small)
 const BP_SMALL = 900
@@ -29,7 +29,7 @@ const Layout = ({children, ...rest}) => {
 
   return (
     <div className="container">
-      <Navbar navSidebar={navSidebar} {...rest}/>
+      <Header navSidebar={navSidebar} {...rest}/>
 
       {showSidebar &&
       <aside className="sidebar">

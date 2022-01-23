@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import Sidebar from '../../common/modal/sidebar'
+import Sidebar from './common/sidebar'
 
 const PublicNotesSidebar = ({note, isMobile, hideSidebar, ...rest}) => {
   const {t} = useTranslation()

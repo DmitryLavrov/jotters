@@ -11,9 +11,9 @@ const AuthProvider = ({children}) => {
   const [currentUser, setCurrentUser] = useState({})
   const {handleError} = useError()
 
-  const signup = async (user) => {
+  const register = async (user) => {
     try {
-      const {data, token} = await authService.signup(user)
+      const {data, token} = await authService.register(user)
       localStorageService.setToken(token)
       // =========================
       console.log('currentUser:', data)
@@ -57,7 +57,7 @@ const AuthProvider = ({children}) => {
 
 
   return (
-    <AuthContext.Provider value={{signup, login, currentUser}}>
+    <AuthContext.Provider value={{register, login, currentUser}}>
       {children}
     </AuthContext.Provider>
   )

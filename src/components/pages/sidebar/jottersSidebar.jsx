@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
-import Sidebar from '../../common/modal/sidebar'
-import Radio from '../../common/form/radio'
+import Sidebar from './common/sidebar'
+import Radio from '../../forms/formElements/radio'
 
 const JottersSidebar = ({sort, filter, onSort, onFilter, onAddNewJotter, ...rest}) => {
   const {t} = useTranslation()

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import Layout from './common/layout'
-import NotePage from '../pages/common/notePage'
-import PublicNotesSidebar from '../pages/publicNotePage/publicNoteSidebar'
+import Note from '../pages/main/common/note'
+import PublicNotesSidebar from '../pages/sidebar/publicNoteSidebar'
 import useNotes from '../../hooks/useNotes'
 
 const PublicNoteLayout = () => {
@@ -19,7 +19,7 @@ const PublicNoteLayout = () => {
   return (
     <Layout title={note ? note.title : '...'}>
       <PublicNotesSidebar note={note}/>
-      <NotePage note={note} type="PUBLIC"/>
+      <Note note={note} type="PUBLIC"/>
     </Layout>
   )
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Notification from '../../common/modal/notification'
+import Notification from '../modal/notification'
 import { useTranslation } from 'react-i18next'
-import Spinner from '../../common/spinner'
-import TextInput from '../../common/form/textInput'
+import Spinner from '../common/spinner'
+import TextInput from './formElements/textInput'
 
-const JotterSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
+const JotterSettings = ({header, settingsData, onSubmit, onHideModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState(settingsData)
 
@@ -63,4 +63,4 @@ const JotterSettingsCard = ({header, settingsData, onSubmit, onHideModal}) => {
   )
 }
 
-export default JotterSettingsCard
+export default JotterSettings

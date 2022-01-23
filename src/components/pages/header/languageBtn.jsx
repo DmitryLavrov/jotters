@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
-import flagGb from '../../assets/images/flag-gb.svg'
-import flagRu from '../../assets/images/flag-ru.svg'
+import flagGb from '../../../assets/images/flag-gb.svg'
+import flagRu from '../../../assets/images/flag-ru.svg'
 
-import DropdownBtn from './form/dropdownBtn'
+import DropdownBtn from '../../forms/formElements/dropdownBtn'
 
 const languages = [
   {code: 'en', name: 'English', flagImg: flagGb},

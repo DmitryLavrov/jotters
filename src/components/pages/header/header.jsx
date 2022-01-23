@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import logo from '../../assets/images/notebook.svg'
-import menu from '../../assets/images/menu.svg'
+import logo from '../../../assets/images/notebook.svg'
+import menu from '../../../assets/images/menu.svg'
 
-import LanguageBtn from '../common/languageBtn'
+import LanguageBtn from './languageBtn'
 import { Link } from 'react-router-dom'
 import LoginBtn from './login/loginBtn'
 
-const Navbar = ({title, navSidebar}) => {
+const Header = ({title, navSidebar}) => {
   const {t} = useTranslation()
 
   const [isVisibleSidebar, setIsVisibleSidebar] = useState(false)
@@ -45,4 +45,4 @@ const Navbar = ({title, navSidebar}) => {
   )
 }
 
-export default Navbar
+export default Header

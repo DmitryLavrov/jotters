@@ -1,21 +1,20 @@
 import React from 'react'
 
-import DropdownBtn from '../../common/form/dropdownBtn'
-import useLoginDropdown from '../../../hooks/useLoginDropdown'
+import DropdownBtn from '../../../forms/formElements/dropdownBtn'
+import useLoginDropdown from '../../../../hooks/useLoginDropdown'
 
 const LoginBtn = () => {
   const {paramsDropdownBtn, renderLoginCard} = useLoginDropdown()
 
-  return (<>
-    {/*<div className="login-block">*/}
+  return (
+    <>
       <div className="header__user-name">
         {paramsDropdownBtn.label}
       </div>
       <DropdownBtn params={paramsDropdownBtn}/>
-    {/*</div>*/}
 
-    {renderLoginCard}
-  </>)
+      {renderLoginCard}
+    </>)
 }
 
 export default LoginBtn

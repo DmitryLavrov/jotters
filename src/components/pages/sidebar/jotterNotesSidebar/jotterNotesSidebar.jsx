@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import NoteItem from './noteItem'
-import Spinner from '../../common/spinner'
-import Sidebar from '../../common/modal/sidebar'
+import Spinner from '../../../common/spinner'
+import Sidebar from '../common/sidebar'
 
 const JotterNotesSidebar = ({notes, onCreateNewNote, isMobile, hideSidebar, ...rest}) => {
   const {t} = useTranslation()

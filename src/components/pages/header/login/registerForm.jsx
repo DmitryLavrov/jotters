@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
-import TextInput from '../../common/form/textInput'
-import Spinner from '../../common/spinner'
-import Notification from '../../common/modal/notification'
+import TextInput from '../../../forms/formElements/textInput'
+import Spinner from '../../../common/spinner'
+import Notification from '../../../modal/notification'
 import { useTranslation } from 'react-i18next'
-import { useAuth } from '../../../hooks/useAuth'
 import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../../../hooks/useAuth'
 
 const initUser = {
+  name: '',
   email: '',
-  password: ''
+  password: '',
+  passwordConfirm: ''
 }
 
-const LoginCard = ({onHideModal}) => {
+const RegisterForm = ({header, onHideModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState(initUser)
-  const [errors, setErrors] = useState({email: 'Error-email'})
-  const {login} = useAuth()
+  const [errors, setErrors] = useState({})
+  const {register} = useAuth()
 
   const history = useHistory()
 
@@ -28,11 +30,11 @@ const LoginCard = ({onHideModal}) => {
 
   const handleSubmit = async (event) => {
     // =========================
-    console.log('Login user:', data)
+    console.log('Register user:', data)
     // =========================
     event.preventDefault()
     try {
-      await login(data)
+      await register(data)
       history.push('/')
       onHideModal()
     } catch (err) {
@@ -40,17 +42,27 @@ const LoginCard = ({onHideModal}) => {
     }
   }
 
+  // =========================
+  console.log('errors:', errors)
+  // =========================
+
   return (
     <Notification onCancel={onHideModal}>
       <form onSubmit={handleSubmit}
             className="form">
 
         <h1 className="form__title">
-          {t('SIGN_IN')}
+          {header}
         </h1>
 
         {data
           ? <>
+            <TextInput name="name"
+                       label={t('NAME')}
+                       value={data.name}
+                       onChange={handleChange}
+                       error={errors.name}/>
+
             <TextInput name="email"
                        label={t('EMAIL')}
                        value={data.email}
@@ -62,6 +74,12 @@ const LoginCard = ({onHideModal}) => {
                        value={data.password}
                        onChange={handleChange}
                        error={errors.password}/>
+
+            <TextInput name="passwordConfirm"
+                       label={t('PASSWORD_CONFIRM')}
+                       value={data.passwordConfirm}
+                       onChange={handleChange}
+                       error={errors.passwordConfirm}/>
           </>
 
           : <Spinner/>}
@@ -79,8 +97,10 @@ const LoginCard = ({onHideModal}) => {
           </button>
         </div>
       </form>
+
+
     </Notification>
   )
 }
 
-export default LoginCard
+export default RegisterForm

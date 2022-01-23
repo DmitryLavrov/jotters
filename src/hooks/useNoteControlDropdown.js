@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import NoteSettingsCard from '../components/pages/jotterNotePage/noteSettingsCard'
-import Confirmation from '../components/common/modal/confirmation'
+import NoteSettings from '../components/forms/noteSettings'
+import Confirmation from '../components/modal/confirmation'
 
 const useNoteControlDropdown = (handleDeleteNote, handleUpdateNote, selectedNote) => {
   const {t} = useTranslation()
@@ -52,10 +52,10 @@ const useNoteControlDropdown = (handleDeleteNote, handleUpdateNote, selectedNote
   const renderControlDropdown = (
     <>
       {isVisibleSettingsCard &&
-      <NoteSettingsCard header={t('NOTE')}
-                        settingsData={selectedNote}
-                        onHideModal={hideSettingsCard}
-                        onSubmit={handleUpdateNote}/>
+      <NoteSettings header={t('NOTE')}
+                    settingsData={selectedNote}
+                    onHideModal={hideSettingsCard}
+                    onSubmit={handleUpdateNote}/>
       }
 
       {isVisibleDeleteConfirm &&

@@ -6,7 +6,7 @@ axios.defaults.baseURL = config.apiEndpoint
 axios.interceptors.response.use(res => res,
   err => {
     const expectedError = err.response && err.response.status >= 400 && err.response.status < 500
-    if (!expectedError) {
+    if (!expectedError && !err.message.startsWith('Unexpected error:')) {
       err.message = 'Unexpected error: ' + err.message
     }
     return Promise.reject(err)

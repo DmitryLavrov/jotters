@@ -1,7 +1,7 @@
 import React from 'react'
 import {useTranslation} from 'react-i18next'
 import {Link} from 'react-router-dom'
-import Sidebar from '../../common/modal/sidebar'
+import Sidebar from './common/sidebar'
 
 const InfoSidebar = ({...rest}) => {
   const {t} = useTranslation()

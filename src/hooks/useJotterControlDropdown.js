@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import JotterSettingsCard from '../components/pages/jottersPage/jotterSettingsCard'
-import Confirmation from '../components/common/modal/confirmation'
+import JotterSettings from '../components/forms/jotterSettings'
+import Confirmation from '../components/modal/confirmation'
 
 const initialSettingItems = {
   title: 'New Jotter',
@@ -60,10 +60,10 @@ const useJotterControlDropdown = (getJotter, handleUpdateJotter, handleDeleteJot
 
   const renderControlDropdown = (<>
     {isVisibleSettingsCard &&
-    <JotterSettingsCard header={t('JOTTER')}
-                        settingsData={settingItems}
-                        onHideModal={hideSettingsCard}
-                        onSubmit={handleUpdateJotter}/>
+    <JotterSettings header={t('JOTTER')}
+                    settingsData={settingItems}
+                    onHideModal={hideSettingsCard}
+                    onSubmit={handleUpdateJotter}/>
     }
 
     {isVisibleDeleteConfirm &&

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Sidebar from '../../common/modal/sidebar'
+import Sidebar from './common/sidebar'
 import useDebounceState from '../../../hooks/useDebounce'
-import Radio from '../../common/form/radio'
-import Checkbox from '../../common/form/checkbox'
+import Radio from '../../forms/formElements/radio'
+import Checkbox from '../../forms/formElements/checkbox'
 
 const DELIMITER = String.fromCodePoint(9733)
 
@@ -12,13 +12,25 @@ const PublicNotesSidebar = ({search, sort, users, onSearch, onSort, onSelect, ..
   const [localSearch, setLocalSearch] = useState(search)
   const [localUsers, setLocalUsers] = useState(users)
   const [debounce, setDebounce] = useDebounceState(DELIMITER, 500)
-// =========================
-  console.log('debounce:', debounce)
-// =========================
+
+//========================= Charge debounce on change checkbox =========================
+  useEffect(() => {
+    if (localUsers) {
+      const debounceLeft = debounce.slice(0, debounce.indexOf(DELIMITER) + 1)
+      setDebounce(debounceLeft + localUsers.reduce((acc, i) => (i.selected ? (acc + i._id) : (acc + '')), ''))
+    }
+  }, [localUsers])
+
+//========================= Charge debounce on search string =========================
+  useEffect(() => {
+      const debounceRight = debounce.slice(debounce.indexOf(DELIMITER))
+      setDebounce(localSearch + debounceRight)
+  }, [localSearch])
+//=========================
+
   useEffect(() => {
     onSearch(localSearch)
     onSelect(localUsers)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debounce])
 
   useEffect(() => {
@@ -27,19 +39,11 @@ const PublicNotesSidebar = ({search, sort, users, onSearch, onSort, onSelect, ..
 
   const handleSearch = (event) => {
     setLocalSearch(event.target.value)
-
-    const saveSelect = debounce.slice(debounce.indexOf(DELIMITER))
-    setDebounce(event.target.value + saveSelect)
   }
 
   const handleSelect = ({name, value}) => {
     setLocalUsers(prev => {
-      const newUsers = prev.map(i => i._id === name ? {...i, selected: value} : i)
-
-      const saveSearch = debounce.slice(0, debounce.indexOf(DELIMITER) + 1)
-      setDebounce(saveSearch + newUsers.reduce((acc, i) => (i.selected ? (acc + i._id) : (acc + '')), ''))
-
-      return newUsers
+      return prev.map(i => i._id === name ? {...i, selected: value} : i)
     })
   }
 

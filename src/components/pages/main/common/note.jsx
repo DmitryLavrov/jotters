@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import Spinner from '../../common/spinner'
-import QuillCard from '../../common/quill/quillCard'
+import Spinner from '../../../common/spinner'
+import QuillCard from '../../../quill/quillCard'
 // import DropdownBtn from '../../common/form/dropdownBtn'
 
-const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
+const Note = ({note, type, onUpdate, paramsDropdownBtn}) => {
   const {t} = useTranslation()
   const [content, setContent] = useState('')
   const [readOnly, setReadOnly] = useState(true)
@@ -79,4 +79,4 @@ const NotePage = ({note, type, onUpdate, paramsDropdownBtn}) => {
   )
 }
 
-export default NotePage
+export default Note

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Modal from './modal'
+import Modal from '../../../modal/modal'
 
 const Sidebar = ({isMobile = false, hideSidebar, children}) => {
   return isMobile

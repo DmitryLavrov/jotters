@@ -2,8 +2,8 @@ import httpService from './http.service'
 const userEndpoint = 'users/'
 
 const authService = {
-  signup: async (body) => {
-    const {data} = await httpService.post(userEndpoint + 'signup',
+  register: async (body) => {
+    const {data} = await httpService.post(userEndpoint + 'register',
       body,
       {withCredentials: true})
     return data
