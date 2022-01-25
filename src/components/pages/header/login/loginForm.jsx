@@ -28,7 +28,7 @@ const LoginForm = ({onHideModal}) => {
 
   const handleSubmit = async (event) => {
     // =========================
-    console.log('Login user:', data)
+    console.log('handleSubmit Login user:', data)
     // =========================
     event.preventDefault()
     try {

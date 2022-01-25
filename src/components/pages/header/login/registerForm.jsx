@@ -30,7 +30,7 @@ const RegisterForm = ({header, onHideModal}) => {
 
   const handleSubmit = async (event) => {
     // =========================
-    console.log('Register user:', data)
+    console.log('handleSubmit Register user:', data)
     // =========================
     event.preventDefault()
     try {

@@ -1,9 +1,11 @@
 import axios from 'axios'
-import config from '../config.json'
+import configFile from '../config.json'
 
-axios.defaults.baseURL = config.apiEndpoint
+const http = axios.create({
+  baseURL: configFile.apiEndpoint
+})
 
-axios.interceptors.response.use(res => res,
+http.interceptors.response.use(res => res,
   err => {
     const expectedError = err.response && err.response.status >= 400 && err.response.status < 500
     if (!expectedError && !err.message.startsWith('Unexpected error:')) {
@@ -13,11 +15,11 @@ axios.interceptors.response.use(res => res,
   })
 
 const httpService = {
-  get: axios.get,
-  post: axios.post,
-  put: axios.put,
-  patch: axios.patch,
-  delete: axios.delete
+  get: http.get,
+  post: http.post,
+  put: http.put,
+  patch: http.patch,
+  delete: http.delete
 }
 
 export default httpService
