@@ -21,12 +21,10 @@ const PublicNotesLayout = () => {
       const users = selectUsersFromNotes(data)
       setUsers(users)
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     setNotes(sortArrayBy(sort, notes))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sort])
 
   const handleSearch = (value) => {

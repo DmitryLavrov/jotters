@@ -2,10 +2,10 @@ import React from 'react'
 
 import Modal from './modal'
 
-const Notification = ({children, onCancel}) => {
+const Notification = ({children, onRemoveModal}) => {
   return (
     <Modal modalClass='modal-notification'
-           removeModal={onCancel}>
+           onRemoveModal={onRemoveModal}>
       {children}
     </Modal>
   )

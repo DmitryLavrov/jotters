@@ -1,85 +1,61 @@
-import React, { useState } from 'react'
-import TextInput from '../../../forms/formElements/textInput'
+import React from 'react'
+import TextInputLogin from '../../../formElements/textInputLogin.jsx'
 import Spinner from '../../../common/spinner'
 import Notification from '../../../modal/notification'
-import { useTranslation } from 'react-i18next'
-import { useHistory } from 'react-router-dom'
-import { useAuth } from '../../../../hooks/useAuth'
+import {useTranslation} from 'react-i18next'
+import {useHistory} from 'react-router-dom'
+import {useAuth} from '../../../../hooks/useAuth'
+import {useLogin} from '../../../../hooks/useLogin'
 
-const initUser = {
-  name: '',
-  email: '',
-  password: '',
-  passwordConfirm: ''
-}
-
-const RegisterForm = ({header, onHideModal}) => {
+const RegisterForm = ({onRemoveModal}) => {
   const {t} = useTranslation()
-  const [data, setData] = useState(initUser)
-  const [errors, setErrors] = useState({})
+  const {data, setErrors, isValidForm, reset} = useLogin()
   const {register} = useAuth()
-
   const history = useHistory()
 
-  const handleChange = (field) => {
-    setData(prev => ({
-      ...prev,
-      [field.name]: field.value
-    }))
-  }
-
   const handleSubmit = async (event) => {
-    // =========================
-    console.log('handleSubmit Register user:', data)
-    // =========================
     event.preventDefault()
+    if (!isValidForm) return
+
     try {
       await register(data)
       history.push('/')
-      onHideModal()
+      reset()
+      onRemoveModal()
     } catch (err) {
       setErrors(err)
     }
   }
 
-  // =========================
-  console.log('errors:', errors)
-  // =========================
+  const handleCancel = () => {
+    reset()
+    onRemoveModal()
+  }
 
   return (
-    <Notification onCancel={onHideModal}>
+    <Notification onRemoveModal={handleCancel}>
       <form onSubmit={handleSubmit}
             className="form">
 
         <h1 className="form__title">
-          {header}
+          {t('REGISTER')}
         </h1>
 
         {data
           ? <>
-            <TextInput name="name"
-                       label={t('NAME')}
-                       value={data.name}
-                       onChange={handleChange}
-                       error={errors.name}/>
+            <TextInputLogin name="name"
+                            label={t('NAME')}/>
 
-            <TextInput name="email"
-                       label={t('EMAIL')}
-                       value={data.email}
-                       onChange={handleChange}
-                       error={errors.email}/>
+            <TextInputLogin name="email"
+                            label={t('EMAIL')}/>
 
-            <TextInput name="password"
-                       label={t('PASSWORD')}
-                       value={data.password}
-                       onChange={handleChange}
-                       error={errors.password}/>
+            <TextInputLogin name="password"
+                            label={t('PASSWORD')}
+                            type="password"/>
 
-            <TextInput name="passwordConfirm"
-                       label={t('PASSWORD_CONFIRM')}
-                       value={data.passwordConfirm}
-                       onChange={handleChange}
-                       error={errors.passwordConfirm}/>
+            <TextInputLogin name="passwordConfirm"
+                            label={t('PASSWORD_CONFIRM')}
+                            type="password"/>
           </>
 
           : <Spinner/>}
@@ -87,18 +63,17 @@ const RegisterForm = ({header, onHideModal}) => {
         <div className="btn-block">
           <button type="button"
                   className="btn btn--primary w-33"
-                  onClick={onHideModal}>
+                  onClick={handleCancel}>
             {t('CANCEL')}
           </button>
 
           <button type="submit"
+                  disabled={!isValidForm}
                   className="btn btn--secondary w-33">
-            {t('SAVE')}
+            {t('SUBMIT')}
           </button>
         </div>
       </form>
-
-
     </Notification>
   )
 }

@@ -31,6 +31,15 @@
         transform:  translateY(-1px);
     }
 
+    &:disabled {
+        color:            $color-grey-light !important;
+        background-color: $color-grey !important;
+        border-color: transparent;
+        box-shadow: none;
+        cursor: unset;
+            transform: none;
+    }
+
     &--primary {
         &,
         &:link,

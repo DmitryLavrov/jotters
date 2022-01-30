@@ -7,6 +7,7 @@ import Layout from './common/layout'
 import { useTranslation } from 'react-i18next'
 import useJotters from '../../hooks/useJotters'
 import useJotterControlDropdown from '../../hooks/useJotterControlDropdown'
+import {useAuth} from '../../hooks/useAuth'
 
 const JottersLayout = () => {
   const {t} = useTranslation()
@@ -14,9 +15,9 @@ const JottersLayout = () => {
   const [sort, setSort] = useState('byDate')
   const [filter, setFilter] = useState('all')
   const {fetchJotters, updateJotter, addNewJotter, deleteJotter, getJotter} = useJotters(jotters, setJotters)
-  const {
-    paramsDropdownBtn, showSettingsCard, hideDeleteConfirm, renderControlDropdown
+  const {paramsDropdownBtn, showSettingsCard, hideDeleteConfirm, renderControlDropdown
   } = useJotterControlDropdown(getJotter, handleUpdateJotter, handleDeleteJotter)
+  const {currentUser} = useAuth()
 
   useEffect(() => {
     fetchJotters().then(data => {
@@ -49,7 +50,7 @@ const JottersLayout = () => {
     if (jotter._id) {
       await updateJotter(jotter)
     } else {
-      await addNewJotter(jotter, '619032cad8df581c4881d9a2')
+      await addNewJotter(jotter, currentUser._id)
     }
   }
 

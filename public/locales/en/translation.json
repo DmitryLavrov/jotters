@@ -48,5 +48,15 @@
   "NAME": "Name",
   "EMAIL": "Email",
   "PASSWORD": "Password",
-  "PASSWORD_CONFIRM": "Password confirm"
+  "PASSWORD_CONFIRM": "Password confirm",
+  "PASSWORD_HAS_CAPITAL": "Password must contain at least one capital letter",
+  "PASSWORD_HAS_NUMBER": "Password must contain at least one number",
+  "PASSWORD_MIN": "Password must be {{num}} characters or more",
+  "PASSWORD_REQUIRED": "Password is required",
+  "PASSWORD_MISMATCH": "Password mismatch",
+  "EMAIL_REQUIRED": "Email is required",
+  "EMAIL_WRONG": "Wrong-format email",
+  "NAME_REQUIRED": "Name is required",
+  "NAME_MIN": "Name must be {{num}} characters or more",
+  "SUBMIT": "Submit"
 }

@@ -7,7 +7,7 @@ const Confirmation = ({header, context, action, onConfirm, onCancel}) => {
   const {t} = useTranslation()
 
   return (
-    <Notification onCancel={onCancel}>
+    <Notification onRemoveModal={onCancel}>
       <div className="card-body">
 
         <h1 className="form__title">

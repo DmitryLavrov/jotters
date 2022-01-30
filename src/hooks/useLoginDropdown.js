@@ -1,16 +1,17 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, {useState} from 'react'
+import {useTranslation} from 'react-i18next'
 
 import LoginForm from '../components/pages/header/login/loginForm'
 import RegisterForm from '../components/pages/header/login/registerForm'
-import useUsers from './useUsers'
+import {useAuth} from './useAuth'
+import LogoutForm from '../components/pages/header/login/logoutForm'
 
 const useLoginDropdown = () => {
   const {t} = useTranslation()
   const [isVisibleLogin, setIsVisibleLogin] = useState(false)
   const [isVisibleRegister, setIsVisibleRegister] = useState(false)
   const [isVisibleLogout, setIsVisibleLogout] = useState(false)
-  const {getCurrentUser} = useUsers()
+  const {currentUser} = useAuth()
 
   const paramsDropdownBtn = {
     img: <span className="icon icon-arrow_drop_down_circle"/>,
@@ -36,21 +37,23 @@ const useLoginDropdown = () => {
       action: 'logout',
       title: t('LOG_OUT'),
       img: <span/>,
-      disabled: true
+      disabled: !currentUser
     }
   ]
 
   function handleDropdownBtn(action) {
-    // =========================
-    console.log('action:', action)
-    // =========================
-    if (action === 'login') {
-      getCurrentUser().then(user => {
-        // setUser(user)
+    switch (action) {
+      case 'login':
         setIsVisibleLogin(true)
-      })
-    } else if (action === 'register'){
-      setIsVisibleRegister(true)
+        break
+      case 'register':
+        setIsVisibleRegister(true)
+        break
+      case 'logout':
+        setIsVisibleLogout(true)
+        break
+      default:
+
     }
   }
 
@@ -61,17 +64,17 @@ const useLoginDropdown = () => {
   }
 
   const renderLoginCard = (<>
-    {isVisibleLogin &&
-    <LoginForm onHideModal={hideAllCards}/>}
 
-    {isVisibleRegister &&
-    <RegisterForm header={t('REGISTER')}
-                  onHideModal={hideAllCards}/>}
+      {isVisibleLogin &&
+        <LoginForm onRemoveModal={hideAllCards}/>}
+
+      {isVisibleRegister &&
+        <RegisterForm onRemoveModal={hideAllCards}/>}
+
+      {isVisibleLogout &&
+        <LogoutForm onRemoveModal={hideAllCards}/>}
+
   </>)
-
-  // =========================
-  console.log('isVisibleLogout:', isVisibleLogout)
-  // =========================
 
   return {paramsDropdownBtn, renderLoginCard}
 }

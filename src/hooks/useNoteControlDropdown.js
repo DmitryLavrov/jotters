@@ -54,7 +54,7 @@ const useNoteControlDropdown = (handleDeleteNote, handleUpdateNote, selectedNote
       {isVisibleSettingsCard &&
       <NoteSettings header={t('NOTE')}
                     settingsData={selectedNote}
-                    onHideModal={hideSettingsCard}
+                    onRemoveModal={hideSettingsCard}
                     onSubmit={handleUpdateNote}/>
       }
 

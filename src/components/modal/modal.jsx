@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Backdrop = ({removeModal}) => {
+const Backdrop = ({onRemoveModal}) => {
   return (
     <div className='backdrop'
-         onClick={removeModal}/>
+         onClick={onRemoveModal}/>
   )
 }
 
@@ -16,13 +16,12 @@ const ModalOverlay = ({children, modalClass}) => {
   )
 }
 
-const Modal = ({children, removeModal, modalClass}) => {
+const Modal = ({children, onRemoveModal, modalClass}) => {
   const portal$ = document.querySelector('#overlays')
-
   return (
     <>
       {ReactDOM.createPortal(
-        <Backdrop removeModal={removeModal}/>, portal$)
+        <Backdrop onRemoveModal={onRemoveModal}/>, portal$)
       }
       {ReactDOM.createPortal(
         <ModalOverlay modalClass={modalClass}>

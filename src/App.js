@@ -8,9 +8,11 @@ function App() {
   return (
     <>
       <AuthProvider>
+
         <BrowserRouter>
           <Routing/>
         </BrowserRouter>
+
       </AuthProvider>
       <ToastContainer/>
     </>

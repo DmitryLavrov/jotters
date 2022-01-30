@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Notification from '../modal/notification'
 import Spinner from '../common/spinner'
-import Radio from './formElements/radio'
+import Radio from '../formElements/radio'
 
-const NoteSettings = ({header, settingsData, onSubmit, onHideModal}) => {
+const NoteSettings = ({header, settingsData, onSubmit, onRemoveModal}) => {
   const {t} = useTranslation()
   const [data, setData] = useState({...settingsData, public: settingsData.public.toString()})
 
@@ -18,11 +18,11 @@ const NoteSettings = ({header, settingsData, onSubmit, onHideModal}) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     onSubmit({...data, public: data.public === 'true'})
-    onHideModal()
+    onRemoveModal()
   }
 
   return (
-    <Notification onCancel={onHideModal}>
+    <Notification onRemoveModal={onRemoveModal}>
       <form onSubmit={handleSubmit}
             className="form">
 
@@ -44,7 +44,7 @@ const NoteSettings = ({header, settingsData, onSubmit, onHideModal}) => {
         <div className="btn-block">
           <button type="button"
                   className="btn btn--primary w-33"
-                  onClick={onHideModal}>
+                  onClick={onRemoveModal}>
             {t('CANCEL')}
           </button>
 

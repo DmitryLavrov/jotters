@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Sidebar from './common/sidebar'
 import useDebounceState from '../../../hooks/useDebounce'
-import Radio from '../../forms/formElements/radio'
-import Checkbox from '../../forms/formElements/checkbox'
+import Radio from '../../formElements/radio'
+import Checkbox from '../../formElements/checkbox'
 
 const DELIMITER = String.fromCodePoint(9733)
 

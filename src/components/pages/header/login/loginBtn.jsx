@@ -1,6 +1,7 @@
 import React from 'react'
 
-import DropdownBtn from '../../../forms/formElements/dropdownBtn'
+import DropdownBtn from '../../../formElements/dropdownBtn'
+import LoginProvider from '../../../../hooks/useLogin'
 import useLoginDropdown from '../../../../hooks/useLoginDropdown'
 
 const LoginBtn = () => {
@@ -8,12 +9,14 @@ const LoginBtn = () => {
 
   return (
     <>
+      <LoginProvider>
       <div className="header__user-name">
         {paramsDropdownBtn.label}
       </div>
       <DropdownBtn params={paramsDropdownBtn}/>
 
       {renderLoginCard}
+      </LoginProvider>
     </>)
 }
 

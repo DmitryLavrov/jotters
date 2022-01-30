@@ -2,34 +2,22 @@ import React from 'react'
 import {useHistory} from 'react-router-dom'
 import {useTranslation} from 'react-i18next'
 
-import TextInputLogin from '../../../formElements/textInputLogin.jsx'
-import Spinner from '../../../common/spinner'
 import Notification from '../../../modal/notification'
 import {useAuth} from '../../../../hooks/useAuth'
-import {useLogin} from '../../../../hooks/useLogin'
 
-const LoginForm = ({onRemoveModal}) => {
+const LogoutForm = ({onRemoveModal}) => {
   const {t} = useTranslation()
-  const {data, setErrors, isValidForm, reset} = useLogin()
-  const {login} = useAuth()
+  const {logout} = useAuth()
   const history = useHistory()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    if (!isValidForm) return
-
-    try {
-      await login(data)
-      reset()
-      onRemoveModal()
-      history.push('/')
-    } catch (err) {
-      setErrors(err)
-    }
+    logout()
+    history.push('/')
+    onRemoveModal()
   }
 
   const handleCancel = () => {
-    reset()
     onRemoveModal()
   }
 
@@ -39,20 +27,8 @@ const LoginForm = ({onRemoveModal}) => {
             className="form">
 
         <h1 className="form__title">
-          {t('LOG_IN')}
+          {t('LOG_OUT')}
         </h1>
-
-        {data
-          ? <>
-            <TextInputLogin name="email"
-                            label={t('EMAIL')}/>
-
-            <TextInputLogin name="password"
-                            label={t('PASSWORD')}
-                            type="password"/>
-          </>
-
-          : <Spinner/>}
 
         <div className="btn-block">
           <button type="button"
@@ -62,7 +38,6 @@ const LoginForm = ({onRemoveModal}) => {
           </button>
 
           <button type="submit"
-                  disabled={!isValidForm}
                   className="btn btn--secondary w-33">
             {t('SUBMIT')}
           </button>
@@ -72,4 +47,4 @@ const LoginForm = ({onRemoveModal}) => {
   )
 }
 
-export default LoginForm
+export default LogoutForm

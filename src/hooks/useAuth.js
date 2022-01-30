@@ -1,27 +1,41 @@
-import React, { useContext, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
+
 import authService from '../services/authService'
 import useError from './useError'
 import localStorageService from '../services/localStorage.service'
+import userService from '../services/user.service'
 
 const AuthContext = React.createContext()
 
 export const useAuth = () => useContext(AuthContext)
 
 const AuthProvider = ({children}) => {
-  const [currentUser, setCurrentUser] = useState({})
+  const [currentUser, setCurrentUser] = useState(null)
   const {handleError} = useError()
+
+  async function getUserData() {
+    try {
+      const {data} = await userService.getCurrentUser()
+      setCurrentUser(data)
+    } catch (err) {
+      handleError(err)
+    }
+  }
+
+  useEffect(() => {
+    if (localStorageService.getToken() && localStorageService.getCurrentUserId()) {
+      getUserData()
+    }
+  }, [])
 
   const register = async (user) => {
     try {
       const {data, token} = await authService.register(user)
-      localStorageService.setToken(token)
-      // =========================
-      console.log('currentUser:', data)
-      // =========================
+      localStorageService.setToken(token, data._id)
       setCurrentUser(data)
     } catch (err) {
       handleError(err)
-      const {status, errors} = err.response.data
+      const {status, errors} = err.response?.data
       if (status === '400') {
         const errorsObject = {
           name: errors?.name?.message ?? '',
@@ -37,10 +51,7 @@ const AuthProvider = ({children}) => {
   const login = async (user) => {
     try {
       const {data, token} = await authService.login(user)
-      localStorageService.setToken(token)
-      // =========================
-      console.log('currentUser:', data)
-      // =========================
+      localStorageService.setToken(token, data._id)
       setCurrentUser(data)
     } catch (err) {
       handleError(err)
@@ -55,9 +66,13 @@ const AuthProvider = ({children}) => {
     }
   }
 
+  const logout = () => {
+    localStorageService.removeAuthData()
+    setCurrentUser(null)
+  }
 
   return (
-    <AuthContext.Provider value={{register, login, currentUser}}>
+    <AuthContext.Provider value={{register, login, logout, currentUser}}>
       {children}
     </AuthContext.Provider>
   )
