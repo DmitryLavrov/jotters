@@ -34,10 +34,6 @@ const JotterNotesLayout = () => {
   }, [jotterId])
 
   useEffect(() => {
-    // =========================
-    console.log('notes:', notes)
-    console.log('noteId:', noteId)
-    // =========================
     if (notes && noteId) {
       getNote(noteId).then(data => setSelectedNote(data))
     }
