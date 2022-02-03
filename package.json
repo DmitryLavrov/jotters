@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@sentry/react": "^6.17.4",
+    "@sentry/tracing": "^6.17.4",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.1",
     "bootstrap-icons": "^1.5.0",

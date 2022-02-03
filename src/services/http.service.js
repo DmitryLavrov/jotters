@@ -1,5 +1,6 @@
 import axios from 'axios'
 import configFile from '../config.json'
+import logService from './log.service'
 
 const http = axios.create({
   baseURL: configFile.apiEndpoint
@@ -7,6 +8,7 @@ const http = axios.create({
 
 http.interceptors.response.use(res => res,
   err => {
+    logService.log(err)
     const expectedError = err.response && err.response.status >= 400 && err.response.status < 500
     if (!expectedError && !err.message.startsWith('Unexpected error:')) {
       err.message = 'Unexpected error: ' + err.message
