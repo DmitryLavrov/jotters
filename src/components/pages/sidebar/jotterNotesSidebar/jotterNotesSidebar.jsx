@@ -18,7 +18,9 @@ const JotterNotesSidebar = ({notes, onCreateNewNote, isMobile, hideSidebar, ...r
   return (
     <Sidebar {...{isMobile, hideSidebar, ...rest}}>
       <Link to="/jotters" className="btn btn--primary">
-          <span className="icon icon-chevron_left"/>
+        <svg>
+          <use xlinkHref="/sprite.svg#icon-chevron-left"/>
+        </svg>
           <span>{t('JOTTERS')}</span>
       </Link>
 

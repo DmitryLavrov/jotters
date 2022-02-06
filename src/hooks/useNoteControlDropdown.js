@@ -30,20 +30,26 @@ const useNoteControlDropdown = (handleDeleteNote, handleUpdateNote, selectedNote
   }
 
   const paramsDropdownBtn = {
-    img: <span className="icon icon-arrow_drop_down_circle"/>,
+    img: <svg className="dropdown__icon dropdown__icon--primary">
+      <use xlinkHref="/sprite.svg#icon-circle-down"/>
+    </svg>,
     title: t('CONTROL'),
     onClick: handleDropdownBtn,
     items: [
       {
         action: 'settings',
         title: t('SETTINGS'),
-        img: <span className="icon icon-settings"/>,
+        img: <svg className="dropdown-item__icon">
+          <use xlinkHref="/sprite.svg#icon-settings"/>
+        </svg>,
         disabled: false
       },
       {
         action: 'delete',
         title: t('DELETE_NOTE'),
-        img: <span className="icon icon-delete"/>,
+        img: <svg className="dropdown-item__icon">
+          <use xlinkHref="/sprite.svg#icon-bin"/>
+        </svg>,
         disabled: false
       }
     ]

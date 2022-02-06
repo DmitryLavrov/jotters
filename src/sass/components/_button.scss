@@ -16,6 +16,7 @@
         text-decoration:  none;
         border:           1px solid transparent;
         border-radius:    $border-radius;
+        color:            currentColor;
         background-color: transparent;
         transition:       all $transition-delay ease-in-out;
     }
@@ -34,10 +35,10 @@
     &:disabled {
         color:            $color-grey-light !important;
         background-color: $color-grey !important;
-        border-color: transparent;
-        box-shadow: none;
-        cursor: unset;
-            transform: none;
+        border-color:     transparent;
+        box-shadow:       none;
+        cursor:           unset;
+        transform:        none;
     }
 
     &--primary {
@@ -54,7 +55,21 @@
                 background-color: $color-primary;
             }
         }
+        // --------------------- Icon animation when hovering over Btn--Primary --------------
+        & > svg {
+            width:       2rem;
+            height:      2rem;
+            fill:        currentColor;
+            flex:        0 0 4rem;
+            text-align:  right;
+            margin-left: -2rem;
+            transition:  padding $transition-delay-long ease-in-out;
+        }
+        &:hover > svg {
+            padding-right: calc(4rem - #{$font-size-large});
+        }
     }
+
     &--secondary {
         &,
         &:link,
@@ -81,8 +96,14 @@
                 height: 4.5rem;
             }
             @include respond(small) {
-                display: block;
+                display: flex;
             }
+        }
+        // --------------------- Icon for HEADER Menu --------------
+        & > svg {
+            width:  4.5rem;
+            height: 4.5rem;
+            fill:   currentColor;
         }
     }
 
@@ -111,16 +132,4 @@
     justify-content: flex-end;
     gap:             $gutter-horizontal;
     margin-top:      $gutter-vertical;
-}
-
-// --------------------- Icon animation when hovering over Btn --------------
-.btn > .icon {
-    flex:        0 0 4rem;
-    text-align:  right;
-    margin-left: -2rem;
-    transition:  padding $transition-delay-long ease-in-out;
-}
-
-.btn:hover > .icon {
-    padding-right: calc(4rem - #{$font-size-large});
 }

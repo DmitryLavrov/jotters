@@ -1,8 +1,8 @@
 .dropdown {
     display:  inline-block;
     position: relative;
-    width:    $font-size-large;
-    height:   $font-size-large;
+    width:    2rem;
+    height:   2rem;
     z-index:  8;
 
     &--z {
@@ -10,7 +10,8 @@
     }
 
     &__btn {
-        height:        100%;
+        height:        inherit;
+        width:         inherit;
         padding:       0;
         cursor:        pointer;
         border:        0;
@@ -44,14 +45,37 @@
     }
 
     &__title {
-        font-size:     $font-size-default;
-        font-weight:   600;
-        margin-bottom: 0.5rem;
-        padding:       0.5rem 1rem;
-        text-align:    center;
-        pointer-events:   none;
-        color:         $color-primary;
-        border-bottom: 2px solid $color-secondary-light;
+        font-size:      $font-size-default;
+        font-weight:    600;
+        margin-bottom:  0.5rem;
+        padding:        0.5rem 1rem;
+        text-align:     center;
+        pointer-events: none;
+        color:          $color-primary;
+        border-bottom:  2px solid $color-secondary-light;
+    }
+
+    &__icon {
+        width:         inherit;
+        height:        inherit;
+        fill:          $color-secondary-light;
+        border-radius: 50%;
+        //overflow: hidden;
+
+        &:hover {
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);
+            transform:  translateY(-2px);
+        }
+
+        &:active,
+        &:focus {
+            box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+            transform:  translateY(-1px);
+        }
+
+        &--primary {
+            fill: rgba($color-primary, .5);
+        }
     }
 }
 
@@ -89,25 +113,26 @@
             background-color: $color-secondary-light;
         }
     }
+
+    &__icon {
+        width:         2rem;
+        height:        2rem;
+        fill:          $color-primary;
+        border-radius: 25%;
+
+        &:hover {
+            box-shadow: 0 1rem 2rem rgba($color-black, .2);
+            transform:  translateY(-2px);
+        }
+
+        &:active,
+        &:focus {
+            box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+            transform:  translateY(-1px);
+        }
+    }
 }
 
-.dropdown__btn > .icon,
-.dropdown-item__btn > .icon {
-    color:         $color-secondary-lighter;
-    border-radius: 50%;
-
-    &:hover {
-        color:      $color-secondary;
-        box-shadow: 0 1rem 2rem rgba($color-black, .2);
-        transform:  translateY(-2px);
-    }
-
-    &:active,
-    &:focus {
-        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
-        transform:  translateY(-1px);
-    }
-}
 
 .dropdown-item__btn > img {
     &:hover {

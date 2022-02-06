@@ -6,7 +6,7 @@ const Sidebar = ({isMobile = false, hideSidebar, children}) => {
   return isMobile
     ?
     <Modal modalClass="mobile-sidebar"
-           removeModal={hideSidebar}>
+           onRemoveModal={hideSidebar}>
         {children}
     </Modal>
     :

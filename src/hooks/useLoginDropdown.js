@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
-import {useTranslation} from 'react-i18next'
+import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import LoginForm from '../components/pages/header/login/loginForm'
 import RegisterForm from '../components/pages/header/login/registerForm'
-import {useAuth} from './useAuth'
+import { useAuth } from './useAuth'
 import LogoutForm from '../components/pages/header/login/logoutForm'
 
 const useLoginDropdown = () => {
@@ -14,7 +14,9 @@ const useLoginDropdown = () => {
   const {currentUser} = useAuth()
 
   const paramsDropdownBtn = {
-    img: <span className="icon icon-arrow_drop_down_circle"/>,
+    img: <svg className="dropdown__icon">
+      <use xlinkHref="/sprite.svg#icon-circle-down"/>
+    </svg>,
     title: t('LOGIN'),
     label: t('LOG_IN'),
     onClick: handleDropdownBtn
@@ -24,19 +26,25 @@ const useLoginDropdown = () => {
     {
       action: 'login',
       title: t('LOG_IN'),
-      img: <span/>,
+      img: <svg className="dropdown-item__icon">
+        <use xlinkHref="/sprite.svg#icon-login"/>
+      </svg>,
       disabled: false
     },
     {
       action: 'register',
       title: t('REGISTER'),
-      img: <span/>,
+      img: <svg className="dropdown-item__icon">
+        <use xlinkHref="/sprite.svg#icon-clipboard"/>
+      </svg>,
       disabled: false
     },
     {
       action: 'logout',
       title: t('LOG_OUT'),
-      img: <span/>,
+      img: <svg className="dropdown-item__icon">
+        <use xlinkHref="/sprite.svg#icon-logout"/>
+      </svg>,
       disabled: !currentUser
     }
   ]
@@ -65,14 +73,14 @@ const useLoginDropdown = () => {
 
   const renderLoginCard = (<>
 
-      {isVisibleLogin &&
-        <LoginForm onRemoveModal={hideAllCards}/>}
+    {isVisibleLogin &&
+    <LoginForm onRemoveModal={hideAllCards}/>}
 
-      {isVisibleRegister &&
-        <RegisterForm onRemoveModal={hideAllCards}/>}
+    {isVisibleRegister &&
+    <RegisterForm onRemoveModal={hideAllCards}/>}
 
-      {isVisibleLogout &&
-        <LogoutForm onRemoveModal={hideAllCards}/>}
+    {isVisibleLogout &&
+    <LogoutForm onRemoveModal={hideAllCards}/>}
 
   </>)
 

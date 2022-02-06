@@ -6,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import './sass/main.scss'
 
 import logService from './services/log.service'
+import i18nService from './services/i18nextService'
 import App from './App'
 
-import './utils/i18next'
-
 logService.init()
+i18nService.init()
 
 ReactDOM.render(
   <React.StrictMode>

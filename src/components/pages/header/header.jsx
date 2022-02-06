@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import logo from '../../../assets/images/notebook.svg'
-import menu from '../../../assets/images/menu.svg'
 
 import LanguageBtn from './languageBtn'
 import { Link } from 'react-router-dom'
@@ -24,7 +23,9 @@ const Header = ({title, navSidebar}) => {
     <>
       <header className="header">
         <button onClick={showSidebar} className="btn btn--menu" type="button">
-          <img src={menu} alt="Navigation button"/>
+          <svg>
+            <use xlinkHref="/sprite.svg#icon-menu"/>
+          </svg>
         </button>
 
         <Link to="/info" className="btn btn--logo" type="button">

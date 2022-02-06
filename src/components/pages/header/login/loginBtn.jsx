@@ -10,12 +10,13 @@ const LoginBtn = () => {
   return (
     <>
       <LoginProvider>
-      <div className="header__user-name">
-        {paramsDropdownBtn.label}
-      </div>
-      <DropdownBtn params={paramsDropdownBtn}/>
+        <div className="header__user-name">
+          {paramsDropdownBtn.label}
+        </div>
 
-      {renderLoginCard}
+        <DropdownBtn params={paramsDropdownBtn}/>
+
+        {renderLoginCard}
       </LoginProvider>
     </>)
 }
