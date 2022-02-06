@@ -8,7 +8,7 @@ const JotterCard = ({jotter, paramsDropdownBtn}) => {
   const {t} = useTranslation()
 
   const onClickDropdownBtn = (action) => {
-    paramsDropdownBtn.onClick(action, jotter._id)
+    paramsDropdownBtn.onClick(action, jotter)
   }
 
   const newParamsDropdownBtn = {...paramsDropdownBtn, onClick: onClickDropdownBtn}

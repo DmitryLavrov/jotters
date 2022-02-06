@@ -1,10 +1,10 @@
 import jotterService from '../services/jotter.service'
 import noteService from '../services/noteService'
 import sortArrayBy from '../utils/sortArrayBy'
-import useError from './useError'
+import errorServiceOld from '../services/errorServiceOld'
 
 const useNotes = (notes, setNotes, setSelectedNote) => {
-  const {handleError} = useError()
+  const {handleError} = errorServiceOld()
 
   const getJotter = async (id) => {
     try {

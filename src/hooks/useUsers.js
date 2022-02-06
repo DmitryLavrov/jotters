@@ -1,8 +1,8 @@
-import useError from './useError'
+import errorServiceOld from '../services/errorServiceOld'
 import userService from '../services/user.service'
 
 const useUsers = () => {
-  const {handleError} = useError()
+  const {handleError} = errorServiceOld()
 
   const fetchUsers = async () => {
     try {

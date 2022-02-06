@@ -1,8 +1,8 @@
 import jotterService from '../services/jotter.service'
-import useError from './useError'
+import errorServiceOld from '../services/errorServiceOld'
 
 const useJotters = (jotters, setJotters) => {
-  const {handleError} = useError()
+  const {handleError} = errorServiceOld()
 
   const fetchJotters = async () => {
     try {
@@ -14,9 +14,6 @@ const useJotters = (jotters, setJotters) => {
   }
 
   const updateJotter = async (jotter) => {
-    //======================
-    console.log('jotter:', jotter)
-    //======================
     try {
       const {data} = await jotterService.update(jotter._id, jotter)
       setJotters(prev => prev.map(j => j._id === jotter._id ? data : j))

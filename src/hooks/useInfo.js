@@ -1,8 +1,8 @@
-import useError from './useError'
+import errorServiceOld from '../services/errorServiceOld'
 import infoService from '../services/info.service'
 
 const useInfo = () => {
-  const {handleError} = useError()
+  const {handleError} = errorServiceOld()
 
   const getInfo = async (lng) => {
     try {

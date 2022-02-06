@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 
 import authService from '../services/authService'
-import useError from './useError'
+import errorServiceOld from '../services/errorServiceOld'
 import localStorageService from '../services/localStorage.service'
 import userService from '../services/user.service'
 
@@ -11,7 +11,7 @@ export const useAuth = () => useContext(AuthContext)
 
 const AuthProvider = ({children}) => {
   const [currentUser, setCurrentUser] = useState(null)
-  const {handleError} = useError()
+  const {handleError} = errorServiceOld()
 
   async function getUserData() {
     try {

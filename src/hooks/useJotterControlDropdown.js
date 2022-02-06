@@ -9,10 +9,10 @@ const initialSettingItems = {
   color: '#CCC'
 }
 
-const useJotterControlDropdown = (getJotter, handleUpdateJotter, handleDeleteJotter) => {
+const useJotterControlDropdown = (handleUpdateJotter, handleDeleteJotter) => {
   const {t} = useTranslation()
   const [settingItems, setSettingItems] = useState()
-  const [currentJotterId, setCurrentJotterId] = useState()
+  const [currentJotter, setCurrentJotter] = useState()
   const [isVisibleSettingsCard, setIsVisibleSettingsCard] = useState(false)
   const [isVisibleDeleteConfirm, setIsVisibleDeleteConfirm] = useState(false)
 
@@ -42,8 +42,8 @@ const useJotterControlDropdown = (getJotter, handleUpdateJotter, handleDeleteJot
     ]
   }
 
-  const showSettingsCard = (settingItems) => {
-    setSettingItems(settingItems ? settingItems : initialSettingItems)
+  const showSettingsCard = (jotter) => {
+    setSettingItems(jotter ? jotter : initialSettingItems)
     setIsVisibleSettingsCard(true)
   }
 
@@ -55,11 +55,11 @@ const useJotterControlDropdown = (getJotter, handleUpdateJotter, handleDeleteJot
     setIsVisibleSettingsCard(false)
   }
 
-  function handleDropdownBtn(action, id) {
+  function handleDropdownBtn(action, jotter) {
     if (action === 'settings') {
-      showSettingsCard(getJotter(id))
+      showSettingsCard(jotter)
     } else if (action === 'delete') {
-      setCurrentJotterId(id)
+      setCurrentJotter(jotter)
       setIsVisibleDeleteConfirm(true)
     }
   }
@@ -74,9 +74,9 @@ const useJotterControlDropdown = (getJotter, handleUpdateJotter, handleDeleteJot
 
     {isVisibleDeleteConfirm &&
     <Confirmation header={t('DELETE_JOTTER')}
-                  context={`${getJotter(currentJotterId)?.title}`}
+                  context={`${currentJotter.title}`}
                   action={t('DELETE')}
-                  onConfirm={() => handleDeleteJotter(currentJotterId)}
+                  onConfirm={() => handleDeleteJotter(currentJotter._id)}
                   onCancel={() => setIsVisibleDeleteConfirm(false)}/>
     }
   </>)

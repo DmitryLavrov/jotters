@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import sortArrayBy from '../../utils/sortArrayBy'
 import JottersSidebar from '../pages/sidebar/jottersSidebar'
 import Jotters from '../pages/main/jotters/jotters'
 import Layout from './common/layout'
-import { useTranslation } from 'react-i18next'
-import useJotters from '../../hooks/useJotters'
 import useJotterControlDropdown from '../../hooks/useJotterControlDropdown'
-import {useAuth} from '../../hooks/useAuth'
+import { useAuth } from '../../hooks/useAuth'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addNewJotter, deleteJotter, getJottersList, getJottersLoadingStatus, loadJotters, updateJotter
+} from '../../store/jottersSlice'
+import Spinner from '../common/spinner'
 
 const JottersLayout = () => {
   const {t} = useTranslation()
-  const [jotters, setJotters] = useState()
+  const dispatch = useDispatch()
+  const jotters = useSelector(getJottersList())
+  const jottersIsLoading = useSelector(getJottersLoadingStatus())
   const [sort, setSort] = useState('byDate')
   const [filter, setFilter] = useState('all')
-  const {fetchJotters, updateJotter, addNewJotter, deleteJotter, getJotter} = useJotters(jotters, setJotters)
-  const {paramsDropdownBtn, showSettingsCard, hideDeleteConfirm, renderControlDropdown
-  } = useJotterControlDropdown(getJotter, handleUpdateJotter, handleDeleteJotter)
   const {currentUser} = useAuth()
 
-  useEffect(() => {
-    fetchJotters().then(data => {
-      setJotters(data)
-    })
-  }, [])
+  const {
+    paramsDropdownBtn, showSettingsCard, hideDeleteConfirm, renderControlDropdown
+  } = useJotterControlDropdown(handleUpdateJotter, handleDeleteJotter)
 
   useEffect(() => {
-    setJotters(jotters)
-  }, [sort])
+    dispatch((loadJotters()))
+  }, [])
 
   const handleSort = ({value}) => {
     setSort(value)
@@ -41,16 +42,16 @@ const JottersLayout = () => {
     showSettingsCard()
   }
 
-  async function handleDeleteJotter(id) {
-    await deleteJotter(id)
+  function handleDeleteJotter(id) {
+    dispatch(deleteJotter(id))
     hideDeleteConfirm()
   }
 
-  async function handleUpdateJotter(jotter) {
+  function handleUpdateJotter(jotter) {
     if (jotter._id) {
-      await updateJotter(jotter)
+      dispatch(updateJotter(jotter))
     } else {
-      await addNewJotter(jotter, currentUser._id)
+      dispatch(addNewJotter(jotter, currentUser._id))
     }
   }
 
@@ -69,9 +70,15 @@ const JottersLayout = () => {
                       onSort={handleSort}
                       onFilter={handleFilter}
                       onAddNewJotter={onAddNewJotter}/>
-      <Jotters jotters={filteredAndSortedJotters()}
-               paramsDropdownBtn={paramsDropdownBtn}
-               onAddNewJotter={onAddNewJotter}/>
+
+      {jottersIsLoading
+        ? <Spinner/>
+
+        : <Jotters jotters={filteredAndSortedJotters()}
+                   paramsDropdownBtn={paramsDropdownBtn}
+                   onAddNewJotter={onAddNewJotter}/>
+      }
+
     </Layout>
 
     {renderControlDropdown}
