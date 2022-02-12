@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import jotterService from '../services/jotter.service'
+import jotterService from '../services/jotterService'
 import errorService from '../services/errorService'
+import {sortArrayBy, filterArrayBy} from '../utils/helpers'
 
 const initialState = {
   entities: null,
@@ -49,6 +50,7 @@ export const updateJotter = (jotter) => async (dispatch, state) => {
   }
 }
 
+// todo userId ????????????????????????????????????????????
 export const addNewJotter = (jotter, userId) => async (dispatch, state) => {
   dispatch(requested())
   try {
@@ -71,13 +73,13 @@ export const deleteJotter = (jotterId) => async (dispatch, state) => {
   }
 }
 
-export const getJottersList = () => (state) => {
-  return state.jotters.entities
+export const getJotterById = (jotterId) => (state) => {
+  return state.jotters.entities ? state.jotters.entities.find(j => j._id === jotterId) : null
 }
 
-// export const getJotterById = (jotterId) => (state) => {
-//   return state.jotters.entities ? state.jotters.entities.find(j => j._id === jotterId) : null
-// }
+export const getJottersList = (filter, sort) => (state) => {
+  return sortArrayBy(sort, filterArrayBy(filter, state.jotters.entities))
+}
 
 export const getJottersLoadingStatus = () => (state) => {
   return state.jotters.isLoading

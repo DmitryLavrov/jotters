@@ -9,9 +9,6 @@ const errorService = {
       error = err.message
     }
     toast.error(error)
-    // =========================
-    console.log('errorService')
-    // =========================
   }
 }
 

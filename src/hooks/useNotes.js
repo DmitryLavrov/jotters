@@ -1,6 +1,6 @@
-import jotterService from '../services/jotter.service'
+import jotterService from '../services/jotterService'
 import noteService from '../services/noteService'
-import sortArrayBy from '../utils/sortArrayBy'
+import {sortArrayBy} from '../utils/helpers'
 import errorServiceOld from '../services/errorServiceOld'
 
 const useNotes = (notes, setNotes, setSelectedNote) => {

@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
 import InfoSidebar from '../pages/sidebar/infoSidebar'
 import Layout from './common/layout'
 import Note from '../pages/main/common/note'
 import { useTranslation } from 'react-i18next'
-import useInfo from '../../hooks/useInfo'
+import { loadInfoNote, updateInfoNote, getInfoNote, getInfoNotesLoadingStatus } from '../../store/infoSlice'
+import Spinner from '../common/spinner'
+
 
 const InfoLayout = () => {
   const {i18n} = useTranslation()
-  const [note, setNote] = useState()
-  const [lng, setLng] = useState()
-  const {getInfo, updateInfo} = useInfo()
+  const dispatch = useDispatch()
+  const infoNote = useSelector(getInfoNote())
+  const infoNoteIsLoading = useSelector(getInfoNotesLoadingStatus())
 
   useEffect(() => {
-    setLng(i18n.language)
+    dispatch(loadInfoNote(i18n.language))
   }, [i18n.language])
 
-  useEffect(() => {
-    getInfo(lng).then(data => setNote(data))
-  }, [lng])
-
-  const handleUpdateInfo = async (info) => {
-    await updateInfo(info)
+  const handleUpdateInfo = (infoNote) => {
+    dispatch(updateInfoNote(infoNote))
   }
 
   return (
     <Layout>
       <InfoSidebar/>
-      <Note note={note} onUpdate={handleUpdateInfo} type="INFO"/>
+
+      {infoNoteIsLoading
+        ? <Spinner/>
+
+        : <Note note={infoNote} onUpdate={handleUpdateInfo}
+                type="INFO"/>
+      }
     </Layout>
   )
 }

@@ -8,7 +8,7 @@ const infoService = {
   },
 
   update: async (info) => {
-    const {data} = await httpService.patch(infoEndpoint + info.lng, {info}, {withCredentials: true})
+    const {data} = await httpService.patch(infoEndpoint + info.lng, info, {withCredentials: true})
     return data
   }
 }

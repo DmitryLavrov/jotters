@@ -1,4 +1,4 @@
-import jotterService from '../services/jotter.service'
+import jotterService from '../services/jotterService'
 import errorServiceOld from '../services/errorServiceOld'
 
 const useJotters = (jotters, setJotters) => {

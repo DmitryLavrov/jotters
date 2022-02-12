@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-export default function sortArrayBy(sort, arr) {
+export function sortArrayBy(sort, arr) {
   if (!Array.isArray(arr)) return
 
   const copyArr = [...arr]
@@ -16,4 +16,23 @@ export default function sortArrayBy(sort, arr) {
 
 sortArrayBy.propTypes = {
   sort: PropTypes.oneOf(['byDate', 'byName']).isRequired,
+}
+
+
+export function filterArrayBy(filter, arr) {
+  if (!Array.isArray(arr)) return
+
+  if (filter === 'all') {
+    return arr
+  }
+
+  const copyArr = [...arr]
+
+  if (filter === 'withPublicNotes') {
+    return copyArr.filter(j => j.hasPublicNote === true)
+  }
+}
+
+filterArrayBy.propTypes = {
+  filter: PropTypes.oneOf(['all', 'withPublicNotes']).isRequired,
 }

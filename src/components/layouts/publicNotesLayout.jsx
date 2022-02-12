@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import PublicNotesSidebar from '../pages/sidebar/publicNotesSidebar'
 import PublicNotesPage from '../pages/main/publicNotes/publicNotesPage'
 import Layout from './common/layout'
-import sortArrayBy from '../../utils/sortArrayBy'
+import {sortArrayBy} from '../../utils/helpers'
 import selectUsersFromNotes from '../../utils/selectUsersFromNotes'
 import useNotes from '../../hooks/useNotes'
 

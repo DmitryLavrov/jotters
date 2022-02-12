@@ -1,8 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import jotters from './jottersSlice'
+import jotters from './jotterSlice'
+import notes from './noteSlice'
+import info from './infoSlice'
 
 const rootReducer = combineReducers({
-  jotters
+  info,
+  jotters,
+  notes
 })
 
 function createStore() {

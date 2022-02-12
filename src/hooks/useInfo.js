@@ -1,8 +1,7 @@
-import errorServiceOld from '../services/errorServiceOld'
+import errorService from '../services/errorService'
 import infoService from '../services/info.service'
 
 const useInfo = () => {
-  const {handleError} = errorServiceOld()
 
   const getInfo = async (lng) => {
     try {
@@ -11,7 +10,7 @@ const useInfo = () => {
         return data
       }
     } catch (err) {
-      handleError(err)
+      errorService.handleError(err)
     }
   }
 
@@ -19,7 +18,7 @@ const useInfo = () => {
     try {
       await infoService.update(info)
     } catch (err) {
-      handleError(err)
+      errorService.handleError(err)
     }
   }
 
